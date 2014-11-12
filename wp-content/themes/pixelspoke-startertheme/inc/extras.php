@@ -60,7 +60,7 @@ function pixelspoke_boilerplate_wp_title( $title, $sep ) {
 
 	// Add a page number if necessary:
 	if ( ( $paged >= 2 || $page >= 2 ) && ! is_404() ) {
-		$title .= " $sep " . sprintf( __( 'Page %s', 'pixelspoke-boilerplate' ), max( $paged, $page ) );
+		$title .= " $sep " . sprintf( __( 'Page %s', 'pixelspoke-startertheme' ), max( $paged, $page ) );
 	}
 
 	return $title;

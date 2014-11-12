@@ -26,9 +26,9 @@ function pixelspoke_boilerplate_setup() {
 	 * Make theme available for translation.
 	 * Translations can be filed in the /languages/ directory.
 	 * If you're building a theme based on PixelSpoke Boilerplate, use a find and replace
-	 * to change 'pixelspoke-boilerplate' to the name of your theme in all the template files
+	 * to change 'pixelspoke-startertheme' to the name of your theme in all the template files
 	 */
-	load_theme_textdomain( 'pixelspoke-boilerplate', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'pixelspoke-startertheme', get_template_directory() . '/languages' );
 
 	// Add default posts and comments RSS feed links to head.
 	add_theme_support( 'automatic-feed-links' );
@@ -42,7 +42,7 @@ function pixelspoke_boilerplate_setup() {
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
-		'primary' => __( 'Primary Menu', 'pixelspoke-boilerplate' ),
+		'primary' => __( 'Primary Menu', 'pixelspoke-startertheme' ),
 	) );
 
 	/*
@@ -77,7 +77,7 @@ add_action( 'after_setup_theme', 'pixelspoke_boilerplate_setup' );
  */
 function pixelspoke_boilerplate_widgets_init() {
 	register_sidebar( array(
-		'name'          => __( 'Sidebar', 'pixelspoke-boilerplate' ),
+		'name'          => __( 'Sidebar', 'pixelspoke-startertheme' ),
 		'id'            => 'sidebar-1',
 		'description'   => '',
 		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
@@ -92,11 +92,11 @@ add_action( 'widgets_init', 'pixelspoke_boilerplate_widgets_init' );
  * Enqueue scripts and styles.
  */
 function pixelspoke_boilerplate_scripts() {
-	wp_enqueue_style( 'pixelspoke-boilerplate-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'pixelspoke-startertheme-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'pixelspoke-boilerplate-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
+	wp_enqueue_script( 'pixelspoke-startertheme-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
 
-	wp_enqueue_script( 'pixelspoke-boilerplate-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
+	wp_enqueue_script( 'pixelspoke-startertheme-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );

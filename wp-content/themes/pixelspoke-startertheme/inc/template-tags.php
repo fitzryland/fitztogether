@@ -18,15 +18,15 @@ function pixelspoke_boilerplate_paging_nav() {
 	}
 	?>
 	<nav class="navigation paging-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php _e( 'Posts navigation', 'pixelspoke-boilerplate' ); ?></h1>
+		<h1 class="screen-reader-text"><?php _e( 'Posts navigation', 'pixelspoke-startertheme' ); ?></h1>
 		<div class="nav-links">
 
 			<?php if ( get_next_posts_link() ) : ?>
-			<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'pixelspoke-boilerplate' ) ); ?></div>
+			<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'pixelspoke-startertheme' ) ); ?></div>
 			<?php endif; ?>
 
 			<?php if ( get_previous_posts_link() ) : ?>
-			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'pixelspoke-boilerplate' ) ); ?></div>
+			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'pixelspoke-startertheme' ) ); ?></div>
 			<?php endif; ?>
 
 		</div><!-- .nav-links -->
@@ -49,11 +49,11 @@ function pixelspoke_boilerplate_post_nav() {
 	}
 	?>
 	<nav class="navigation post-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'pixelspoke-boilerplate' ); ?></h1>
+		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'pixelspoke-startertheme' ); ?></h1>
 		<div class="nav-links">
 			<?php
-				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span>&nbsp;%title', 'Previous post link', 'pixelspoke-boilerplate' ) );
-				next_post_link(     '<div class="nav-next">%link</div>',     _x( '%title&nbsp;<span class="meta-nav">&rarr;</span>', 'Next post link',     'pixelspoke-boilerplate' ) );
+				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span>&nbsp;%title', 'Previous post link', 'pixelspoke-startertheme' ) );
+				next_post_link(     '<div class="nav-next">%link</div>',     _x( '%title&nbsp;<span class="meta-nav">&rarr;</span>', 'Next post link',     'pixelspoke-startertheme' ) );
 			?>
 		</div><!-- .nav-links -->
 	</nav><!-- .navigation -->
@@ -79,12 +79,12 @@ function pixelspoke_boilerplate_posted_on() {
 	);
 
 	$posted_on = sprintf(
-		_x( 'Posted on %s', 'post date', 'pixelspoke-boilerplate' ),
+		_x( 'Posted on %s', 'post date', 'pixelspoke-startertheme' ),
 		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 	);
 
 	$byline = sprintf(
-		_x( 'by %s', 'post author', 'pixelspoke-boilerplate' ),
+		_x( 'by %s', 'post author', 'pixelspoke-startertheme' ),
 		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
 	);
 
@@ -101,25 +101,25 @@ function pixelspoke_boilerplate_entry_footer() {
 	// Hide category and tag text for pages.
 	if ( 'post' == get_post_type() ) {
 		/* translators: used between list items, there is a space after the comma */
-		$categories_list = get_the_category_list( __( ', ', 'pixelspoke-boilerplate' ) );
+		$categories_list = get_the_category_list( __( ', ', 'pixelspoke-startertheme' ) );
 		if ( $categories_list && pixelspoke_boilerplate_categorized_blog() ) {
-			printf( '<span class="cat-links">' . __( 'Posted in %1$s', 'pixelspoke-boilerplate' ) . '</span>', $categories_list );
+			printf( '<span class="cat-links">' . __( 'Posted in %1$s', 'pixelspoke-startertheme' ) . '</span>', $categories_list );
 		}
 
 		/* translators: used between list items, there is a space after the comma */
-		$tags_list = get_the_tag_list( '', __( ', ', 'pixelspoke-boilerplate' ) );
+		$tags_list = get_the_tag_list( '', __( ', ', 'pixelspoke-startertheme' ) );
 		if ( $tags_list ) {
-			printf( '<span class="tags-links">' . __( 'Tagged %1$s', 'pixelspoke-boilerplate' ) . '</span>', $tags_list );
+			printf( '<span class="tags-links">' . __( 'Tagged %1$s', 'pixelspoke-startertheme' ) . '</span>', $tags_list );
 		}
 	}
 
 	if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
 		echo '<span class="comments-link">';
-		comments_popup_link( __( 'Leave a comment', 'pixelspoke-boilerplate' ), __( '1 Comment', 'pixelspoke-boilerplate' ), __( '% Comments', 'pixelspoke-boilerplate' ) );
+		comments_popup_link( __( 'Leave a comment', 'pixelspoke-startertheme' ), __( '1 Comment', 'pixelspoke-startertheme' ), __( '% Comments', 'pixelspoke-startertheme' ) );
 		echo '</span>';
 	}
 
-	edit_post_link( __( 'Edit', 'pixelspoke-boilerplate' ), '<span class="edit-link">', '</span>' );
+	edit_post_link( __( 'Edit', 'pixelspoke-startertheme' ), '<span class="edit-link">', '</span>' );
 }
 endif;
 
