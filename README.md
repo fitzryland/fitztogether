@@ -29,23 +29,22 @@ This theme uses Grunt to build CSS and process JavaScript.
 ```
 npm install
 ```
-'''
 * you might have to run this as an administrator
 * then also from the theme folder run
-'''
+```
 grunt
-'''
+```
 * this will compile your css and js to all the right places
 * change directories to the document root and run
-'''
+```
 wp core download
-'''
+```
 * configure the database
 * while you are there, add this to wp-config.php
-'''
+```
 define('WP_DEBUG', true);
 define('PIX_ENVIRONMENT', local);
-'''
+```
 * and you are ready to roll!!
 
 ### Who do I talk to? ###
