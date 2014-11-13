@@ -780,3 +780,61 @@ object {
 .gallery-caption {
   display: block;
 }
+
+.test_block {
+  margin: 0 auto;
+  max-width: 57.5em;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+}
+.test_block:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.test_block--item {
+  background-color: red;
+  height: 3em;
+  margin-top: 1em;
+}
+@media (min-width: 0em) and (max-width: 37.5em) {
+  .test_block--item {
+    width: 17.24138%;
+    float: left;
+    margin-left: 3.44828%;
+  }
+  .test_block--item:nth-child(5n-4) {
+    margin-left: 0;
+  }
+}
+@media (min-width: 37.5em) and (max-width: 55em) {
+  .test_block--item {
+    background-color: orange;
+    width: 10.6383%;
+    float: left;
+    margin-left: 2.12766%;
+  }
+  .test_block--item:nth-child(8n-7) {
+    margin-left: 0;
+  }
+}
+@media (min-width: 55em) {
+  .test_block--item {
+    background-color: yellow;
+    width: 5.26316%;
+    float: left;
+    margin-left: 1.05263%;
+  }
+  .test_block--item:nth-child(16n-15) {
+    margin-left: 0;
+  }
+}
+.oldie .test_block--item {
+  background-color: yellow;
+  width: 5.26316%;
+  float: left;
+  margin-left: 1.05263%;
+}
+.oldie .test_block--item:nth-child(16n-15) {
+  margin-left: 0;
+}

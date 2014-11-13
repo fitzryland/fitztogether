@@ -34,4 +34,25 @@
 		</nav><!-- #site-navigation -->
 	</header><!-- #masthead -->
 
+<!--
+	this is just an example grid
+<div class="test_block">
+	<div class="test_block--item"></div>
+	<div class="test_block--item"></div>
+	<div class="test_block--item"></div>
+	<div class="test_block--item"></div>
+	<div class="test_block--item"></div>
+	<div class="test_block--item"></div>
+	<div class="test_block--item"></div>
+	<div class="test_block--item"></div>
+	<div class="test_block--item"></div>
+	<div class="test_block--item"></div>
+	<div class="test_block--item"></div>
+	<div class="test_block--item"></div>
+	<div class="test_block--item"></div>
+	<div class="test_block--item"></div>
+	<div class="test_block--item"></div>
+	<div class="test_block--item"></div>
+</div> -->
+
 	<div id="content" class="site-content">
