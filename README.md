@@ -26,8 +26,9 @@ This theme uses Grunt to build CSS and process JavaScript.
 * rename the theme folder
 * change the theme name and info in scss/style.scss
 * from the theme folder run
-'''
+```
 npm install
+```
 '''
 * you might have to run this as an administrator
 * then also from the theme folder run
