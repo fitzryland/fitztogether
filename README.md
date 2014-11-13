@@ -54,7 +54,7 @@ define('PIX_ENVIRONMENT', local);
 
 # Below here is a template for your new theme #
 
-# PixelSpoke Starter Theme #
+# Theme Name #
 
 ### What is this repository for? ###
 
