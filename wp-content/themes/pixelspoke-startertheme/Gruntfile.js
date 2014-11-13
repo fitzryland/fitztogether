@@ -9,16 +9,19 @@ module.exports = function(grunt) {
             // 2. Configuration for concatinating files goes here.
             dist: {
                 src: [
+                    'js/vendors/*.js', // All JS in the libs folder
                     'js/lib/*.js', // All JS in the libs folder
                     'js/main.js'  // This specific file
                 ],
-                dest: '.tmp/production.js',
+                dest: 'js/production.js',
+                sourceMap: true
             }
         },
         uglify: {
             build: {
-                src: '.tmp/production.js',
-                dest: 'js/production.min.js'
+                src: 'js/production.js',
+                dest: 'js/production.min.js',
+                sourceMap: true
             }
         },
         // Style
@@ -29,6 +32,9 @@ module.exports = function(grunt) {
             dist: {
                 files: {
                     'style.css': '.tmp/style.css'
+                },
+                options: {
+                    map: true
                 }
             }
         },
@@ -43,10 +49,6 @@ module.exports = function(grunt) {
                 options: {
                     spawn: false,
                 }
-            },
-            css_prefix: {
-                files: ['no-prefix-style.css'],
-                tasks: ['autoprefixer']
             },
             scripts: {
                 files: ['js/*.js'],

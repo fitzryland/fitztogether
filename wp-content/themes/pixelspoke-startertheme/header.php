@@ -53,6 +53,6 @@
 	<div class="test_block--item"></div>
 	<div class="test_block--item"></div>
 	<div class="test_block--item"></div>
-</div> -->
+</div>
 
 	<div id="content" class="site-content">

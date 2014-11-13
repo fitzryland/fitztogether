@@ -38,7 +38,7 @@ function pixelspoke_boilerplate_setup() {
 	 *
 	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
 	 */
-	//add_theme_support( 'post-thumbnails' );
+	add_theme_support( 'post-thumbnails' );
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus( array(
@@ -53,19 +53,6 @@ function pixelspoke_boilerplate_setup() {
 		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption',
 	) );
 
-	/*
-	 * Enable support for Post Formats.
-	 * See http://codex.wordpress.org/Post_Formats
-	 */
-	add_theme_support( 'post-formats', array(
-		'aside', 'image', 'video', 'quote', 'link',
-	) );
-
-	// Set up the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'pixelspoke_boilerplate_custom_background_args', array(
-		'default-color' => 'ffffff',
-		'default-image' => '',
-	) ) );
 }
 endif; // pixelspoke_boilerplate_setup
 add_action( 'after_setup_theme', 'pixelspoke_boilerplate_setup' );
@@ -92,11 +79,26 @@ add_action( 'widgets_init', 'pixelspoke_boilerplate_widgets_init' );
  * Enqueue scripts and styles.
  */
 function pixelspoke_boilerplate_scripts() {
-	wp_enqueue_style( 'pixelspoke-startertheme-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'pixelspoke-startertheme-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
+	$stylePath = get_stylesheet_directory() . '/style.css';
+	wp_enqueue_style( 'pixelspoke-startertheme-style', get_stylesheet_uri(), '', filemtime( $stylePath ) );
 
-	wp_enqueue_script( 'pixelspoke-startertheme-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20130115', true );
+	// PIX_ENVIRONMENT set (or not) in wp-config.php
+	if ( ! defined( 'PIX_ENVIRONMENT' ) || PIX_ENVIRONMENT !== 'local' ) :
+	  // if not the local environment load the concatinated and minified JS
+	  // wp_enqueue_script('productionMin', get_bloginfo('stylesheet_directory').'/js/production.min.js', array('jquery'), false, true);
+	  wp_enqueue_script('production', get_bloginfo('stylesheet_directory').'/js/production.js', array('jquery'), false, true);
+	else :
+	  // if local load the individual files. Better for debugging.
+	  // wp_enqueue_script('bxslider',get_bloginfo('template_directory').'/js/vendor/jquery.bxslider.js',array('jquery'), false, true);
+		wp_enqueue_script( 'pixelspoke-startertheme-skip-link-focus-fix', get_template_directory_uri() . '/js/lib/skip-link-focus-fix.js', array(), '20130115', true );
+	  wp_enqueue_script('mainScripts',get_bloginfo('template_directory').'/js/main.js',array('jquery'), false, true);
+
+
+
+	endif;
+
+
 
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -104,10 +106,6 @@ function pixelspoke_boilerplate_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'pixelspoke_boilerplate_scripts' );
 
-/**
- * Implement the Custom Header feature.
- */
-//require get_template_directory() . '/inc/custom-header.php';
 
 /**
  * Custom template tags for this theme.
@@ -118,11 +116,6 @@ require get_template_directory() . '/inc/template-tags.php';
  * Custom functions that act independently of the theme templates.
  */
 require get_template_directory() . '/inc/extras.php';
-
-/**
- * Customizer additions.
- */
-require get_template_directory() . '/inc/customizer.php';
 
 /**
  * Load Jetpack compatibility file.
