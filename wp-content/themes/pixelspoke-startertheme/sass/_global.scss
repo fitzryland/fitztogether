@@ -37,8 +37,8 @@ $susy: (
 );
 $bp-small: 0em 37.5em;
 $bp-medium: 37.5em 55em;
-$bp-medium-up: 37.5em, 'no-query' '.oldie';
-$bp-large: 55em, 'no-query' '.oldie';
+$bp-medium-up: 37.5em, 'no-query' '.mz-no-mediaqueries';
+$bp-large: 55em, 'no-query' '.mz-no-mediaqueries';
 
 // 1.3 Variables - Grid Settings
 //

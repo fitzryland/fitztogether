@@ -90,6 +90,7 @@ function pixelspoke_boilerplate_scripts() {
 	  wp_enqueue_script('production', get_bloginfo('stylesheet_directory').'/js/production.js', array('jquery'), false, true);
 	else :
 	  // if local load the individual files. Better for debugging.
+	  wp_enqueue_script('modernizr',get_bloginfo('template_directory').'/js/lib/modernizr.custom.25191.js', array(), false, true);
 	  // wp_enqueue_script('bxslider',get_bloginfo('template_directory').'/js/vendor/jquery.bxslider.js',array('jquery'), false, true);
 		wp_enqueue_script( 'pixelspoke-startertheme-skip-link-focus-fix', get_template_directory_uri() . '/js/lib/skip-link-focus-fix.js', array(), '20130115', true );
 	  wp_enqueue_script('mainScripts',get_bloginfo('template_directory').'/js/main.js',array('jquery'), false, true);
