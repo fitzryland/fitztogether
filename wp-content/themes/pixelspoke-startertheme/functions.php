@@ -57,6 +57,13 @@ function pixelspoke_boilerplate_setup() {
 endif; // pixelspoke_boilerplate_setup
 add_action( 'after_setup_theme', 'pixelspoke_boilerplate_setup' );
 
+// apply style to editor
+function add_editor_style_function() {
+  add_editor_style('style.css');
+}
+add_action('init', 'add_editor_style_function');
+
+
 /**
  * Register widget area.
  *
@@ -122,3 +129,8 @@ require get_template_directory() . '/inc/extras.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+/**
+ * Add Helper Functions
+ */
+require get_template_directory() . '/functions-helpers.php';
