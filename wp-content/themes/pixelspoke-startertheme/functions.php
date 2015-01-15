@@ -5,13 +5,6 @@
  * @package PixelSpoke Boilerplate
  */
 
-/**
- * Set the content width based on the theme's design and stylesheet.
- */
-if ( ! isset( $content_width ) ) {
-	$content_width = 640; /* pixels */
-}
-
 if ( ! function_exists( 'pixelspoke_boilerplate_setup' ) ) :
 /**
  * Sets up theme defaults and registers support for various WordPress features.
@@ -133,4 +126,4 @@ require get_template_directory() . '/inc/jetpack.php';
 /**
  * Add Helper Functions
  */
-require get_template_directory() . '/functions-helpers.php';
+require get_template_directory() . '/functions-pix-overhead.php';

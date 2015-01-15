@@ -22,17 +22,6 @@ if ( ! function_exists( 'syn_postformats' ) ) {
 }
 
 /**
- * Set the content width based on the theme's design and stylesheet.
- *
- * Used to set the width of images and content. Should be equal to the width the theme
- * is designed for, generally via the style.css stylesheet.
- *
- */
- if ( ! isset( $content_width ) ) {
-   $content_width = 640;
- }
-
-/**
 * Remove the generator meta tag and versions on feeds, etc.
 */
 if ( ! function_exists( 'syn_remove_versions' ) && ! function_exists( 'syn_remove_version' )) {
@@ -183,31 +172,6 @@ if ( ! function_exists( 'synotac_add_dashboard_resources' ) && ! function_exists
 }
 
 /**
-* Core setup function
-* Replaces synotac_setup used in many older themes
-* May need to locate other functions to override this as well (twentyten?)
-* functions.php should add functionality using the ps_custom_setup() function
-*
-*/
-if ( ! function_exists( 'syn_standard_setup' ) && ! function_exists( 'synotac_setup' )) {
-  function syn_standard_setup() {
-    // This theme styles the visual editor with editor-style.css to match the theme style.
-    add_editor_style();
-
-    // Featured image functionality
-    add_theme_support( 'post-thumbnails' );
-
-    // Two navigation menus, many more can be added in ps_custom_setup if needed
-    // Will only work if the theme files display the nav
-    $navigation =  array('primary' => __( 'Primary Navigation', 'synotac' ),
-                         'footer' => __( 'Footer Navigation', 'synotac' ),
-                         );
-    register_nav_menus( $navigation );
-  }
-  add_action( 'after_setup_theme', 'syn_standard_setup' );
-}
-
-/**
  * Sets the post excerpt length to 60 characters.
  *
  * @return int
@@ -325,6 +289,53 @@ if ( ! function_exists( 'syn_clear' ) && ! function_exists( 'clear' )) {
   add_shortcode('clear', 'syn_clear');
   function syn_clear() {
     return '<div class="clear"><hr /></div>';
+  }
+}
+
+if ( ! function_exists( 'acf_image' ) ) {
+  function acf_image($aImageAttr) {
+    $aImg = $aImageAttr[0];
+    $class = $aImageAttr[1];
+    $size = $aImageAttr[2];
+    if ($size) {
+      $widthString = $size . "-width";
+      $heightString = $size . "-height";
+      $imgStr = "<img src=\"" . $aImg['sizes'][$size] . "\" alt=\"" . $aImg['title'] . "\" width=\"" . $aImg['sizes'][$widthString] . "\" height=\"" . $aImg['sizes'][$heightString] . "\"";
+      if ($class) {
+        $imgStr .= " class=\"" . $class . "\"";
+      }
+      $imgStr .= ">";
+      return $imgStr;
+    } else {
+      $imgStr = "<img src=\"" . $aImg['url'] . "\" alt=\"" . $aImg['title'] . "\" width=\"" . $aImg['width'] . "\" height=\"" . $aImg['height'] . "\"";
+      if ($class) {
+        $imgStr .= " class=\"" . $class . "\"";
+      }
+      $imgStr .= ">";
+      return $imgStr;
+    }
+  }
+}
+
+if ( ! function_exists( 'acf_link' ) ) {
+  function acf_link($options) { // link_text, link_destination, class
+    $linkText = $options[0];
+    $linkDestination = $options[1];
+    $html = '<a href="' . $linkDestination . '"';
+    if ( count($options) >= 3 ) {
+      $html .= ' class="' . $options[2] . '"';
+    }
+    $html .= '>' . $linkText . '</a>';
+    return $html;
+  }
+}
+
+if ( ! function_exists( 'pix_slugify' ) ) {
+  function pix_slugify($string) {
+    $replace_chars = array( ' ', '-', '(', ')', '.', '/', ',', ':', ';', '+', '=' );
+    $slug = str_replace($replace_chars, '', $string);
+    $slug = strtolower($slug);
+    return $slug;
   }
 }
 
