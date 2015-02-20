@@ -297,23 +297,25 @@ if ( ! function_exists( 'acf_image' ) ) {
     $aImg = $aImageAttr[0];
     $class = $aImageAttr[1];
     $size = $aImageAttr[2];
-    if ($size) {
-      $widthString = $size . "-width";
-      $heightString = $size . "-height";
-      $imgStr = "<img src=\"" . $aImg['sizes'][$size] . "\" alt=\"" . $aImg['title'] . "\" width=\"" . $aImg['sizes'][$widthString] . "\" height=\"" . $aImg['sizes'][$heightString] . "\"";
-      if ($class) {
-        $imgStr .= " class=\"" . $class . "\"";
+    if ( is_array($aImg) ) :
+      if ($size) {
+        $widthString = $size . "-width";
+        $heightString = $size . "-height";
+        $imgStr = "<img src=\"" . $aImg['sizes'][$size] . "\" alt=\"" . $aImg['title'] . "\" width=\"" . $aImg['sizes'][$widthString] . "\" height=\"" . $aImg['sizes'][$heightString] . "\"";
+        if ($class) {
+          $imgStr .= " class=\"" . $class . "\"";
+        }
+        $imgStr .= ">";
+        return $imgStr;
+      } else {
+        $imgStr = "<img src=\"" . $aImg['url'] . "\" alt=\"" . $aImg['title'] . "\" width=\"" . $aImg['width'] . "\" height=\"" . $aImg['height'] . "\"";
+        if ($class) {
+          $imgStr .= " class=\"" . $class . "\"";
+        }
+        $imgStr .= ">";
+        return $imgStr;
       }
-      $imgStr .= ">";
-      return $imgStr;
-    } else {
-      $imgStr = "<img src=\"" . $aImg['url'] . "\" alt=\"" . $aImg['title'] . "\" width=\"" . $aImg['width'] . "\" height=\"" . $aImg['height'] . "\"";
-      if ($class) {
-        $imgStr .= " class=\"" . $class . "\"";
-      }
-      $imgStr .= ">";
-      return $imgStr;
-    }
+    endif;
   }
 }
 
