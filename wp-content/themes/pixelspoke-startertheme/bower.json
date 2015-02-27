@@ -1,0 +1,25 @@
+{
+  "name": "pixelspoke-startertheme",
+  "version": "1.5",
+  "authors": [
+    "Fitz Ryland <fitz@pixelspoke.com>"
+  ],
+  "description": "PixelSpoke Starter Theme",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "keywords": [
+    "WordPress"
+  ],
+  "license": "MIT",
+  "homepage": "http://www.pixelspoke.com",
+  "private": true,
+  "dependencies": {
+    "susy": "~2.2.2",
+    "breakpoint-sass": "~2.5.0"
+  }
+}

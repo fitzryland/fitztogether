@@ -39,14 +39,7 @@ PixelSpoke Boilerplate is based on Underscores http://underscores.me/, (C) 2012-
 /*--------------------------------------------------------------
 1.0 Reset
 --------------------------------------------------------------*/
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, font, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
   border: 0;
   font-family: inherit;
   font-size: 100%;
@@ -55,8 +48,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
   margin: 0;
   outline: 0;
   padding: 0;
-  vertical-align: baseline;
-}
+  vertical-align: baseline; }
 
 html {
   font-size: 62.5%;
@@ -68,124 +60,73 @@ html {
   -ms-text-size-adjust: 100%;
   /* www.456bereastreet.com/archive/201012/controlling_text_size_in_safari_for_ios_without_disabling_user_zoom/ */
   box-sizing: border-box;
-  /* Apply a natural box layout model to the document; see http://www.paulirish.com/2012/box-sizing-border-box-ftw/ */
-}
+  /* Apply a natural box layout model to the document; see http://www.paulirish.com/2012/box-sizing-border-box-ftw/ */ }
 
-*,
-*:before,
-*:after {
+*, *:before, *:after {
   /* Inherit box-sizing to make it easier to change the property for components that leverage other behavior; see http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
-  box-sizing: inherit;
-}
+  box-sizing: inherit; }
 
 body {
   background: #fff;
-  /* Fallback for when there is no custom background color defined. */
-}
+  /* Fallback for when there is no custom background color defined. */ }
 
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-main,
-nav,
-section {
-  display: block;
-}
+article, aside, details, figcaption, figure, footer, header, main, nav, section {
+  display: block; }
 
-ol,
-ul {
-  list-style: none;
-}
+ol, ul {
+  list-style: none; }
 
 table {
   /* tables still need 'cellspacing="0"' in the markup */
   border-collapse: separate;
-  border-spacing: 0;
-}
+  border-spacing: 0; }
 
-caption,
-th,
-td {
+caption, th, td {
   font-weight: normal;
-  text-align: left;
-}
+  text-align: left; }
 
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
-  content: "";
-}
+blockquote:before, blockquote:after, q:before, q:after {
+  content: ""; }
 
-blockquote,
-q {
-  quotes: "" "";
-}
+blockquote, q {
+  quotes: "" ""; }
 
 a:focus {
-  outline: thin dotted;
-}
+  outline: thin dotted; }
 
-a:hover,
-a:active {
-  outline: 0;
-}
+a:hover, a:active {
+  outline: 0; }
 
 a img {
-  border: 0;
-}
+  border: 0; }
 
 /*--------------------------------------------------------------
 2.0 Typography
 --------------------------------------------------------------*/
-body,
-button,
-input,
-select,
-textarea {
+body, button, input, select, textarea {
   color: #404040;
   font-family: sans-serif;
   font-size: 16px;
   font-size: 1.6rem;
-  line-height: 1.5;
-}
+  line-height: 1.5; }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  clear: both;
-}
+h1, h2, h3, h4, h5, h6 {
+  clear: both; }
 
 p {
-  margin-bottom: 1.5em;
-}
+  margin-bottom: 1.5em; }
 
-b,
-strong {
-  font-weight: bold;
-}
+b, strong {
+  font-weight: bold; }
 
-dfn,
-cite,
-em,
-i {
-  font-style: italic;
-}
+dfn, cite, em, i {
+  font-style: italic; }
 
 blockquote {
-  margin: 0 1.5em;
-}
+  margin: 0 1.5em; }
 
 address {
-  margin: 0 0 1.5em;
-}
+  margin: 0 0 1.5em; }
 
 pre {
   background: #eee;
@@ -196,54 +137,39 @@ pre {
   margin-bottom: 1.6em;
   max-width: 100%;
   overflow: auto;
-  padding: 1.6em;
-}
+  padding: 1.6em; }
 
-code,
-kbd,
-tt,
-var {
+code, kbd, tt, var {
   font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
   font-size: 15px;
-  font-size: 1.5rem;
-}
+  font-size: 1.5rem; }
 
-abbr,
-acronym {
+abbr, acronym {
   border-bottom: 1px dotted #666;
-  cursor: help;
-}
+  cursor: help; }
 
-mark,
-ins {
+mark, ins {
   background: #fff9c0;
-  text-decoration: none;
-}
+  text-decoration: none; }
 
-sup,
-sub {
+sup, sub {
   font-size: 75%;
   height: 0;
   line-height: 0;
   position: relative;
-  vertical-align: baseline;
-}
+  vertical-align: baseline; }
 
 sup {
-  bottom: 1ex;
-}
+  bottom: 1ex; }
 
 sub {
-  top: .5ex;
-}
+  top: .5ex; }
 
 small {
-  font-size: 75%;
-}
+  font-size: 75%; }
 
 big {
-  font-size: 125%;
-}
+  font-size: 125%; }
 
 /*--------------------------------------------------------------
 3.0 Elements
@@ -252,75 +178,55 @@ hr {
   background-color: #ccc;
   border: 0;
   height: 1px;
-  margin-bottom: 1.5em;
-}
+  margin-bottom: 1.5em; }
 
-ul,
-ol {
-  margin: 0 0 1.5em 3em;
-}
+ul, ol {
+  margin: 0 0 1.5em 3em; }
 
 ul {
-  list-style: disc;
-}
+  list-style: disc; }
 
 ol {
-  list-style: decimal;
-}
+  list-style: decimal; }
 
-li > ul,
-li > ol {
+li > ul, li > ol {
   margin-bottom: 0;
-  margin-left: 1.5em;
-}
+  margin-left: 1.5em; }
 
 dt {
-  font-weight: bold;
-}
+  font-weight: bold; }
 
 dd {
-  margin: 0 1.5em 1.5em;
-}
+  margin: 0 1.5em 1.5em; }
 
 img {
   height: auto;
   /* Make sure images are scaled correctly. */
   max-width: 100%;
-  /* Adhere to container width. */
-}
+  /* Adhere to container width. */ }
 
 figure {
-  margin: 0;
-}
+  margin: 0; }
 
 table {
   margin: 0 0 1.5em;
-  width: 100%;
-}
+  width: 100%; }
 
 th {
-  font-weight: bold;
-}
+  font-weight: bold; }
 
 /*--------------------------------------------------------------
 4.0 Forms
 --------------------------------------------------------------*/
-button,
-input,
-select,
-textarea {
+button, input, select, textarea {
   font-size: 100%;
   /* Corrects font size not being inherited in all browsers */
   margin: 0;
   /* Addresses margins set differently in IE6/7, F3/4, S5, Chrome */
   vertical-align: baseline;
-  /* Improves appearance and consistency in all browsers */
-}
+  /* Improves appearance and consistency in all browsers */ }
 
-button,
-input[type="button"],
-input[type="reset"],
-input[type="submit"] {
+button, input[type="button"], input[type="reset"], input[type="submit"] {
   border: 1px solid;
   border-color: #ccc #ccc #bbb;
   border-radius: 3px;
@@ -335,73 +241,39 @@ input[type="submit"] {
   font-size: 1.2rem;
   line-height: 1;
   padding: .6em 1em .4em;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
-}
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8); }
 
-button:hover,
-input[type="button"]:hover,
-input[type="reset"]:hover,
-input[type="submit"]:hover {
+button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover {
   border-color: #ccc #bbb #aaa;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 15px 17px rgba(255, 255, 255, 0.8), inset 0 -5px 12px rgba(0, 0, 0, 0.02);
-}
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 15px 17px rgba(255, 255, 255, 0.8), inset 0 -5px 12px rgba(0, 0, 0, 0.02); }
 
-button:focus,
-input[type="button"]:focus,
-input[type="reset"]:focus,
-input[type="submit"]:focus,
-button:active,
-input[type="button"]:active,
-input[type="reset"]:active,
-input[type="submit"]:active {
+button:focus, input[type="button"]:focus, input[type="reset"]:focus, input[type="submit"]:focus, button:active, input[type="button"]:active, input[type="reset"]:active, input[type="submit"]:active {
   border-color: #aaa #bbb #bbb;
-  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.15);
-}
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.15); }
 
-input[type="checkbox"],
-input[type="radio"] {
+input[type="checkbox"], input[type="radio"] {
   padding: 0;
-  /* Addresses excess padding in IE8/9 */
-}
+  /* Addresses excess padding in IE8/9 */ }
 
 input[type="search"] {
   -webkit-appearance: textfield;
   /* Addresses appearance set to searchfield in S5, Chrome */
-  box-sizing: content-box;
-}
+  box-sizing: content-box; }
 
 input[type="search"]::-webkit-search-decoration {
   /* Corrects inner padding displayed oddly in S5, Chrome on OSX */
-  -webkit-appearance: none;
-}
+  -webkit-appearance: none; }
 
-input[type="text"],
-input[type="email"],
-input[type="url"],
-input[type="password"],
-input[type="search"],
-textarea {
+input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"], textarea {
   color: #666;
   border: 1px solid #ccc;
-  border-radius: 3px;
-}
+  border-radius: 3px; }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="url"]:focus,
-input[type="password"]:focus,
-input[type="search"]:focus,
-textarea:focus {
-  color: #111;
-}
+input[type="text"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="password"]:focus, input[type="search"]:focus, textarea:focus {
+  color: #111; }
 
-input[type="text"],
-input[type="email"],
-input[type="url"],
-input[type="password"],
-input[type="search"] {
-  padding: 3px;
-}
+input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"] {
+  padding: 3px; }
 
 textarea {
   overflow: auto;
@@ -409,8 +281,7 @@ textarea {
   padding-left: 3px;
   vertical-align: top;
   /* Improves readability and alignment in all browsers */
-  width: 100%;
-}
+  width: 100%; }
 
 /*--------------------------------------------------------------
 5.0 Navigation
@@ -419,18 +290,13 @@ textarea {
 5.1 Links
 --------------------------------------------------------------*/
 a {
-  color: royalblue;
-}
+  color: royalblue; }
 
 a:visited {
-  color: purple;
-}
+  color: purple; }
 
-a:hover,
-a:focus,
-a:active {
-  color: midnightblue;
-}
+a:hover, a:focus, a:active {
+  color: midnightblue; }
 
 /*--------------------------------------------------------------
 5.2 Menus
@@ -439,24 +305,20 @@ a:active {
   clear: both;
   display: block;
   float: left;
-  width: 100%;
-}
+  width: 100%; }
 
 .main-navigation ul {
   list-style: none;
   margin: 0;
-  padding-left: 0;
-}
+  padding-left: 0; }
 
 .main-navigation li {
   float: left;
-  position: relative;
-}
+  position: relative; }
 
 .main-navigation a {
   display: block;
-  text-decoration: none;
-}
+  text-decoration: none; }
 
 .main-navigation ul ul {
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
@@ -464,62 +326,43 @@ a:active {
   position: absolute;
   top: 1.5em;
   left: -999em;
-  z-index: 99999;
-}
+  z-index: 99999; }
 
 .main-navigation ul ul ul {
   left: -999em;
-  top: 0;
-}
+  top: 0; }
 
 .main-navigation ul ul a {
-  width: 200px;
-}
+  width: 200px; }
 
 .main-navigation ul li:hover > ul {
-  left: auto;
-}
+  left: auto; }
 
 .main-navigation ul ul li:hover > ul {
-  left: 100%;
-}
+  left: 100%; }
 
 /* Small menu */
 .menu-toggle {
-  display: none;
-}
+  display: none; }
 
 @media screen and (max-width: 600px) {
-  .menu-toggle,
-  .main-navigation.toggled .nav-menu {
-    display: block;
-  }
-
+  .menu-toggle, .main-navigation.toggled .nav-menu {
+    display: block; }
   .main-navigation ul {
-    display: none;
-  }
-}
-.site-main .comment-navigation,
-.site-main .paging-navigation,
-.site-main .post-navigation {
+    display: none; } }
+
+.site-main .comment-navigation, .site-main .paging-navigation, .site-main .post-navigation {
   margin: 0 0 1.5em;
-  overflow: hidden;
-}
+  overflow: hidden; }
 
-.comment-navigation .nav-previous,
-.paging-navigation .nav-previous,
-.post-navigation .nav-previous {
+.comment-navigation .nav-previous, .paging-navigation .nav-previous, .post-navigation .nav-previous {
   float: left;
-  width: 50%;
-}
+  width: 50%; }
 
-.comment-navigation .nav-next,
-.paging-navigation .nav-next,
-.post-navigation .nav-next {
+.comment-navigation .nav-next, .paging-navigation .nav-next, .post-navigation .nav-next {
   float: right;
   text-align: right;
-  width: 50%;
-}
+  width: 50%; }
 
 /*--------------------------------------------------------------
 6.0 Accessibility
@@ -530,12 +373,9 @@ a:active {
   position: absolute !important;
   height: 1px;
   width: 1px;
-  overflow: hidden;
-}
+  overflow: hidden; }
 
-.screen-reader-text:hover,
-.screen-reader-text:active,
-.screen-reader-text:focus {
+.screen-reader-text:hover, .screen-reader-text:active, .screen-reader-text:focus {
   background-color: #f1f1f1;
   border-radius: 3px;
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
@@ -553,8 +393,7 @@ a:active {
   top: 5px;
   width: auto;
   z-index: 100000;
-  /* Above WP toolbar */
-}
+  /* Above WP toolbar */ }
 
 /*--------------------------------------------------------------
 7.0 Alignments
@@ -562,65 +401,41 @@ a:active {
 .alignleft {
   display: inline;
   float: left;
-  margin-right: 1.5em;
-}
+  margin-right: 1.5em; }
 
 .alignright {
   display: inline;
   float: right;
-  margin-left: 1.5em;
-}
+  margin-left: 1.5em; }
 
 .aligncenter {
   clear: both;
   display: block;
-  margin: 0 auto;
-}
+  margin: 0 auto; }
 
 /*--------------------------------------------------------------
 8.0 Clearings
 --------------------------------------------------------------*/
-.clear:before,
-.clear:after,
-.entry-content:before,
-.entry-content:after,
-.comment-content:before,
-.comment-content:after,
-.site-header:before,
-.site-header:after,
-.site-content:before,
-.site-content:after,
-.site-footer:before,
-.site-footer:after {
+.clear:before, .clear:after, .entry-content:before, .entry-content:after, .comment-content:before, .comment-content:after, .site-header:before, .site-header:after, .site-content:before, .site-content:after, .site-footer:before, .site-footer:after {
   content: "";
-  display: table;
-}
+  display: table; }
 
-.clear:after,
-.entry-content:after,
-.comment-content:after,
-.site-header:after,
-.site-content:after,
-.site-footer:after {
-  clear: both;
-}
+.clear:after, .entry-content:after, .comment-content:after, .site-header:after, .site-content:after, .site-footer:after {
+  clear: both; }
 
 /*--------------------------------------------------------------
 9.0 Widgets
 --------------------------------------------------------------*/
 .widget {
-  margin: 0 0 1.5em;
-}
+  margin: 0 0 1.5em; }
 
 /* Make sure select elements fit in widgets */
 .widget select {
-  max-width: 100%;
-}
+  max-width: 100%; }
 
 /* Search widget */
 .widget_search .search-submit {
-  display: none;
-}
+  display: none; }
 
 /*--------------------------------------------------------------
 10.0 Content
@@ -629,214 +444,161 @@ a:active {
 10.1 Posts and pages
 --------------------------------------------------------------*/
 .sticky {
-  display: block;
-}
+  display: block; }
 
 .hentry {
-  margin: 0 0 1.5em;
-}
+  margin: 0 0 1.5em; }
 
-.byline,
-.updated:not(.published) {
-  display: none;
-}
+.byline, .updated:not(.published) {
+  display: none; }
 
-.single .byline,
-.group-blog .byline {
-  display: inline;
-}
+.single .byline, .group-blog .byline {
+  display: inline; }
 
-.page-content,
-.entry-content,
-.entry-summary {
-  margin: 1.5em 0 0;
-}
+.page-content, .entry-content, .entry-summary {
+  margin: 1.5em 0 0; }
 
 .page-links {
   clear: both;
-  margin: 0 0 1.5em;
-}
+  margin: 0 0 1.5em; }
 
 /*--------------------------------------------------------------
 10.2 Asides
 --------------------------------------------------------------*/
-.blog .format-aside .entry-title,
-.archive .format-aside .entry-title {
-  display: none;
-}
+.blog .format-aside .entry-title, .archive .format-aside .entry-title {
+  display: none; }
 
 /*--------------------------------------------------------------
 10.3 Comments
 --------------------------------------------------------------*/
 .comment-content a {
-  word-wrap: break-word;
-}
+  word-wrap: break-word; }
 
 .bypostauthor {
-  display: block;
-}
+  display: block; }
 
 /*--------------------------------------------------------------
 11.0 Infinite scroll
 --------------------------------------------------------------*/
 /* Globally hidden elements when Infinite Scroll is supported and in use. */
-.infinite-scroll .paging-navigation,
-.infinite-scroll.neverending .site-footer {
+.infinite-scroll .paging-navigation, .infinite-scroll.neverending .site-footer {
   /* Theme Footer (when set to scrolling) */
-  display: none;
-}
+  display: none; }
 
 /* When Infinite Scroll has reached its end we need to re-display elements that were hidden (via .neverending) before */
 .infinity-end.neverending .site-footer {
-  display: block;
-}
+  display: block; }
 
 /*--------------------------------------------------------------
 12.0 Media
 --------------------------------------------------------------*/
-.page-content img.wp-smiley,
-.entry-content img.wp-smiley,
-.comment-content img.wp-smiley {
+.page-content img.wp-smiley, .entry-content img.wp-smiley, .comment-content img.wp-smiley {
   border: none;
   margin-bottom: 0;
   margin-top: 0;
-  padding: 0;
-}
+  padding: 0; }
 
 /* Make sure embeds and iframes fit their containers */
-embed,
-iframe,
-object {
-  max-width: 100%;
-}
+embed, iframe, object {
+  max-width: 100%; }
 
 /*--------------------------------------------------------------
 12.1 Captions
 --------------------------------------------------------------*/
 .wp-caption {
   margin-bottom: 1.5em;
-  max-width: 100%;
-}
+  max-width: 100%; }
 
 .wp-caption img[class*="wp-image-"] {
   display: block;
-  margin: 0 auto;
-}
+  margin: 0 auto; }
 
 .wp-caption-text {
-  text-align: center;
-}
+  text-align: center; }
 
 .wp-caption .wp-caption-text {
-  margin: 0.8075em 0;
-}
+  margin: 0.8075em 0; }
 
 /*--------------------------------------------------------------
 12.2 Galleries
 --------------------------------------------------------------*/
 .gallery {
-  margin-bottom: 1.5em;
-}
+  margin-bottom: 1.5em; }
 
 .gallery-item {
   display: inline-block;
   text-align: center;
   vertical-align: top;
-  width: 100%;
-}
+  width: 100%; }
 
 .gallery-columns-2 .gallery-item {
-  max-width: 50%;
-}
+  max-width: 50%; }
 
 .gallery-columns-3 .gallery-item {
-  max-width: 33.33%;
-}
+  max-width: 33.33%; }
 
 .gallery-columns-4 .gallery-item {
-  max-width: 25%;
-}
+  max-width: 25%; }
 
 .gallery-columns-5 .gallery-item {
-  max-width: 20%;
-}
+  max-width: 20%; }
 
 .gallery-columns-6 .gallery-item {
-  max-width: 16.66%;
-}
+  max-width: 16.66%; }
 
 .gallery-columns-7 .gallery-item {
-  max-width: 14.28%;
-}
+  max-width: 14.28%; }
 
 .gallery-columns-8 .gallery-item {
-  max-width: 12.5%;
-}
+  max-width: 12.5%; }
 
 .gallery-columns-9 .gallery-item {
-  max-width: 11.11%;
-}
+  max-width: 11.11%; }
 
 .gallery-caption {
-  display: block;
-}
+  display: block; }
 
 .test_block {
   margin: 0 auto;
   max-width: 57.5em;
   padding-right: 0.5em;
-  padding-left: 0.5em;
-}
-.test_block:after {
-  content: "";
-  display: table;
-  clear: both;
-}
-.test_block--item {
-  background-color: red;
-  height: 3em;
-  margin-top: 1em;
-}
-@media (min-width: 0em) and (max-width: 37.5em) {
+  padding-left: 0.5em; }
+  .test_block:after {
+    content: "";
+    display: table;
+    clear: both; }
   .test_block--item {
-    width: 17.24138%;
-    float: left;
-    margin-left: 3.44828%;
-  }
-  .test_block--item:nth-child(5n-4) {
-    margin-left: 0;
-  }
-}
-@media (min-width: 37.5em) and (max-width: 55em) {
-  .test_block--item {
-    background-color: orange;
-    width: 10.6383%;
-    float: left;
-    margin-left: 2.12766%;
-  }
-  .test_block--item:nth-child(8n-7) {
-    margin-left: 0;
-  }
-}
-@media (min-width: 55em) {
-  .test_block--item {
-    background-color: yellow;
-    width: 5.26316%;
-    float: left;
-    margin-left: 1.05263%;
-  }
-  .test_block--item:nth-child(16n-15) {
-    margin-left: 0;
-  }
-}
-.oldie .test_block--item {
-  background-color: yellow;
-  width: 5.26316%;
-  float: left;
-  margin-left: 1.05263%;
-}
-.oldie .test_block--item:nth-child(16n-15) {
-  margin-left: 0;
-}
-
+    background-color: blue;
+    height: 3em;
+    margin-top: 1em; }
+    @media  (min-width: 0em) and (max-width: 37.5em) {
+      .test_block--item {
+        width: 17.2413793103%;
+        float: left;
+        margin-left: 3.4482758621%; }
+        .test_block--item:nth-child(5n-4) {
+          margin-left: 0; } }
+    @media  (min-width: 37.5em) and (max-width: 55em) {
+      .test_block--item {
+        background-color: purple;
+        width: 10.6382978723%;
+        float: left;
+        margin-left: 2.1276595745%; }
+        .test_block--item:nth-child(8n-7) {
+          margin-left: 0; } }
+    @media  (min-width: 55em) {
+      .test_block--item {
+        background-color: green;
+        width: 5.2631578947%;
+        float: left;
+        margin-left: 1.0526315789%; }
+        .test_block--item:nth-child(16n-15) {
+          margin-left: 0; } }
+    .mz-no-mediaqueries .test_block--item {
+      background-color: green;
+      width: 5.2631578947%;
+      float: left;
+      margin-left: 1.0526315789%; }
+      .mz-no-mediaqueries .test_block--item:nth-child(16n-15) {
+        margin-left: 0; }
 /*# sourceMappingURL=style.css.map */

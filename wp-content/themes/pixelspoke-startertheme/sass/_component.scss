@@ -1,7 +1,7 @@
 .test_block {
   @include content_center;
   &--item {
-    background-color: red;
+    background-color: blue;
     height: 3em;
     margin-top: 1em;
     @include breakpoint($bp-small) {
@@ -13,7 +13,7 @@
       }
     }
     @include breakpoint($bp-medium) {
-      background-color: orange;
+      background-color: purple;
       @include with-layout($g-medium) {
         @include span(1);
       }
@@ -22,7 +22,7 @@
       }
     }
     @include breakpoint($bp-large) {
-      background-color: yellow;
+      background-color: green;
       @include with-layout($g-large) {
         @include span(1);
       }

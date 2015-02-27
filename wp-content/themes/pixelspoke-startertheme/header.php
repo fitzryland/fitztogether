@@ -36,7 +36,7 @@
 	</header><!-- #masthead -->
 
 <!--
-	this is just an example grid
+	this is just an example grid -->
 <div class="test_block">
 	<div class="test_block--item"></div>
 	<div class="test_block--item"></div>

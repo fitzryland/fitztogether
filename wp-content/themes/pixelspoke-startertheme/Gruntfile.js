@@ -25,8 +25,17 @@ module.exports = function(grunt) {
             }
         },
         // Style
-        compass: {
-            dist: {}
+        sass: {
+            dist: {
+                files: {
+                    '.tmp/style.css': 'sass/style.scss'
+                }
+            },
+            options: {
+                sourceMap: true,
+                outputStyle: 'nested',
+                imagePath: "../img"
+            }
         },
         autoprefixer: {
             dist: {
@@ -45,7 +54,7 @@ module.exports = function(grunt) {
             },
             css: {
                 files: ['sass/*.scss'],
-                tasks: ['compass', 'autoprefixer'],
+                tasks: ['sass', 'autoprefixer'],
                 options: {
                     spawn: false,
                 }
@@ -66,9 +75,9 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-compass');
+    grunt.loadNpmTasks('grunt-sass');
 
     // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
-    grunt.registerTask('default', ['concat', 'uglify', 'compass', 'autoprefixer']);
+    grunt.registerTask('default', ['concat', 'uglify', 'sass', 'autoprefixer']);
 
 };

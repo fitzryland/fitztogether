@@ -13,9 +13,9 @@ Tags:
 PixelSpoke Boilerplate is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, Inc.
 
 */
-@import 'susy',
-        'breakpoint',
-        'global',
+@import "../bower_components/susy/sass/susy";
+@import "../bower_components/breakpoint-sass/stylesheets/breakpoint";
+@import 'global',
         'base_reset',
         'base',
         'component';
