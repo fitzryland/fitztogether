@@ -49,9 +49,9 @@ module.exports = function(grunt) {
         },
 
         watch: {
-            options: {
-                livereload: true,
-            },
+            // options: {
+            //     livereload: true,
+            // },
             css: {
                 files: ['sass/*.scss'],
                 tasks: ['sass', 'autoprefixer'],
@@ -66,11 +66,30 @@ module.exports = function(grunt) {
                     spawn: false,
                 },
             }
+        },
+
+        browserSync: {
+            dev: {
+                bsFiles: {
+                    src : [
+                        'style.css',
+                        '*.php',
+                        'js/main.js',
+                        'js/**/*.js',
+                    ]
+                },
+                options: {
+                    watchTask: true,
+                    proxy: 'localhost:8888/pixelspoke-startertheme',
+                    port: '8888'
+                }
+            }
         }
 
     });
 
     // 3. Where we tell Grunt we plan to use this plug-in.
+    grunt.loadNpmTasks('grunt-browser-sync');
     grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -78,6 +97,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-sass');
 
     // 4. Where we tell Grunt what to do when we type "grunt" into the terminal.
-    grunt.registerTask('default', ['concat', 'uglify', 'sass', 'autoprefixer']);
+    grunt.registerTask('default', ['concat', 'uglify', 'sass', 'autoprefixer', 'browserSync', 'watch']);
 
 };
