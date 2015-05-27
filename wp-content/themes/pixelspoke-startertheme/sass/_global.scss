@@ -32,7 +32,7 @@ $c-white: #FFFFFF;
 // }
 $breakpoint-no-query-fallbacks: true;
 $susy: (
-  gutters: 0.2,
+  gutters: 30/65,
   gutter-position: before
 );
 $bp-small: 0em 37.5em;
@@ -53,7 +53,7 @@ $g-medium: (
   columns: 8
 );
 $g-large: (
-  columns: 16
+  columns: 12
 );
 
 //
