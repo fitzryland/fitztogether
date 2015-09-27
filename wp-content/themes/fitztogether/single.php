@@ -14,7 +14,7 @@ get_header(); ?>
 
 			<?php get_template_part( 'content', 'single' ); ?>
 
-			<?php pixelspoke_boilerplate_post_nav(); ?>
+			<?php fitztogether_post_nav(); ?>
 
 			<?php
 				// If comments are open or we have at least one comment, load up the comment template

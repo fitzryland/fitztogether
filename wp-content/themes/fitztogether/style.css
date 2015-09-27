@@ -1,13 +1,13 @@
 /*
-Theme Name: PixelSpoke Boilerplate
-Theme URI: http://pixelspoke.com/
-Author: PixelSpoke
-Author URI: http://pixelspoke.com/
-Description: This is a suggested starting point for PixelSpoke projects.
+Theme Name: fitz.to/gether
+Theme URI: http://fitz.to/gether
+Author: Fitz Ryland
+Author URI: http://fitz.to/gether
+Description: This is a theme to share the stuff I build
 Version: 1.0
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: pixelspoke-startertheme
+Text Domain: fitztogether
 Tags:
 
 PixelSpoke Boilerplate is based on Underscores http://underscores.me/, (C) 2012-2014 Automattic, Inc.
@@ -39,7 +39,14 @@ PixelSpoke Boilerplate is based on Underscores http://underscores.me/, (C) 2012-
 /*--------------------------------------------------------------
 1.0 Reset
 --------------------------------------------------------------*/
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td {
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
   border: 0;
   font-family: inherit;
   font-size: 100%;
@@ -62,7 +69,9 @@ html {
   box-sizing: border-box;
   /* Apply a natural box layout model to the document; see http://www.paulirish.com/2012/box-sizing-border-box-ftw/ */ }
 
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   /* Inherit box-sizing to make it easier to change the property for components that leverage other behavior; see http://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/ */
   box-sizing: inherit; }
 
@@ -70,10 +79,20 @@ body {
   background: #fff;
   /* Fallback for when there is no custom background color defined. */ }
 
-article, aside, details, figcaption, figure, footer, header, main, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+nav,
+section {
   display: block; }
 
-ol, ul {
+ol,
+ul {
   list-style: none; }
 
 table {
@@ -81,20 +100,27 @@ table {
   border-collapse: separate;
   border-spacing: 0; }
 
-caption, th, td {
+caption,
+th,
+td {
   font-weight: normal;
   text-align: left; }
 
-blockquote:before, blockquote:after, q:before, q:after {
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
   content: ""; }
 
-blockquote, q {
+blockquote,
+q {
   quotes: "" ""; }
 
 a:focus {
   outline: thin dotted; }
 
-a:hover, a:active {
+a:hover,
+a:active {
   outline: 0; }
 
 a img {
@@ -103,23 +129,36 @@ a img {
 /*--------------------------------------------------------------
 2.0 Typography
 --------------------------------------------------------------*/
-body, button, input, select, textarea {
+body,
+button,
+input,
+select,
+textarea {
   color: #404040;
   font-family: sans-serif;
   font-size: 16px;
   font-size: 1.6rem;
   line-height: 1.4; }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   clear: both; }
 
 p {
   margin-bottom: 1.5em; }
 
-b, strong {
+b,
+strong {
   font-weight: bold; }
 
-dfn, cite, em, i {
+dfn,
+cite,
+em,
+i {
   font-style: italic; }
 
 blockquote {
@@ -139,20 +178,26 @@ pre {
   overflow: auto;
   padding: 1.6em; }
 
-code, kbd, tt, var {
+code,
+kbd,
+tt,
+var {
   font-family: Monaco, Consolas, "Andale Mono", "DejaVu Sans Mono", monospace;
   font-size: 15px;
   font-size: 1.5rem; }
 
-abbr, acronym {
+abbr,
+acronym {
   border-bottom: 1px dotted #666;
   cursor: help; }
 
-mark, ins {
+mark,
+ins {
   background: #fff9c0;
   text-decoration: none; }
 
-sup, sub {
+sup,
+sub {
   font-size: 75%;
   height: 0;
   line-height: 0;
@@ -180,7 +225,8 @@ hr {
   height: 1px;
   margin-bottom: 1.5em; }
 
-ul, ol {
+ul,
+ol {
   margin: 0 0 1.5em 3em; }
 
 ul {
@@ -189,7 +235,8 @@ ul {
 ol {
   list-style: decimal; }
 
-li > ul, li > ol {
+li > ul,
+li > ol {
   margin-bottom: 0;
   margin-left: 1.5em; }
 
@@ -218,7 +265,10 @@ th {
 /*--------------------------------------------------------------
 4.0 Forms
 --------------------------------------------------------------*/
-button, input, select, textarea {
+button,
+input,
+select,
+textarea {
   font-size: 100%;
   /* Corrects font size not being inherited in all browsers */
   margin: 0;
@@ -226,7 +276,10 @@ button, input, select, textarea {
   vertical-align: baseline;
   /* Improves appearance and consistency in all browsers */ }
 
-button, input[type="button"], input[type="reset"], input[type="submit"] {
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
   border: 1px solid;
   border-color: #ccc #ccc #bbb;
   border-radius: 3px;
@@ -240,18 +293,29 @@ button, input[type="button"], input[type="reset"], input[type="submit"] {
   font-size: 12px;
   font-size: 1.2rem;
   line-height: 1;
-  padding: .6em 1em .4em;
+  padding: 0.6em 1em 0.4em;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8); }
 
-button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover {
+button:hover,
+input[type="button"]:hover,
+input[type="reset"]:hover,
+input[type="submit"]:hover {
   border-color: #ccc #bbb #aaa;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 15px 17px rgba(255, 255, 255, 0.8), inset 0 -5px 12px rgba(0, 0, 0, 0.02); }
 
-button:focus, input[type="button"]:focus, input[type="reset"]:focus, input[type="submit"]:focus, button:active, input[type="button"]:active, input[type="reset"]:active, input[type="submit"]:active {
+button:focus,
+input[type="button"]:focus,
+input[type="reset"]:focus,
+input[type="submit"]:focus,
+button:active,
+input[type="button"]:active,
+input[type="reset"]:active,
+input[type="submit"]:active {
   border-color: #aaa #bbb #bbb;
   box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.5), inset 0 2px 5px rgba(0, 0, 0, 0.15); }
 
-input[type="checkbox"], input[type="radio"] {
+input[type="checkbox"],
+input[type="radio"] {
   padding: 0;
   /* Addresses excess padding in IE8/9 */ }
 
@@ -264,15 +328,29 @@ input[type="search"]::-webkit-search-decoration {
   /* Corrects inner padding displayed oddly in S5, Chrome on OSX */
   -webkit-appearance: none; }
 
-input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"], textarea {
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+textarea {
   color: #666;
   border: 1px solid #ccc;
   border-radius: 3px; }
 
-input[type="text"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="password"]:focus, input[type="search"]:focus, textarea:focus {
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+input[type="search"]:focus,
+textarea:focus {
   color: #111; }
 
-input[type="text"], input[type="email"], input[type="url"], input[type="password"], input[type="search"] {
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"] {
   padding: 3px; }
 
 textarea {
@@ -295,7 +373,9 @@ a {
 a:visited {
   color: purple; }
 
-a:hover, a:focus, a:active {
+a:hover,
+a:focus,
+a:active {
   color: midnightblue; }
 
 /*--------------------------------------------------------------
@@ -346,20 +426,27 @@ a:hover, a:focus, a:active {
   display: none; }
 
 @media screen and (max-width: 600px) {
-  .menu-toggle, .main-navigation.toggled .nav-menu {
+  .menu-toggle,
+  .main-navigation.toggled .nav-menu {
     display: block; }
   .main-navigation ul {
     display: none; } }
 
-.site-main .comment-navigation, .site-main .paging-navigation, .site-main .post-navigation {
+.site-main .comment-navigation,
+.site-main .paging-navigation,
+.site-main .post-navigation {
   margin: 0 0 1.5em;
   overflow: hidden; }
 
-.comment-navigation .nav-previous, .paging-navigation .nav-previous, .post-navigation .nav-previous {
+.comment-navigation .nav-previous,
+.paging-navigation .nav-previous,
+.post-navigation .nav-previous {
   float: left;
   width: 50%; }
 
-.comment-navigation .nav-next, .paging-navigation .nav-next, .post-navigation .nav-next {
+.comment-navigation .nav-next,
+.paging-navigation .nav-next,
+.post-navigation .nav-next {
   float: right;
   text-align: right;
   width: 50%; }
@@ -375,7 +462,9 @@ a:hover, a:focus, a:active {
   width: 1px;
   overflow: hidden; }
 
-.screen-reader-text:hover, .screen-reader-text:active, .screen-reader-text:focus {
+.screen-reader-text:hover,
+.screen-reader-text:active,
+.screen-reader-text:focus {
   background-color: #f1f1f1;
   border-radius: 3px;
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.6);
@@ -416,11 +505,27 @@ a:hover, a:focus, a:active {
 /*--------------------------------------------------------------
 8.0 Clearings
 --------------------------------------------------------------*/
-.clear:before, .clear:after, .entry-content:before, .entry-content:after, .comment-content:before, .comment-content:after, .site-header:before, .site-header:after, .site-content:before, .site-content:after, .site-footer:before, .site-footer:after {
+.clear:before,
+.clear:after,
+.entry-content:before,
+.entry-content:after,
+.comment-content:before,
+.comment-content:after,
+.site-header:before,
+.site-header:after,
+.site-content:before,
+.site-content:after,
+.site-footer:before,
+.site-footer:after {
   content: "";
   display: table; }
 
-.clear:after, .entry-content:after, .comment-content:after, .site-header:after, .site-content:after, .site-footer:after {
+.clear:after,
+.entry-content:after,
+.comment-content:after,
+.site-header:after,
+.site-content:after,
+.site-footer:after {
   clear: both; }
 
 /*--------------------------------------------------------------
@@ -449,13 +554,17 @@ a:hover, a:focus, a:active {
 .hentry {
   margin: 0 0 1.5em; }
 
-.byline, .updated:not(.published) {
+.byline,
+.updated:not(.published) {
   display: none; }
 
-.single .byline, .group-blog .byline {
+.single .byline,
+.group-blog .byline {
   display: inline; }
 
-.page-content, .entry-content, .entry-summary {
+.page-content,
+.entry-content,
+.entry-summary {
   margin: 1.5em 0 0; }
 
 .page-links {
@@ -465,7 +574,8 @@ a:hover, a:focus, a:active {
 /*--------------------------------------------------------------
 10.2 Asides
 --------------------------------------------------------------*/
-.blog .format-aside .entry-title, .archive .format-aside .entry-title {
+.blog .format-aside .entry-title,
+.archive .format-aside .entry-title {
   display: none; }
 
 /*--------------------------------------------------------------
@@ -492,14 +602,18 @@ a:hover, a:focus, a:active {
 /*--------------------------------------------------------------
 12.0 Media
 --------------------------------------------------------------*/
-.page-content img.wp-smiley, .entry-content img.wp-smiley, .comment-content img.wp-smiley {
+.page-content img.wp-smiley,
+.entry-content img.wp-smiley,
+.comment-content img.wp-smiley {
   border: none;
   margin-bottom: 0;
   margin-top: 0;
   padding: 0; }
 
 /* Make sure embeds and iframes fit their containers */
-embed, iframe, object {
+embed,
+iframe,
+object {
   max-width: 100%; }
 
 /*--------------------------------------------------------------
@@ -558,6 +672,15 @@ embed, iframe, object {
 .gallery-caption {
   display: block; }
 
+body {
+  font-size: 16px; }
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1; }
+
+p, ul, ol {
+  margin-bottom: 1em; }
+
 .test_block {
   margin: 0 auto;
   max-width: 57.5em;
@@ -571,34 +694,34 @@ embed, iframe, object {
     background-color: red;
     height: 3em;
     margin-top: 1em; }
-    @media  (min-width: 0em) and (max-width: 37.5em) {
+    @media (min-width: 0em) and (max-width: 37.5em) {
       .test_block--item {
-        width: 17.2413793103%;
+        width: 14.606741573%;
         float: left;
-        margin-left: 3.4482758621%; }
+        margin-left: 6.7415730337%; }
         .test_block--item:nth-child(5n-4) {
           margin-left: 0; } }
-    @media  (min-width: 37.5em) and (max-width: 55em) {
+    @media (min-width: 37.5em) and (max-width: 55em) {
       .test_block--item {
         background-color: orange;
-        width: 10.6382978723%;
+        width: 8.904109589%;
         float: left;
-        margin-left: 2.1276595745%; }
+        margin-left: 4.1095890411%; }
         .test_block--item:nth-child(8n-7) {
           margin-left: 0; } }
-    @media  (min-width: 55em) {
+    @media (min-width: 55em) {
       .test_block--item {
         background-color: yellow;
-        width: 5.2631578947%;
+        width: 5.8558558559%;
         float: left;
-        margin-left: 1.0526315789%; }
+        margin-left: 2.7027027027%; }
         .test_block--item:nth-child(16n-15) {
           margin-left: 0; } }
     .mz-no-mediaqueries .test_block--item {
       background-color: yellow;
-      width: 5.2631578947%;
+      width: 5.8558558559%;
       float: left;
-      margin-left: 1.0526315789%; }
+      margin-left: 2.7027027027%; }
       .mz-no-mediaqueries .test_block--item:nth-child(16n-15) {
         margin-left: 0; }
 /*# sourceMappingURL=style.css.map */

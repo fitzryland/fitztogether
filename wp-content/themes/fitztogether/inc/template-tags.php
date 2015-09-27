@@ -7,26 +7,26 @@
  * @package PixelSpoke Boilerplate
  */
 
-if ( ! function_exists( 'pixelspoke_boilerplate_paging_nav' ) ) :
+if ( ! function_exists( 'fitztogether_paging_nav' ) ) :
 /**
  * Display navigation to next/previous set of posts when applicable.
  */
-function pixelspoke_boilerplate_paging_nav() {
+function fitztogether_paging_nav() {
 	// Don't print empty markup if there's only one page.
 	if ( $GLOBALS['wp_query']->max_num_pages < 2 ) {
 		return;
 	}
 	?>
 	<nav class="navigation paging-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php _e( 'Posts navigation', 'pixelspoke-startertheme' ); ?></h1>
+		<h1 class="screen-reader-text"><?php _e( 'Posts navigation', 'fitztogether' ); ?></h1>
 		<div class="nav-links">
 
 			<?php if ( get_next_posts_link() ) : ?>
-			<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'pixelspoke-startertheme' ) ); ?></div>
+			<div class="nav-previous"><?php next_posts_link( __( '<span class="meta-nav">&larr;</span> Older posts', 'fitztogether' ) ); ?></div>
 			<?php endif; ?>
 
 			<?php if ( get_previous_posts_link() ) : ?>
-			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'pixelspoke-startertheme' ) ); ?></div>
+			<div class="nav-next"><?php previous_posts_link( __( 'Newer posts <span class="meta-nav">&rarr;</span>', 'fitztogether' ) ); ?></div>
 			<?php endif; ?>
 
 		</div><!-- .nav-links -->
@@ -35,11 +35,11 @@ function pixelspoke_boilerplate_paging_nav() {
 }
 endif;
 
-if ( ! function_exists( 'pixelspoke_boilerplate_post_nav' ) ) :
+if ( ! function_exists( 'fitztogether_post_nav' ) ) :
 /**
  * Display navigation to next/previous post when applicable.
  */
-function pixelspoke_boilerplate_post_nav() {
+function fitztogether_post_nav() {
 	// Don't print empty markup if there's nowhere to navigate.
 	$previous = ( is_attachment() ) ? get_post( get_post()->post_parent ) : get_adjacent_post( false, '', true );
 	$next     = get_adjacent_post( false, '', false );
@@ -49,11 +49,11 @@ function pixelspoke_boilerplate_post_nav() {
 	}
 	?>
 	<nav class="navigation post-navigation" role="navigation">
-		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'pixelspoke-startertheme' ); ?></h1>
+		<h1 class="screen-reader-text"><?php _e( 'Post navigation', 'fitztogether' ); ?></h1>
 		<div class="nav-links">
 			<?php
-				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span>&nbsp;%title', 'Previous post link', 'pixelspoke-startertheme' ) );
-				next_post_link(     '<div class="nav-next">%link</div>',     _x( '%title&nbsp;<span class="meta-nav">&rarr;</span>', 'Next post link',     'pixelspoke-startertheme' ) );
+				previous_post_link( '<div class="nav-previous">%link</div>', _x( '<span class="meta-nav">&larr;</span>&nbsp;%title', 'Previous post link', 'fitztogether' ) );
+				next_post_link(     '<div class="nav-next">%link</div>',     _x( '%title&nbsp;<span class="meta-nav">&rarr;</span>', 'Next post link',     'fitztogether' ) );
 			?>
 		</div><!-- .nav-links -->
 	</nav><!-- .navigation -->
@@ -61,11 +61,11 @@ function pixelspoke_boilerplate_post_nav() {
 }
 endif;
 
-if ( ! function_exists( 'pixelspoke_boilerplate_posted_on' ) ) :
+if ( ! function_exists( 'fitztogether_posted_on' ) ) :
 /**
  * Prints HTML with meta information for the current post-date/time and author.
  */
-function pixelspoke_boilerplate_posted_on() {
+function fitztogether_posted_on() {
 	$time_string = '<time class="entry-date published updated" datetime="%1$s">%2$s</time>';
 	if ( get_the_time( 'U' ) !== get_the_modified_time( 'U' ) ) {
 		$time_string = '<time class="entry-date published" datetime="%1$s">%2$s</time><time class="updated" datetime="%3$s">%4$s</time>';
@@ -79,12 +79,12 @@ function pixelspoke_boilerplate_posted_on() {
 	);
 
 	$posted_on = sprintf(
-		_x( 'Posted on %s', 'post date', 'pixelspoke-startertheme' ),
+		_x( 'Posted on %s', 'post date', 'fitztogether' ),
 		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 	);
 
 	$byline = sprintf(
-		_x( 'by %s', 'post author', 'pixelspoke-startertheme' ),
+		_x( 'by %s', 'post author', 'fitztogether' ),
 		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
 	);
 
@@ -93,33 +93,33 @@ function pixelspoke_boilerplate_posted_on() {
 }
 endif;
 
-if ( ! function_exists( 'pixelspoke_boilerplate_entry_footer' ) ) :
+if ( ! function_exists( 'fitztogether_entry_footer' ) ) :
 /**
  * Prints HTML with meta information for the categories, tags and comments.
  */
-function pixelspoke_boilerplate_entry_footer() {
+function fitztogether_entry_footer() {
 	// Hide category and tag text for pages.
 	if ( 'post' == get_post_type() ) {
 		/* translators: used between list items, there is a space after the comma */
-		$categories_list = get_the_category_list( __( ', ', 'pixelspoke-startertheme' ) );
-		if ( $categories_list && pixelspoke_boilerplate_categorized_blog() ) {
-			printf( '<span class="cat-links">' . __( 'Posted in %1$s', 'pixelspoke-startertheme' ) . '</span>', $categories_list );
+		$categories_list = get_the_category_list( __( ', ', 'fitztogether' ) );
+		if ( $categories_list && fitztogether_categorized_blog() ) {
+			printf( '<span class="cat-links">' . __( 'Posted in %1$s', 'fitztogether' ) . '</span>', $categories_list );
 		}
 
 		/* translators: used between list items, there is a space after the comma */
-		$tags_list = get_the_tag_list( '', __( ', ', 'pixelspoke-startertheme' ) );
+		$tags_list = get_the_tag_list( '', __( ', ', 'fitztogether' ) );
 		if ( $tags_list ) {
-			printf( '<span class="tags-links">' . __( 'Tagged %1$s', 'pixelspoke-startertheme' ) . '</span>', $tags_list );
+			printf( '<span class="tags-links">' . __( 'Tagged %1$s', 'fitztogether' ) . '</span>', $tags_list );
 		}
 	}
 
 	if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
 		echo '<span class="comments-link">';
-		comments_popup_link( __( 'Leave a comment', 'pixelspoke-startertheme' ), __( '1 Comment', 'pixelspoke-startertheme' ), __( '% Comments', 'pixelspoke-startertheme' ) );
+		comments_popup_link( __( 'Leave a comment', 'fitztogether' ), __( '1 Comment', 'fitztogether' ), __( '% Comments', 'fitztogether' ) );
 		echo '</span>';
 	}
 
-	edit_post_link( __( 'Edit', 'pixelspoke-startertheme' ), '<span class="edit-link">', '</span>' );
+	edit_post_link( __( 'Edit', 'fitztogether' ), '<span class="edit-link">', '</span>' );
 }
 endif;
 
@@ -128,8 +128,8 @@ endif;
  *
  * @return bool
  */
-function pixelspoke_boilerplate_categorized_blog() {
-	if ( false === ( $all_the_cool_cats = get_transient( 'pixelspoke_boilerplate_categories' ) ) ) {
+function fitztogether_categorized_blog() {
+	if ( false === ( $all_the_cool_cats = get_transient( 'fitztogether_categories' ) ) ) {
 		// Create an array of all the categories that are attached to posts.
 		$all_the_cool_cats = get_categories( array(
 			'fields'     => 'ids',
@@ -142,24 +142,24 @@ function pixelspoke_boilerplate_categorized_blog() {
 		// Count the number of categories that are attached to the posts.
 		$all_the_cool_cats = count( $all_the_cool_cats );
 
-		set_transient( 'pixelspoke_boilerplate_categories', $all_the_cool_cats );
+		set_transient( 'fitztogether_categories', $all_the_cool_cats );
 	}
 
 	if ( $all_the_cool_cats > 1 ) {
-		// This blog has more than 1 category so pixelspoke_boilerplate_categorized_blog should return true.
+		// This blog has more than 1 category so fitztogether_categorized_blog should return true.
 		return true;
 	} else {
-		// This blog has only 1 category so pixelspoke_boilerplate_categorized_blog should return false.
+		// This blog has only 1 category so fitztogether_categorized_blog should return false.
 		return false;
 	}
 }
 
 /**
- * Flush out the transients used in pixelspoke_boilerplate_categorized_blog.
+ * Flush out the transients used in fitztogether_categorized_blog.
  */
-function pixelspoke_boilerplate_category_transient_flusher() {
+function fitztogether_category_transient_flusher() {
 	// Like, beat it. Dig?
-	delete_transient( 'pixelspoke_boilerplate_categories' );
+	delete_transient( 'fitztogether_categories' );
 }
-add_action( 'edit_category', 'pixelspoke_boilerplate_category_transient_flusher' );
-add_action( 'save_post',     'pixelspoke_boilerplate_category_transient_flusher' );
+add_action( 'edit_category', 'fitztogether_category_transient_flusher' );
+add_action( 'save_post',     'fitztogether_category_transient_flusher' );

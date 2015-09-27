@@ -1,5 +1,5 @@
 {
-  "name": "pixelspoke-startertheme",
+  "name": "fitztogether",
   "version": "1.1.0",
   "devDependencies": {
     "grunt": "~0.4.5",
@@ -8,6 +8,7 @@
     "grunt-contrib-concat": "~0.5.0",
     "grunt-contrib-uglify": "~0.5.1",
     "grunt-contrib-watch": "~0.6.1",
-    "grunt-sass": "^0.18.0"
+    "grunt-sass": "^1.0.0",
+    "node-sass": "^3.3.3"
   }
 }

@@ -80,7 +80,7 @@ module.exports = function(grunt) {
                 },
                 options: {
                     watchTask: true,
-                    proxy: 'localhost:8888/pixelspoke-startertheme',
+                    proxy: 'localhost:8888/fitztogether',
                     port: '8888'
                 }
             }

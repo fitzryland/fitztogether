@@ -26,14 +26,14 @@ get_header(); ?>
             <?php the_content(); ?>
             <?php
               wp_link_pages( array(
-                'before' => '<div class="page-links">' . __( 'Pages:', 'pixelspoke-startertheme' ),
+                'before' => '<div class="page-links">' . __( 'Pages:', 'fitztogether' ),
                 'after'  => '</div>',
               ) );
             ?>
           </div><!-- .entry-content -->
 
           <footer class="entry-footer">
-            <?php edit_post_link( __( 'Edit', 'pixelspoke-startertheme' ), '<span class="edit-link">', '</span>' ); ?>
+            <?php edit_post_link( __( 'Edit', 'fitztogether' ), '<span class="edit-link">', '</span>' ); ?>
           </footer><!-- .entry-footer -->
         </article><!-- #post-## -->
 

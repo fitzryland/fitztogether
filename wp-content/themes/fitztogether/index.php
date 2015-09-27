@@ -31,7 +31,7 @@ get_header(); ?>
 
 			<?php endwhile; ?>
 
-			<?php pixelspoke_boilerplate_paging_nav(); ?>
+			<?php fitztogether_paging_nav(); ?>
 
 		<?php else : ?>
 
