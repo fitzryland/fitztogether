@@ -1,8 +1,4 @@
-# PixelSpoke Starter Theme #
-
-### What is this repository for? ###
-
-This is a suggested starting place for PixelSpoke WordPress themes.
+# fitz.to/gether #
 
 ### How do I get set up? ###
 
@@ -63,27 +59,3 @@ wp db create
 
 ### Who do I talk to? ###
 * Fitz put this together. Feel free to give me a holler if you have any questions!
-
-
-
-# Below here is a template for your new theme #
-
-# Theme Name #
-
-### What is this repository for? ###
-
-This is a suggested starting place for PixelSpoke WordPress themes.
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
