@@ -1,4 +1,6 @@
 body {
+  border-top: 0.3em solid $c-brightGreen;
+  color: $c-darkGray;
   font-size: 16px;
   font-family: $ff-roboto;
   font-weight: 300;
@@ -8,15 +10,54 @@ h1, h2, h3, h4, h5, h6 {
   font-family: $ff-raleway;
   font-weight: 600;
 }
-h1 {}
-h2 {}
-h3 {}
-h4 {}
-h5 {}
-h6 {}
+h1 {
+  font-size: 36px;
+  font-size: 3.6rem;
+  margin-top: 0.5em;
+  margin-bottom: 0.1em;
+}
+h2 {
+  font-size: 30px;
+  font-size: 3rem;
+  margin-top: 0.5em;
+  margin-bottom: 0.1em;
+}
+h3 {
+  font-size: 24px;
+  font-size: 2.4rem;
+  margin-top: 0.5em;
+  margin-bottom: 0.1em;
+}
+h4 {
+  font-size: 20px;
+  font-size: 2rem;
+  margin-top: 0.5em;
+  margin-bottom: 0.1em;
+}
+h5 {
+  font-size: 18px;
+  font-size: 1.8rem;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+}
+h6 {
+  font-size: 16px;
+  font-size: 1.8rem;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+}
 a {
-  &:link, &:visited {}
-  &:hover, &:active {}
+  color: $c-darkGray;
+  transition: color 0.2s ease;
+  &:visited {
+    color: $c-darkGray;
+  }
+  &:hover,
+  &:active {
+    color: $c-brightPurple;
+  }
 }
 p, ul, ol {
   margin-bottom: 1em;
@@ -24,4 +65,8 @@ p, ul, ol {
 b,
 strong {
 	font-weight: 500;
+}
+
+.mce-content-body {
+	padding: $s-vertical;
 }

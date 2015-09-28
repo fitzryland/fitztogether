@@ -1,0 +1,45 @@
+.site_header {
+	@include content_center;
+	margin-top: $s-vertical*2;
+	margin-bottom: $s-vertical*2;
+}
+.site_branding {
+	@include with-layout($g-small) {
+		@include span(5);
+	}
+	@include breakpoint($bp-medium) {
+		@include with-layout($g-medium) {
+			@include span(5 first);
+		}
+	}
+	@include breakpoint($bp-large) {
+		@include with-layout($g-large) {
+			@include span(8 first);
+		}
+	}
+	&--title {
+		font-size: 36px;
+		font-size: 3.6rem;
+		margin-top: 0;
+		a {
+			text-decoration: none;
+		}
+	}
+	&--desc {}
+}
+.site_nav {
+	@include with-layout($g-small) {
+		@include span(5);
+	}
+	@include breakpoint($bp-medium) {
+		@include with-layout($g-medium) {
+			@include span(3);
+		}
+	}
+	@include breakpoint($bp-large) {
+		@include with-layout($g-large) {
+			@include span(4);
+		}
+	}
+	&--list {}
+}
