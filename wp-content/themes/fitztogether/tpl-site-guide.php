@@ -8,7 +8,7 @@ get_header();
 
 ?>
 <div class="main container">
-    <div class="entry-content">
+    <div class="single_post_content">
         <h4>Site Guide</h4>
         <p style="font-size:18px;"><em>Visit the PixelSpoke WordPress Documentation site for information on <a href="http://docs.pixelspoke.com/docs/getting-started/">getting started</a>.</em></p>
         <ul>

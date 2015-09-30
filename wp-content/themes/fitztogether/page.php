@@ -22,7 +22,7 @@ get_header(); ?>
             <?php the_title( '<h1 class="entry_title">', '</h1>' ); ?>
           </header><!-- .entry-header -->
 
-          <div class="entry-content">
+          <div class="single_post_content">
             <?php the_content(); ?>
             <?php
               wp_link_pages( array(
@@ -30,7 +30,7 @@ get_header(); ?>
                 'after'  => '</div>',
               ) );
             ?>
-          </div><!-- .entry-content -->
+          </div><!-- .single_post_content -->
 
           <footer class="entry-footer">
             <?php edit_post_link( __( 'Edit', 'fitztogether' ), '<span class="edit-link">', '</span>' ); ?>

@@ -473,8 +473,8 @@ a:active {
 --------------------------------------------------------------*/
 .clear:before,
 .clear:after,
-.entry-content:before,
-.entry-content:after,
+.single_post_content:before,
+.single_post_content:after,
 .comment-content:before,
 .comment-content:after,
 .site-header:before,
@@ -488,7 +488,7 @@ a:active {
 }
 
 .clear:after,
-.entry-content:after,
+.single_post_content:after,
 .comment-content:after,
 .site-header:after,
 .site-content:after,
@@ -538,7 +538,7 @@ a:active {
 }
 
 .page-content,
-.entry-content,
+.single_post_content,
 .entry-summary {
   margin: 1.5em 0 0;
 }
@@ -585,7 +585,7 @@ a:active {
 12.0 Media
 --------------------------------------------------------------*/
 .page-content img.wp-smiley,
-.entry-content img.wp-smiley,
+.single_post_content img.wp-smiley,
 .comment-content img.wp-smiley {
   border: none;
   margin-bottom: 0;

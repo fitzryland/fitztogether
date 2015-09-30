@@ -14,3 +14,93 @@
 .single_post_nav {
 	@include content_skinny_center;
 }
+
+.single_post_content {
+	// p {
+	// 	display: inline;
+	// }
+	&--header_wrap {
+		@include breakpoint($bp-large) {
+			@include with-layout($g-large) {
+				@include span( 12 of 8 );
+				@include pull( 2 of 8 );
+			}
+		}
+		@include breakpoint($bp-medium) {
+			@include with-layout($g-medium) {
+				@include span( 8 of 6 );
+				@include pull( 1 of 6 );
+			}
+		}
+	}
+}
+.post_image_large_wrap {
+	@include breakpoint($bp-large) {
+		@include with-layout($g-large) {
+			@include span(12 of 8);
+			@include pull(2 of 8);
+		}
+	}
+}
+.post_image {
+	margin-bottom: $s-vertical;
+	&__left,
+	&__pull_left {
+		float: left;
+		margin-right: $s-vertical;
+	}
+	&__pull_left {
+		@include breakpoint( $bp-large ) {
+			@include with-layout( $g-large ) {
+				@include pull(2 of 8);
+			}
+		}
+		@include breakpoint( $bp-medium ) {
+			@include with-layout( $g-medium ) {
+				@include pull(1 of 6);
+			}
+		}
+	}
+	&__center {
+		display: block;
+		margin-right: auto;
+		margin-left: auto;
+	}
+	&__right,
+	&__push_right {
+		float: right;
+		margin-left: $s-vertical;
+	}
+	&__push_right {
+		@include breakpoint( $bp-large ) {
+			@include with-layout( $g-large ) {
+				margin-right: (gutter(8) + span(2))*-1;
+			}
+		}
+		@include breakpoint( $bp-medium ) {
+			@include with-layout( $g-medium ) {
+				@include push(1 of 6);
+			}
+		}
+	}
+
+	&__small {}
+	&__medium {
+		@include breakpoint( $bp-small ) {
+			@include center_image;
+			float: none;
+		}
+	}
+	&__large {
+		@include breakpoint($bp-small) {
+			@include center_image;
+			float: none;
+			max-width: none;
+		}
+	}
+	&__x-large {
+		@include center_image;
+		float: none;
+		max-width: none;
+	}
+}

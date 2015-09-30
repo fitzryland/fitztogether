@@ -9,8 +9,8 @@
 		<?php endif; ?>
 	</header><!-- .entry-header -->
 
-	<div class="entry-content">
+	<div class="single_post_content">
 		<?php the_excerpt(); ?>
-	</div><!-- .entry-content -->
+	</div><!-- .single_post_content -->
 
 </article><!-- #post-## -->

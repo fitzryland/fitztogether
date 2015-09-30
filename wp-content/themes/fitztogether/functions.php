@@ -46,6 +46,10 @@ function fitztogether_setup() {
 		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption',
 	) );
 
+	add_image_size( 'small', 150, 150 );
+	add_image_size( 'x-large', 700, 700 );
+	add_image_size( 'xx-large', 900, 900 );
+
 }
 endif; // fitztogether_setup
 add_action( 'after_setup_theme', 'fitztogether_setup' );

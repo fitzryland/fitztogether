@@ -294,42 +294,29 @@ if ( ! function_exists( 'syn_clear' ) && ! function_exists( 'clear' )) {
 
 if ( ! function_exists( 'acf_image' ) ) {
   function acf_image($aImageAttr) {
-    $aImg = $aImageAttr[0];
-    $class = $aImageAttr[1];
-    $size = $aImageAttr[2];
-    if ( is_array($aImg) ) :
-      if ($size) :
-        $widthString = $size . '-width';
-        $heightString = $size . '-height';
-        $imgW = $aImg['sizes'][$widthString];
-        $imgH = $aImg['sizes'][$heightString];
-        $imgSrc = $aImg['sizes'][$size];
+    if ( is_array($aImageAttr['image']) ) :
+      if ($aImageAttr['size']) :
+        $widthString = $aImageAttr['size'] . '-width';
+        $heightString = $aImageAttr['size'] . '-height';
+        $imgW = $aImageAttr['image']['sizes'][$widthString];
+        $imgH = $aImageAttr['image']['sizes'][$heightString];
+        $imgSrc = $aImageAttr['image']['sizes'][$aImageAttr['size']];
       else:
-        $imgW = $aImg['width'];
-        $imgH = $aImg['height'];
-        $imgSrc = $aImg['url'];
+        $imgW = $aImageAttr['image']['width'];
+        $imgH = $aImageAttr['image']['height'];
+        $imgSrc = $aImageAttr['image']['url'];
       endif;
-
-      $imgStr = '<img src="' . $imgSrc . '" alt="' . $aImg['title'] . '"';
+      $imgStr = '<img src="' . $imgSrc . '" alt="' . $aImageAttr['image']['alt'] . '"';
+      if ( array_key_exists('imgSetArgs', $aImageAttr) ) :
+        $imgStr .= tevkori_get_sizes( $aImageAttr['image']['ID'], $aImageAttr['size'], $aImageAttr['imgSetArgs'] );
+      endif;
       $imgStr .= ( $imgW > 0 ? ' width="' . $imgW . '"' : '' );
       $imgStr .= ( $imgH > 0 ? 'height="' . $imgH . '"' : '');
-      $imgStr .= ( $class ? ' class="' . $class . '"' : '' );
+      $imgStr .= ( $aImageAttr['class'] ? ' class="' . $aImageAttr['class'] . '"' : '' );
       $imgStr .= '>';
+
       return $imgStr;
     endif;
-  }
-}
-
-if ( ! function_exists( 'acf_link' ) ) {
-  function acf_link($options) { // link_text, link_destination, class
-    $linkText = $options[0];
-    $linkDestination = $options[1];
-    $html = '<a href="' . $linkDestination . '"';
-    if ( count($options) >= 3 ) {
-      $html .= ' class="' . $options[2] . '"';
-    }
-    $html .= '>' . $linkText . '</a>';
-    return $html;
   }
 }
 

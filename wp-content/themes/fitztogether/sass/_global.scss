@@ -106,3 +106,8 @@ $g-large: (
     }
   }
 }
+@mixin center_image {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
