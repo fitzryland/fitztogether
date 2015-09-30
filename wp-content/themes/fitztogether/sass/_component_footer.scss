@@ -1,0 +1,6 @@
+.site_footer {
+	@include content_center;
+	text-align: center;
+	margin-top: $s-vertical*2;
+	margin-bottom: $s-vertical*2;
+}

@@ -14,13 +14,17 @@ get_header(); ?>
 
 			<?php get_template_part( 'content', 'single' ); ?>
 
-			<?php fitztogether_post_nav(); ?>
+			<div class="single_post_nav_wrap">
+				<div class="single_post_nav">
+					<?php fitztogether_post_nav(); ?>
+				</div>
+			</div>
 
 			<?php
 				// If comments are open or we have at least one comment, load up the comment template
-				if ( comments_open() || get_comments_number() ) :
-					comments_template();
-				endif;
+				// if ( comments_open() || get_comments_number() ) :
+				// 	comments_template();
+				// endif;
 			?>
 
 		<?php endwhile; // end of the loop. ?>
@@ -28,5 +32,4 @@ get_header(); ?>
 		</main><!-- #main -->
 	</div><!-- #primary -->
 
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

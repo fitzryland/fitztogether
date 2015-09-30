@@ -395,7 +395,6 @@ a:active {
 .site-main .comment-navigation,
 .site-main .paging-navigation,
 .site-main .post-navigation {
-  margin: 0 0 1.5em;
   overflow: hidden;
 }
 
@@ -552,8 +551,8 @@ a:active {
 /*--------------------------------------------------------------
 10.2 Asides
 --------------------------------------------------------------*/
-.blog .format-aside .entry-title,
-.archive .format-aside .entry-title {
+.blog .format-aside .entry_title,
+.archive .format-aside .entry_title {
   display: none;
 }
 

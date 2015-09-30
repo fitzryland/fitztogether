@@ -191,7 +191,7 @@ if ( ! function_exists( 'synotac_excerpt_length' ) ) {
  */
 if ( ! function_exists( 'synotac_continue_reading_link' ) ) {
   function synotac_continue_reading_link() {
-    return ' <a href="'. get_permalink() . '">' . __( 'Continue reading <span class="meta-nav">&rarr;</span>', 'synotac' ) . '</a>';
+    return ' <a href="'. get_permalink() . '">' . __( 'read more', 'synotac' ) . '</a>';
   }
 }
 

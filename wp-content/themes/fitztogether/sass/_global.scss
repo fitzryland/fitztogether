@@ -91,10 +91,18 @@ $g-large: (
   @include group;
 }
 @mixin content_skinny_center {
-// max width 960px -> 56.5em
-  margin: 0 auto;
-  max-width: 34em;
-  padding-right: 1em;
-  padding-left: 1em;
   @include group;
+  width: 100%;
+  @include breakpoint($bp-medium) {
+    @include with-layout($g-medium) {
+      @include span(6);
+      @include push(1);
+    }
+  }
+  @include breakpoint($bp-large) {
+    @include with-layout($g-large) {
+      @include span(8);
+      @include push(2);
+    }
+  }
 }
