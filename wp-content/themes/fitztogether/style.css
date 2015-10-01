@@ -761,34 +761,37 @@ strong {
     margin-left: 2.7027027027%;
     margin-left: 17.1171171171%; }
 
+.single_post_content--header_wrap {
+  margin-bottom: 1em; }
+  @media (min-width: 55em) {
+    .single_post_content--header_wrap {
+      width: 152.054794521%;
+      float: left;
+      margin-left: 4.1095890411%;
+      margin-left: -26.0273972603%; } }
+  .mz-no-mediaqueries .single_post_content--header_wrap {
+    width: 152.054794521%;
+    float: left;
+    margin-left: 4.1095890411%;
+    margin-left: -26.0273972603%; }
+  @media (min-width: 37.5em) and (max-width: 55em) {
+    .single_post_content--header_wrap {
+      width: 135.185185185%;
+      float: left;
+      margin-left: 5.5555555556%;
+      margin-left: -17.5925925926%; } }
+
+.single_post_content--header {
+  display: block; }
+
 @media (min-width: 55em) {
-  .single_post_content--header_wrap {
+  .post_image_wrap__large {
     width: 152.054794521%;
     float: left;
     margin-left: 4.1095890411%;
     margin-left: -26.0273972603%; } }
 
-.mz-no-mediaqueries .single_post_content--header_wrap {
-  width: 152.054794521%;
-  float: left;
-  margin-left: 4.1095890411%;
-  margin-left: -26.0273972603%; }
-
-@media (min-width: 37.5em) and (max-width: 55em) {
-  .single_post_content--header_wrap {
-    width: 135.185185185%;
-    float: left;
-    margin-left: 5.5555555556%;
-    margin-left: -17.5925925926%; } }
-
-@media (min-width: 55em) {
-  .post_image_large_wrap {
-    width: 152.054794521%;
-    float: left;
-    margin-left: 4.1095890411%;
-    margin-left: -26.0273972603%; } }
-
-.mz-no-mediaqueries .post_image_large_wrap {
+.mz-no-mediaqueries .post_image_wrap__large {
   width: 152.054794521%;
   float: left;
   margin-left: 4.1095890411%;
@@ -835,14 +838,12 @@ strong {
       display: block;
       margin-right: auto;
       margin-left: auto;
-      float: none;
-      max-width: none; } }
+      float: none; } }
   .post_image__x-large {
     display: block;
     margin-right: auto;
     margin-left: auto;
-    float: none;
-    max-width: none; }
+    float: none; }
 
 .site_header {
   margin: 0 auto;

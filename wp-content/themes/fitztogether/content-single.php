@@ -59,17 +59,16 @@
 								'size' => $image_size,
 								'imgSetArgs' => $img_set_args
 							);
-							$media_wrap_start = '';
-							$media_wrap_stop = '';
-							// /$block['size'] == 'Large' ||
+
+							$img_wrap_class = 'post_image_wrap';
 							if ( $block['size'] == 'Extra Large' ) :
-								$media_wrap_start = '<div class="post_image_large_wrap">';
-								$media_wrap_stop = '</div>';
+								$img_wrap_class = ' post_image_wrap__large';
 							endif;
 
-							echo $media_wrap_start;
-							echo acf_image( $img_args );
-							echo $media_wrap_stop;
+							echo '<div class="' . $img_wrap_class . '">';
+								echo acf_image( $img_args );
+							echo '</div>';
+
 							break;
 
 						default:

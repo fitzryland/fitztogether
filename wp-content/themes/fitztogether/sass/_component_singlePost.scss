@@ -16,10 +16,8 @@
 }
 
 .single_post_content {
-	// p {
-	// 	display: inline;
-	// }
 	&--header_wrap {
+		margin-bottom: $s-vertical;
 		@include breakpoint($bp-large) {
 			@include with-layout($g-large) {
 				@include span( 12 of 8 );
@@ -33,12 +31,17 @@
 			}
 		}
 	}
+	&--header {
+		display: block;
+	}
 }
-.post_image_large_wrap {
-	@include breakpoint($bp-large) {
-		@include with-layout($g-large) {
-			@include span(12 of 8);
-			@include pull(2 of 8);
+.post_image_wrap {
+	&__large {
+		@include breakpoint($bp-large) {
+			@include with-layout($g-large) {
+				@include span(12 of 8);
+				@include pull(2 of 8);
+			}
 		}
 	}
 }
@@ -95,12 +98,12 @@
 		@include breakpoint($bp-small) {
 			@include center_image;
 			float: none;
-			max-width: none;
+			// max-width: none;
 		}
 	}
 	&__x-large {
 		@include center_image;
 		float: none;
-		max-width: none;
+		// max-width: none;
 	}
 }
