@@ -60,6 +60,14 @@ function add_editor_style_function() {
 }
 add_action('init', 'add_editor_style_function');
 
+// $wp_admin_bar->remove_node( 'wp-admin-bar-customize' );
+add_action( 'admin_bar_menu', 'remove_extra_admin_bar_items', 999 );
+
+function remove_extra_admin_bar_items( $wp_admin_bar ) {
+	$wp_admin_bar->remove_node( 'wp-logo' );
+	$wp_admin_bar->remove_node( 'customize' );
+	$wp_admin_bar->remove_node( 'comments' );
+}
 
 /**
  * Register widget area.
