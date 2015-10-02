@@ -67,6 +67,8 @@ function remove_extra_admin_bar_items( $wp_admin_bar ) {
 	$wp_admin_bar->remove_node( 'wp-logo' );
 	$wp_admin_bar->remove_node( 'customize' );
 	$wp_admin_bar->remove_node( 'comments' );
+	// $wp_admin_bar->remove_node( 'my-account' );
+	$wp_admin_bar->remove_node( 'wpseo-menu' );
 }
 
 /**
