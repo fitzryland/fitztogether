@@ -9,8 +9,8 @@
 
 get_header(); ?>
 
-	<div class="loop_wrap">
-		<main class="loop" role="main">
+<div class="loop_wrap">
+	<main class="loop" role="main">
 
 		<?php if ( have_posts() ) : ?>
 
