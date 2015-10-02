@@ -3,6 +3,28 @@
     "title": "Post Fields",
     "fields": [
         {
+            "key": "field_560dff07a0e6a",
+            "label": "Post Checklist",
+            "name": "post_checklist",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "Does this post have a header image?": "Does this post have a header image?",
+                "Have you filled out the excerpt?": "Have you filled out the excerpt?",
+                "Have your proof read it?": "Have your proof read it?"
+            },
+            "default_value": [],
+            "layout": "vertical",
+            "toggle": 0
+        },
+        {
             "key": "field_560b5a5fdeaa2",
             "label": "Header Image",
             "name": "header_image",
@@ -115,7 +137,8 @@
                                 "id": ""
                             },
                             "message": "Set the image ALT, Description, and Caption!!",
-                            "esc_html": 0
+                            "esc_html": 0,
+                            "new_lines": "wpautop"
                         },
                         {
                             "key": "field_560b58f039dbf",
@@ -192,5 +215,5 @@
     ],
     "active": 1,
     "description": "",
-    "modified": 1443588858
+    "modified": 1443757930
 }
