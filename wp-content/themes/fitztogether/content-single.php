@@ -6,13 +6,8 @@
 
 <div class="post_body_wrap">
 	<article id="post-<?php the_ID(); ?>" <?php post_class( 'post_body' ); ?>>
-		<header class="entry-header">
-			<?php the_title( '<h1 class="entry_title">', '</h1>' ); ?>
 
-			<div class="entry-meta">
-				<?php fitztogether_posted_on(); ?>
-			</div><!-- .entry-meta -->
-		</header><!-- .entry-header -->
+		<?php get_template_part( 'part', 'postHeader' ); ?>
 
 		<div class="single_post_content">
 			<div class="single_post_content--header_wrap">

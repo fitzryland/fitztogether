@@ -151,27 +151,6 @@ if ( ! function_exists( 'syn_login_logo_url' ) && ! function_exists( 'my_login_l
 }
 
 /**
- * Add a dashboard widget that links back to the Synotac docs website
- *
- * Edit synotac_resources to change content
- * Comment out add_action if you don't want this box to show up
- *
- * Documentation: wp_add_dashboard_widget($widget_id, $widget_name, $callback, $control_callback = null)
- *
- */
-if ( ! function_exists( 'synotac_add_dashboard_resources' ) && ! function_exists( 'synotac_resources' )) {
-
-  add_action('wp_dashboard_setup', 'synotac_add_dashboard_resources' );
-  function synotac_add_dashboard_resources() {
-    wp_add_dashboard_widget('synotac-resources', 'PixelSpoke Resources &amp; WordPress Documentation', 'synotac_resources');
-  }
-
-  function synotac_resources() {
-    echo 'Looking for additional WordPress documentation? Visit <a href="http://docs.pixelspoke.com" target="_blank">PixelSpoke WordPress documentation</a>.<br /><br />Looking for Synotac? <a href="http://www.pixelspoke.com/name/" target="_blank">Learn about the new name</a>.<br /><br />Need help with your website or digital marketing? Call us at 503-517-2116';
-  }
-}
-
-/**
  * Sets the post excerpt length to 60 characters.
  *
  * @return int
