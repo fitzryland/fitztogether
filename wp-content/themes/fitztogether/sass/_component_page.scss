@@ -1,0 +1,6 @@
+.page_wrap {
+	@include content_center;
+}
+.page_content {
+	@include content_skinny_center;
+}

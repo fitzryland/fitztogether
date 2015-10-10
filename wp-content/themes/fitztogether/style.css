@@ -1005,4 +1005,38 @@ strong {
     content: "";
     display: table;
     clear: both; }
+
+.page_wrap {
+  margin: 0 auto;
+  max-width: 56.5em;
+  padding-right: 1em;
+  padding-left: 1em; }
+  .page_wrap:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+.page_content {
+  width: 100%; }
+  .page_content:after {
+    content: "";
+    display: table;
+    clear: both; }
+  @media (min-width: 37.5em) and (max-width: 55em) {
+    .page_content {
+      width: 73.9726027397%;
+      float: left;
+      margin-left: 4.1095890411%;
+      margin-left: 13.0136986301%; } }
+  @media (min-width: 55em) {
+    .page_content {
+      width: 65.7657657658%;
+      float: left;
+      margin-left: 2.7027027027%;
+      margin-left: 17.1171171171%; } }
+  .mz-no-mediaqueries .page_content {
+    width: 65.7657657658%;
+    float: left;
+    margin-left: 2.7027027027%;
+    margin-left: 17.1171171171%; }
 /*# sourceMappingURL=style.css.map */
