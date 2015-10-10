@@ -3,11 +3,11 @@
 	if ( is_single() ) :
 		the_title( '<h1 class="entry_title">', '</h1>' );
 	else: ?>
-		<h1 class="entry_title">
+		<h2 class="entry_title">
 			<a href="<?php the_permalink(); ?>">
 				<?php the_title(); ?>
 			</a>
-		</h1>
+		</h2>
 	<?php endif; ?>
 
 	<div class="entry-meta">
