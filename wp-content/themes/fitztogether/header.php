@@ -36,7 +36,9 @@
 <div id="page" class="hfeed site">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'fitztogether' ); ?></a>
 
-	<header class="site_header" role="banner">
+	<header class="site_header" id="js-header">
+
+		<button class="site_header--toggle" id="js-header_toggle"></button>
 
 		<div class="site_branding">
 			<h1 class="site_branding--title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>

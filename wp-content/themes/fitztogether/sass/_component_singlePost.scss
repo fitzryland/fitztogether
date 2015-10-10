@@ -4,9 +4,12 @@
 .post_body {
 	@include content_skinny_center;
 }
-.posted-on {
+.entry-meta {
 	color: $c-gray;
 	font-size: 0.9em;
+	a {
+		color: $c-gray;
+	}
 }
 .single_post_nav_wrap {
 	@include content_center;

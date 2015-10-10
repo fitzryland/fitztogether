@@ -636,25 +636,25 @@ h1 {
   font-size: 36px;
   font-size: 3.6rem;
   margin-top: 0.5em;
-  margin-bottom: 0.1em; }
+  margin-bottom: 0.2em; }
 
 h2 {
   font-size: 30px;
   font-size: 3rem;
   margin-top: 0.5em;
-  margin-bottom: 0.1em; }
+  margin-bottom: 0.2em; }
 
 h3 {
   font-size: 24px;
   font-size: 2.4rem;
   margin-top: 0.5em;
-  margin-bottom: 0.1em; }
+  margin-bottom: 0.2em; }
 
 h4 {
   font-size: 20px;
   font-size: 2rem;
   margin-top: 0.5em;
-  margin-bottom: 0.1em; }
+  margin-bottom: 0.2em; }
 
 h5 {
   font-size: 18px;
@@ -727,9 +727,11 @@ strong {
     margin-left: 2.7027027027%;
     margin-left: 17.1171171171%; }
 
-.posted-on {
+.entry-meta {
   color: #A29EB8;
   font-size: 0.9em; }
+  .entry-meta a {
+    color: #A29EB8; }
 
 .single_post_nav_wrap {
   margin: 0 auto;
@@ -854,12 +856,62 @@ strong {
   max-width: 56.5em;
   padding-right: 1em;
   padding-left: 1em;
-  margin-top: 2em;
-  margin-bottom: 2em; }
+  margin-bottom: 2em;
+  padding-top: 2em;
+  overflow: hidden;
+  position: relative;
+  -webkit-transition: max-height 0.4s ease;
+          transition: max-height 0.4s ease; }
   .site_header:after {
     content: "";
     display: table;
     clear: both; }
+  .single .site_header {
+    margin-bottom: 0;
+    padding-top: 3em;
+    max-height: 0; }
+  .site_header.open {
+    max-height: 500px; }
+  .site_header--toggle {
+    background-color: #53FCC2;
+    box-shadow: none;
+    border: none;
+    border-radius: 0;
+    color: #FFFFFF;
+    display: none;
+    padding-top: 1em;
+    padding-right: 1em;
+    padding-bottom: 1em;
+    padding-left: 1em;
+    position: absolute;
+    text-transform: uppercase;
+    top: 0;
+    text-shadow: none;
+    right: 1em;
+    -webkit-transition: padding-top 0.4s ease;
+            transition: padding-top 0.4s ease; }
+    .site_header--toggle:before {
+      border-top: 0.4em solid #FFFFFF;
+      border-bottom: 0.4em solid #FFFFFF;
+      content: "";
+      display: block;
+      height: 1em;
+      -webkit-transition: height 0.2s ease;
+              transition: height 0.2s ease;
+      width: 2em; }
+    .site_header--toggle:hover {
+      box-shadow: none; }
+      .site_header--toggle:hover:before {
+        height: 2em; }
+    .site_header--toggle:focus {
+      box-shadow: none;
+      outline: none; }
+    .site_header--toggle.open:before {
+      height: 2em; }
+    .site_header--toggle.open:hover:before {
+      height: 1em; }
+    .single .site_header--toggle {
+      display: block; }
 
 .site_branding {
   width: 100%;

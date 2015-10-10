@@ -56,7 +56,7 @@
       } else {
         layoutView = 'large';
       }
-      console.log(layoutView);
+      // console.log(layoutView);
     },
     resetHeight = function($els) {
       var elsLength = $els.length;
@@ -116,6 +116,28 @@
     // 2. Modules
     //    definitions of individually functioning pieces of code.
     //
+
+    // single header toggle
+    var $headerToggle = $('#js-header_toggle'),
+        $header = $('#js-header'),
+      openHeader = function() {
+        $headerToggle.addClass('open');
+        $header.addClass('open');
+      },
+      closeHeader = function() {
+        $headerToggle.removeClass('open');
+        $header.removeClass('open');
+      },
+      toggleHeader = function() {
+        if ( $headerToggle.hasClass('open') ) {
+          closeHeader();
+        } else {
+          openHeader();
+        }
+      };
+    $headerToggle.click(function() {
+      toggleHeader();
+    });
 
     //
     // 2.1 Shared accross Pages
