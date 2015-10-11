@@ -15,6 +15,7 @@
 <title><?php wp_title( '|', true, 'right' ); ?></title>
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+<link rel="icon" type="image/gif" href="http://fitz.to/gether/fitztogethericon.gif">
 
 <?php wp_head(); ?>
 <script type="text/javascript">
