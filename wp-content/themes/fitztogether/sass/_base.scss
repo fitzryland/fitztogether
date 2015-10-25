@@ -9,6 +9,10 @@ body {
   font-family: $ff-roboto;
   font-weight: 300;
   min-height: 100%;
+  @include breakpoint( $bp-small ) {
+    font-size: 20px;
+    line-height: 1.2;
+  }
   &.mce-content-body {
     border-top: none;
     border-bottom: none;
