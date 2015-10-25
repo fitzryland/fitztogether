@@ -1,0 +1,3 @@
+#!/bin/bash
+rm -rf ../gether/author ../gether/post-20 ../gether/wp-admin
+rsync -a --delete --update -P ../gether fitzhug1@fitzhughryland.com:public_html/fitzto
