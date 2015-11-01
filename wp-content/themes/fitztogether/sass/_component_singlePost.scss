@@ -39,6 +39,7 @@
 	}
 }
 .post_image_wrap {
+	clear: both;
 	&__large {
 		@include breakpoint($bp-large) {
 			@include with-layout($g-large) {
@@ -78,6 +79,7 @@
 		margin-left: $s-vertical;
 	}
 	&__push_right {
+		// TODO this is not cimetrical to pull left
 		@include breakpoint( $bp-large ) {
 			@include with-layout( $g-large ) {
 				margin-right: (gutter(8) + span(2))*-1;
@@ -85,7 +87,7 @@
 		}
 		@include breakpoint( $bp-medium ) {
 			@include with-layout( $g-medium ) {
-				@include push(1 of 6);
+				margin-right: (gutter(6) + span(1))*-1;
 			}
 		}
 	}
@@ -101,12 +103,10 @@
 		@include breakpoint($bp-small) {
 			@include center_image;
 			float: none;
-			// max-width: none;
 		}
 	}
 	&__x-large {
 		@include center_image;
 		float: none;
-		// max-width: none;
 	}
 }
