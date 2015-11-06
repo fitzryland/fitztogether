@@ -287,7 +287,7 @@ if ( ! function_exists( 'acf_image' ) ) {
       endif;
       $imgStr = '<img src="' . $imgSrc . '" alt="' . $aImageAttr['image']['alt'] . '"';
       if ( array_key_exists('imgSetArgs', $aImageAttr) ) :
-        $imgStr .= tevkori_get_sizes( $aImageAttr['image']['ID'], $aImageAttr['size'], $aImageAttr['imgSetArgs'] );
+        $imgStr .= wp_get_attachment_image_sizes( $aImageAttr['image']['ID'], $aImageAttr['size'], $aImageAttr['imgSetArgs'] );
       endif;
       $imgStr .= ( $imgW > 0 ? ' width="' . $imgW . '"' : '' );
       $imgStr .= ( $imgH > 0 ? 'height="' . $imgH . '"' : '');
