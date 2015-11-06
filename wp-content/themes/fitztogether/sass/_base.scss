@@ -79,6 +79,12 @@ b,
 strong {
 	font-weight: 500;
 }
+::selection {
+  background: transparentize($c-brightGreen, 0.5);
+}
+::-moz-selection {
+  background: transparentize($c-brightGreen, 0.5);
+}
 
 .entry_title {
   a {
