@@ -50,7 +50,7 @@
 	}
 }
 .post_image {
-	margin-bottom: $s-vertical;
+	margin-bottom: $s-vertical*2;
 	&__left,
 	&__pull_left {
 		float: left;
@@ -82,12 +82,12 @@
 		// TODO this is not cimetrical to pull left
 		@include breakpoint( $bp-large ) {
 			@include with-layout( $g-large ) {
-				margin-right: (gutter(8) + span(2))*-1;
+				margin-right: (gutter(8) + span(2 of 8))*-1;
 			}
 		}
 		@include breakpoint( $bp-medium ) {
 			@include with-layout( $g-medium ) {
-				margin-right: (gutter(6) + span(1))*-1;
+				margin-right: (gutter(6) + span(1 of 6))*-1;
 			}
 		}
 	}

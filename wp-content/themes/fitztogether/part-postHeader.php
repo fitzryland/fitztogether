@@ -11,10 +11,11 @@
 	<?php endif; ?>
 
 	<div class="entry-meta">
+		Posted
 		<?php fitztogether_posted_on(); ?>
 		<?php
 		$cat_list = get_the_category_list( ', ' );
-		echo ' - in: ' . $cat_list;
+		echo ' in ' . $cat_list;
 		?>
 	</div><!-- .entry-meta -->
 </header><!-- .entry-header -->

@@ -73,11 +73,10 @@
 				endforeach;
 			endif;
 			?>
-			<?php // the_content(); ?>
 		</div><!-- .single_post_content -->
 
-		<footer class="entry-footer">
-			<?php fitztogether_entry_footer(); ?>
+		<!-- <footer class="entry-footer">
+			<?php // fitztogether_entry_footer(); ?>
 		</footer><!-- .entry-footer -->
 	</article><!-- #post-## -->
 </div>
