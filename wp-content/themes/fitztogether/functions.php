@@ -107,6 +107,7 @@ function fitztogether_scripts() {
 	  wp_enqueue_script('modernizr',get_bloginfo('template_directory').'/js/lib/modernizr.custom.25191.js', array(), false, true);
 	  // wp_enqueue_script('bxslider',get_bloginfo('template_directory').'/js/vendor/jquery.bxslider.js',array('jquery'), false, true);
 		wp_enqueue_script( 'fitztogether-skip-link-focus-fix', get_template_directory_uri() . '/js/lib/skip-link-focus-fix.js', array(), '20130115', true );
+	  wp_enqueue_script('wufoo',get_bloginfo('template_directory').'/js/lib/wufoo.js',array(), false, true);
 	  wp_enqueue_script('mainScripts',get_bloginfo('template_directory').'/js/main.js',array('jquery'), false, true);
 
 
