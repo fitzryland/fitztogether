@@ -880,7 +880,8 @@ strong {
     content: "";
     display: table;
     clear: both; }
-  .single .site_header {
+  .single .site_header,
+  .page .site_header {
     margin-bottom: 0;
     padding-top: 3em;
     max-height: 0; }
@@ -924,7 +925,8 @@ strong {
       height: 2em; }
     .site_header--toggle.open:hover:before {
       height: 1em; }
-    .single .site_header--toggle {
+    .single .site_header--toggle,
+    .page .site_header--toggle {
       display: block; }
 
 .site_branding {
