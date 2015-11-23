@@ -21,20 +21,20 @@ var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s
 
 <form id="form1" name="form1" class="wufoo topLabel page" accept-charset="UTF-8" autocomplete="off" enctype="multipart/form-data" method="post" novalidate
       action="https://fitzryland.wufoo.com/forms/zrikwsz11ygsf2/#public">
-	<ul>
+	<ul class="wufoo--list">
 		<li id="foli1" class="notranslate">
 			<label class="desc" id="title1" for="Field1">
 				Submit a question!<span id="req_1" class="req">*</span>
 			</label>
 			<div>
 				<textarea id="Field1" name="Field1" class="field textarea medium" spellcheck="true" rows="10" cols="50" tabindex="1" onkeyup="validateRange(1, 'character');" required  ></textarea>
+				<p class="instruct" id="instruct1">
+					It needs to be fewer than 140 characters, but all good questions are simple anyway.
+				</p>
 				<label for="Field1">
 					Must be between <var id="rangeMinMsg1">1</var> and <var id="rangeMaxMsg1">140</var> characters.&nbsp;&nbsp;&nbsp; <em class="currently">Currently Used: <var id="rangeUsedMsg1">0</var> characters.</em>
 				</label>
 			</div>
-			<p class="instruct" id="instruct1">
-				<small>It needs to be fewer than 140 characters, but all good questions are simple anyway.</small>
-			</p>
 		</li>
 		<li class="buttons ">
 			<div>

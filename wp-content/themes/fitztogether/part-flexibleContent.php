@@ -42,7 +42,8 @@
 
 						case 'html_part':
 
-							get_template_part( $block['file_name'] );
+							$file_slug = $block['file_name'];
+							get_template_part( 'part', $file_slug );
 
 							break;
 

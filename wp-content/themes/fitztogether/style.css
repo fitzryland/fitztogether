@@ -700,6 +700,46 @@ strong {
 ::-moz-selection {
   background: rgba(83, 252, 194, 0.5); }
 
+textarea,
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"] {
+  border-radius: 0;
+  border-color: #2F2352; }
+  textarea:focus,
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  input[type="search"]:focus {
+    box-shadow: 0 0 1em #53FCC2;
+    outline: 0; }
+
+button,
+input[type=button],
+input[type=submit],
+input[type=reset] {
+  border-radius: 0;
+  background-color: #53FCC2;
+  box-shadow: none;
+  border: none;
+  font-size: 16px;
+  font-size: 1.6rem;
+  text-shadow: none; }
+  button:focus,
+  button:hover,
+  input[type=button]:focus,
+  input[type=button]:hover,
+  input[type=submit]:focus,
+  input[type=submit]:hover,
+  input[type=reset]:focus,
+  input[type=reset]:hover {
+    box-shadow: 0 0 1em #53FCC2;
+    border: none;
+    text-shadow: none; }
+
 .entry_title a {
   text-decoration: none; }
 
@@ -1055,4 +1095,18 @@ strong {
     float: left;
     margin-left: 2.7027027027%;
     margin-left: 17.1171171171%; }
+
+.wufoo {
+  float: left;
+  width: 100%; }
+  .wufoo--list {
+    list-style-type: none;
+    margin-left: 0;
+    margin-bottom: 0; }
+  .wufoo .req {
+    color: #FC538D; }
+  .wufoo .hide {
+    display: none; }
+  .wufoo var {
+    font-family: "Roboto", sans-serif; }
 /*# sourceMappingURL=style.css.map */

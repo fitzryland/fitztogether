@@ -1,0 +1,18 @@
+.wufoo {
+	float: left;
+	width: 100%;
+	&--list {
+		list-style-type: none;
+		margin-left: 0;
+		margin-bottom: 0;
+	}
+	.req {
+		color: $c-brightPink;
+	}
+	.hide {
+		display: none;
+	}
+	var {
+		font-family: $ff-roboto;
+	}
+}

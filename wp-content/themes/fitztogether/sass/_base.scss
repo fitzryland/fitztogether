@@ -85,6 +85,37 @@ strong {
 ::-moz-selection {
   background: transparentize($c-brightGreen, 0.5);
 }
+textarea,
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"] {
+  border-radius: 0;
+  border-color: $c-almostBlack;
+  &:focus {
+    box-shadow: 0 0 $s-vertical $c-brightGreen;
+    outline: 0;
+  }
+}
+button,
+input[type=button],
+input[type=submit],
+input[type=reset] {
+  border-radius: 0;
+  background-color: $c-brightGreen;
+  box-shadow: none;
+  border: none;
+  font-size: 16px;
+  font-size: 1.6rem;
+  text-shadow: none;
+  &:focus,
+  &:hover {
+    box-shadow: 0 0 $s-vertical $c-brightGreen;
+    border: none;
+    text-shadow: none;
+  }
+}
 
 .entry_title {
   a {
