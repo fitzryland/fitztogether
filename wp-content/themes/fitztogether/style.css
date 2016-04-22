@@ -746,6 +746,22 @@ input[type=reset] {
 .mce-content-body {
   padding: 1em; }
 
+blockquote {
+  clear: both;
+  font-size: 1.2em;
+  padding-right: 1em;
+  padding-left: 1em;
+  margin-right: 0;
+  margin-left: 0;
+  width: 100%; }
+  @media (min-width: 37.5em) {
+    blockquote {
+      padding-right: 2em;
+      padding-left: 2em; } }
+  .mz-no-mediaqueries blockquote {
+    padding-right: 2em;
+    padding-left: 2em; }
+
 .post_body_wrap {
   margin: 0 auto;
   max-width: 56.5em;

@@ -125,3 +125,17 @@ input[type=reset] {
 .mce-content-body {
 	padding: $s-vertical;
 }
+
+blockquote {
+  clear: both;
+  font-size: 1.2em;
+  padding-right: $s-vertical;
+  padding-left: $s-vertical;
+  margin-right: 0;
+  margin-left: 0;
+  width: 100%;
+  @include breakpoint($bp-medium-up) {
+    padding-right: $s-vertical*2;
+    padding-left: $s-vertical*2;
+  }
+}
