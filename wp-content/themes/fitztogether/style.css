@@ -921,6 +921,20 @@ blockquote {
     margin-left: auto;
     float: none; }
 
+.video_wrap {
+  clear: both;
+  margin-top: 1em;
+  margin-bottom: 2em;
+  width: 100%; }
+  .video_wrap:after {
+    content: "";
+    display: table;
+    clear: both; }
+  .video_wrap iframe {
+    display: block;
+    margin-right: auto;
+    margin-left: auto; }
+
 .site_header {
   margin: 0 auto;
   max-width: 56.5em;

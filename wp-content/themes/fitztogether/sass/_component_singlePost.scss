@@ -110,3 +110,16 @@
 		float: none;
 	}
 }
+
+.video_wrap {
+	@include group;
+	clear: both;
+	margin-top: $s-vertical;
+	margin-bottom: $s-vertical*2;
+	width: 100%;
+	iframe {
+		display: block;
+		margin-right: auto;
+		margin-left: auto;
+	}
+}
