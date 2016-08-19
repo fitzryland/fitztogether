@@ -37,6 +37,16 @@
 <div id="page" class="hfeed site">
 	<a class="skip-link screen-reader-text" href="#content"><?php _e( 'Skip to content', 'fitztogether' ); ?></a>
 
+
+<?php
+// include ( 'part-questionNameList.php' );
+// shuffle($cp_questions);
+// echo count($cp_questions) . '</br>';
+// foreach ($cp_questions as $question_key => $question) :
+// 	echo '"/audio/' . $question . '",</br>';
+// endforeach;
+?>
+
 	<header class="site_header" id="js-header">
 
 		<button class="site_header--toggle" id="js-header_toggle"></button>
