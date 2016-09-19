@@ -137,9 +137,6 @@
         cpIndex = getRandomInt(0, cpQuestionsLength),
       cpPlay = function() {
         var questionString = phpVars.site_url + "/wp-content/themes/fitztogether/audio/" + cpQuestions[cpIndex];
-        console.log(cpIndex);
-        console.log(cpQuestions[cpIndex]);
-        console.log(questionString);
         new Audio(questionString).play();
       },
       cpPlayNext = function() {
