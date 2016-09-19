@@ -96,19 +96,25 @@ function fitztogether_scripts() {
 
 	$stylePath = get_stylesheet_directory() . '/style.css';
 	wp_enqueue_style( 'fitztogether-style', get_stylesheet_uri(), '', filemtime( $stylePath ) );
+  wp_register_script('production', get_bloginfo('stylesheet_directory').'/js/production.js', array('jquery'), false, true);
+  wp_register_script('mainScripts',get_bloginfo('template_directory').'/js/main.js',array('jquery'), false, true);
+  $php_vars_to_js = array(
+  		"site_url" => site_url()
+  	);
+  wp_localize_script( 'mainScripts', 'phpVars', $php_vars_to_js );
 
 	// PIX_ENVIRONMENT set (or not) in wp-config.php
 	if ( ! defined( 'PIX_ENVIRONMENT' ) || PIX_ENVIRONMENT !== 'local' ) :
 	  // if not the local environment load the concatinated and minified JS
 	  // wp_enqueue_script('productionMin', get_bloginfo('stylesheet_directory').'/js/production.min.js', array('jquery'), false, true);
-	  wp_enqueue_script('production', get_bloginfo('stylesheet_directory').'/js/production.js', array('jquery'), false, true);
+	  wp_enqueue_script('production');
 	else :
 	  // if local load the individual files. Better for debugging.
 	  wp_enqueue_script('modernizr',get_bloginfo('template_directory').'/js/lib/modernizr.custom.25191.js', array(), false, true);
 	  // wp_enqueue_script('bxslider',get_bloginfo('template_directory').'/js/vendor/jquery.bxslider.js',array('jquery'), false, true);
 		wp_enqueue_script( 'fitztogether-skip-link-focus-fix', get_template_directory_uri() . '/js/lib/skip-link-focus-fix.js', array(), '20130115', true );
 	  wp_enqueue_script('wufoo',get_bloginfo('template_directory').'/js/lib/wufoo.js',array(), false, true);
-	  wp_enqueue_script('mainScripts',get_bloginfo('template_directory').'/js/main.js',array('jquery'), false, true);
+	  wp_enqueue_script('mainScripts');
 
 
 
