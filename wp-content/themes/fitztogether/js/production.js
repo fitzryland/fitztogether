@@ -303,9 +303,8 @@ function addEvent( obj, type, fn ) {
       toggleHeader();
     });
 
-    //
-    // 2.1 Shared accross Pages
-    //
+    var soundTest = new Audio('http://localhost:8888/fitztogether/wp-content/themes/fitztogether/audio/130.mp3');
+    // soundTest.play();
 
     //
     // 3. Initilize

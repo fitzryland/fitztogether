@@ -1,0 +1,62 @@
+.cp_buttons {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+.cp_button {
+	// background: repeating-gradient();
+	background-color: $c-darkRed;
+	background-image: none;
+	border: 0.2em solid darken($c-darkRed, 20%);
+	border-radius: 100%;
+	box-shadow:
+		0 0 0 0.1em $c-almostBlack,
+		1px 1px 0 0.1em $c-almostBlack,
+		4px 7px 0 0.1em $c-almostBlack;
+	color: $c-black;
+	font-size: 2em;
+	overflow: visible;
+	padding: 0;
+	text-transform: uppercase;
+	text-shadow: none;
+	transition: background-color 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+	height: $s-vertical*2;
+	width: $s-vertical*2;
+	&:after {
+		background-image: none;
+		bottom: -2.5em;
+		left: 50%;
+		font-size: 0.5em;
+		height: auto;
+		position: absolute;
+		transform: translateX(-50%);
+		width: auto;
+	}
+	&:hover,
+	&:focus {
+		border: 0.2em solid darken($c-darkRed, 20%);
+		box-shadow:
+			0 0 0 0.1em $c-almostBlack,
+			1px 1px 0 0.1em $c-almostBlack,
+			4px 7px 0 0.1em $c-almostBlack;
+		outline: none;
+		&:after {
+			bottom: -2.5em;
+			left: 50%;
+		}
+	}
+	&:hover {
+		background-color: #ff824f;
+	}
+	&__play {
+		margin-right: 1em;
+		&:after {
+			content: "Play";
+		}
+	}
+	&__replay {
+		&:after {
+			content: "Replay";
+		}
+	}
+}

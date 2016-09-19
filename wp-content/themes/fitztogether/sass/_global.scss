@@ -21,6 +21,7 @@ $stack-order: ();
 // 1.1 Variables - Color
 $c-black: #000000;
 $c-almostBlack: #2F2352;
+$c-shadow: transparentize($c-almostBlack, 0.5);
 $c-white: #FFFFFF;
 $c-darkGray: #43405E;
 $c-gray: #A29EB8;
@@ -29,6 +30,7 @@ $c-purple: #8875F0;
 $c-brightPurple: #6D53FC;
 $c-brightGreen: #53FCC2;
 $c-brightPink: #FC538D;
+$c-darkRed: #ff4343;
 
 $ff-raleway: 'Raleway', sans-serif;
 $ff-roboto: 'Roboto', sans-serif;
