@@ -1179,6 +1179,7 @@ blockquote {
   -webkit-justify-content: center;
       -ms-flex-pack: center;
           justify-content: center;
+  margin-bottom: 2em;
   width: 100%; }
 
 .cp_button {
