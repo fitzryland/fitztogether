@@ -42,8 +42,9 @@
 // include ( 'part-questionNameList.php' );
 // shuffle($cp_questions);
 // echo count($cp_questions) . '</br>';
+
 // foreach ($cp_questions as $question_key => $question) :
-// 	echo '"/audio/' . $question . '",</br>';
+// 	echo '"' . $question . '",</br>';
 // endforeach;
 ?>
 
