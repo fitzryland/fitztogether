@@ -285,7 +285,7 @@ input[type="submit"] {
   font-size: 12px;
   font-size: 1.2rem;
   line-height: 1;
-  padding: 0.6em 1em 0.4em;
+  padding: .6em 1em .4em;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8); }
 
 button:hover,
@@ -531,7 +531,8 @@ a:active {
 11.0 Infinite scroll
 --------------------------------------------------------------*/
 /* Globally hidden elements when Infinite Scroll is supported and in use. */
-.infinite-scroll .paging-navigation, .infinite-scroll.neverending .site-footer {
+.infinite-scroll .paging-navigation,
+.infinite-scroll.neverending .site-footer {
   /* Theme Footer (when set to scrolling) */
   display: none; }
 
@@ -676,12 +677,10 @@ h6 {
 
 a {
   color: #43405E;
-  -webkit-transition: color 0.2s ease;
-          transition: color 0.2s ease; }
+  transition: color 0.2s ease; }
   a:visited {
     color: #43405E; }
-  a:hover,
-  a:active {
+  a:hover, a:active {
     color: #6D53FC; }
 
 p, ul, ol {
@@ -738,18 +737,15 @@ input[type=reset] {
   input[type=submit]:after,
   input[type=reset]:after {
     bottom: 100%;
-    background: -webkit-linear-gradient(45deg, transparent, #6D53FC);
     background: linear-gradient(45deg, transparent, #6D53FC);
     content: "";
     left: 100%;
     height: 200%;
     position: absolute;
-    -webkit-transition: all 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
-            transition: all 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition: all 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
     width: 200%;
     z-index: -1; }
-  button:focus,
-  button:hover,
+  button:focus, button:hover,
   input[type=button]:focus,
   input[type=button]:hover,
   input[type=submit]:focus,
@@ -758,8 +754,7 @@ input[type=reset] {
   input[type=reset]:hover {
     box-shadow: none;
     border: none; }
-    button:focus:after,
-    button:hover:after,
+    button:focus:after, button:hover:after,
     input[type=button]:focus:after,
     input[type=button]:hover:after,
     input[type=submit]:focus:after,
@@ -905,8 +900,7 @@ blockquote {
 
 .post_image {
   margin-bottom: 2em; }
-  .post_image__left,
-  .post_image__pull_left {
+  .post_image__left, .post_image__pull_left {
     float: left;
     margin-right: 1em; }
   @media (min-width: 55em) {
@@ -921,8 +915,7 @@ blockquote {
     display: block;
     margin-right: auto;
     margin-left: auto; }
-  .post_image__right,
-  .post_image__push_right {
+  .post_image__right, .post_image__push_right {
     float: right;
     margin-left: 1em; }
   @media (min-width: 55em) {
@@ -974,8 +967,7 @@ blockquote {
   padding-top: 2em;
   overflow: hidden;
   position: relative;
-  -webkit-transition: max-height 0.4s ease;
-          transition: max-height 0.4s ease; }
+  transition: max-height 0.4s ease; }
   .site_header:after {
     content: "";
     display: table;
@@ -1003,16 +995,14 @@ blockquote {
     top: 0;
     text-shadow: none;
     right: 1em;
-    -webkit-transition: padding-top 0.4s ease;
-            transition: padding-top 0.4s ease; }
+    transition: padding-top 0.4s ease; }
     .site_header--toggle:before {
       border-top: 0.4em solid #FFFFFF;
       border-bottom: 0.4em solid #FFFFFF;
       content: "";
       display: block;
       height: 1em;
-      -webkit-transition: height 0.2s ease;
-              transition: height 0.2s ease;
+      transition: height 0.2s ease;
       width: 2em; }
     .site_header--toggle:hover {
       box-shadow: none; }
@@ -1171,15 +1161,12 @@ blockquote {
     font-family: "Roboto", sans-serif; }
 
 .cp_buttons {
-  display: -webkit-box;
-  display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  margin-bottom: 2em;
+  -ms-flex-pack: center;
+      justify-content: center;
+  margin-top: 2em;
+  margin-bottom: 4em;
   width: 100%; }
 
 .cp_button {
@@ -1194,8 +1181,7 @@ blockquote {
   padding: 0;
   text-transform: uppercase;
   text-shadow: none;
-  -webkit-transition: background-color 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-          transition: background-color 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  transition: background-color 0.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
   height: 2em;
   width: 2em; }
   .cp_button:after {
@@ -1206,16 +1192,13 @@ blockquote {
     height: auto;
     position: absolute;
     -webkit-transform: translateX(-50%);
-        -ms-transform: translateX(-50%);
             transform: translateX(-50%);
     width: auto; }
-  .cp_button:hover,
-  .cp_button:focus {
+  .cp_button:hover, .cp_button:focus {
     border: 0.2em solid #dc0000;
     box-shadow: 0 0 0 0.1em #2F2352, 1px 1px 0 0.1em #2F2352, 4px 7px 0 0.1em #2F2352;
     outline: none; }
-    .cp_button:hover:after,
-    .cp_button:focus:after {
+    .cp_button:hover:after, .cp_button:focus:after {
       bottom: -2.5em;
       left: 50%; }
   .cp_button:hover {
