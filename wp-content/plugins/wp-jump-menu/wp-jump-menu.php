@@ -8,7 +8,7 @@
 Plugin Name: WP Jump Menu
 Plugin URI: http://wpjumpmenu.com
 Description: Creates a drop-down menu (jump menu) in a bar across the top or bottom of the screen that makes it easy to jump right to a page, post, or custom post type in the admin area to edit.
-Version: 3.5.3
+Version: 3.6
 Author: Jim Krill
 Author URI: http://krillwebdesign.com
 License: GPL
@@ -16,8 +16,8 @@ Copyright: Jim Krill
 */
 
 /* WpJumpMenu Class */
-class WpJumpMenu
-{
+
+class WpJumpMenu {
 	var $dir,
 		$path,
 		$version,
@@ -35,23 +35,22 @@ class WpJumpMenu
 	*  @since 3.0
 	*  @created: 12/12/12
 	*/
-	function __construct()
-	{
+	function __construct() {
 
 		// vars
-		$this->path = plugin_dir_path( __FILE__ );
-		$this->dir = plugins_url( '', __FILE__ );
-		$this->version = '3.5.3';
-		$this->upgrade_version = '';
-		$this->options = get_option( 'wpjm_options' );
-		$this->menu_cache_label = "wpjm_menu";
+		$this->path                     = plugin_dir_path( __FILE__ );
+		$this->dir                      = plugins_url( '', __FILE__ );
+		$this->version                  = '3.6';
+		$this->upgrade_version          = '';
+		$this->options                  = get_option( 'wpjm_options' );
+		$this->menu_cache_label         = "wpjm_menu";
 		$this->menu_refresh_cache_label = "wpjm_needs_refresh";
 
 		// set text domain
 		load_plugin_textdomain( 'wp-jump-menu', false, basename( dirname( __FILE__ ) ) . '/languages' );
 
 		// actions
-		add_action('init', array( $this, 'init' ) );
+		add_action( 'init', array( $this, 'init' ) );
 
 		// Activation Hook
 		register_activation_hook( __FILE__, array( $this, 'wpjm_install' ) );
@@ -66,8 +65,7 @@ class WpJumpMenu
 	*  @since 3.0
 	*  @created: 12/12/12
 	*/
-	function init()
-	{
+	function init() {
 
 		global $wp_version;
 
@@ -78,44 +76,43 @@ class WpJumpMenu
 
 		// Permission Testing
 		$this->current_user = wp_get_current_user();
-		if ( ! current_user_can('edit_posts') )
-		{
+		if ( ! current_user_can( 'edit_posts' ) ) {
 			return false;
 		}
 
 		// actions
 
 		// Clear LocalStorage on save
-		foreach($this->options['postTypes'] as $key=>$val) {
-			add_action( 'save_post_'.$key, array($this, 'clear_local_storage'), 10, 3);
+		foreach ( $this->options['postTypes'] as $key => $val ) {
+			add_action( 'save_post_' . $key, array( $this, 'clear_local_storage' ), 10, 3 );
 		}
 
-		if ( current_user_can('manage_options')) {
+		if ( current_user_can( 'manage_options' ) ) {
 			add_action( 'admin_menu', array( $this, 'admin_menu' ) );
 		}
 
 		add_action( 'admin_print_scripts', array( $this, 'admin_head' ) );
 		add_action( 'admin_print_scripts-settings_page_wpjm-options', array( $this, 'wpjm_settings_scripts' ) );
-		add_action( 'admin_print_styles', array( $this, 'wpjm_css') );
-		add_action( 'plugin_action_links', array( $this,'plugin_action_links'), 10, 2 );
-		add_action( 'wp_enqueue_scripts', array( $this, 'wpjm_js') );
-		add_action( 'admin_enqueue_scripts', array( $this, 'wpjm_js') );
+		add_action( 'admin_print_styles', array( $this, 'wpjm_css' ) );
+		add_action( 'plugin_action_links', array( $this, 'plugin_action_links' ), 10, 2 );
+		add_action( 'wp_enqueue_scripts', array( $this, 'wpjm_js' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'wpjm_js' ) );
 
-		if ( $this->options['position'] == 'wpAdminBar' )
-		{
-			add_action('admin_bar_menu', array( $this, 'admin_bar_menu'), 25);
-			add_action('wp_print_styles', array( $this, 'wpjm_css'));
-		} else {
-			if ( isset($this->options['frontend']) && $this->options['frontend'] == 'true' ) {
-				add_action('wp_footer', array( $this, 'wpjm_footer'));
+		if ( $this->options['position'] == 'wpAdminBar' ) {
+			if ( is_admin_bar_showing() ) {
+				add_action( 'admin_bar_menu', array( $this, 'admin_bar_menu' ), 25 );
+				add_action( 'wp_print_styles', array( $this, 'wpjm_css' ) );
 			}
-			add_action('admin_footer', array( $this, 'wpjm_footer'));
-			add_action('wp_print_styles', array( $this, 'wpjm_css'));
+		} else {
+			if ( isset( $this->options['frontend'] ) && $this->options['frontend'] == 'true' ) {
+				add_action( 'wp_footer', array( $this, 'wpjm_footer' ) );
+			}
+			add_action( 'admin_footer', array( $this, 'wpjm_footer' ) );
+			add_action( 'wp_print_styles', array( $this, 'wpjm_css' ) );
 		}
 
 		// Ajax menu
-        add_action( 'wp_ajax_wpjm_menu', array( $this, 'wpjm_menu' ));
-
+		add_action( 'wp_ajax_wpjm_menu', array( $this, 'wpjm_menu' ) );
 
 
 		// Options page settings form
@@ -127,47 +124,47 @@ class WpJumpMenu
 
 		// register scripts
 		$scripts = array(
-			'wpjm-admin-js' => $this->dir . '/assets/js/wpjm-admin.js',
-			'wpjm-main-js' => $this->dir . '/assets/js/wpjm-main.js',
+			'wpjm-admin-js'           => $this->dir . '/assets/js/wpjm-admin.js',
+			'wpjm-main-js'            => $this->dir . '/assets/js/wpjm-main.js',
 			'wpjm-jquery-colorpicker' => $this->dir . '/assets/js/colorpicker/js/colorpicker.js',
-			'wpjm-chosenjs' => $this->dir . '/assets/js/chosen/custom.chosen.jquery.js'
+			'wpjm-chosenjs'           => $this->dir . '/assets/js/chosen/custom.chosen.jquery.js',
+      'wpjm-jquery-hotkeys'     => $this->dir . '/assets/js/jquery/jquery.hotkeys.js'
 		);
 
-		foreach( $scripts as $k => $v )
-		{
-			wp_register_script( $k, $v, array('jquery'), $this->version, true );
+		foreach ( $scripts as $k => $v ) {
+			wp_register_script( $k, $v, array( 'jquery' ), $this->version, true );
 		}
 
 		// localize main script
 		global $post;
-		$post_id = isset($_GET['post']) ? $_GET['post'] : 0;
-		$post_id = isset($_GET['page_id']) ? $_GET['page_id'] : $post_id;
+		$post_id = isset( $_GET['post'] ) ? $_GET['post'] : 0;
+		$post_id = isset( $_GET['page_id'] ) ? $_GET['page_id'] : $post_id;
 		wp_localize_script( 'wpjm-main-js', 'wpjm_opt', array(
-			'baseUrl' => admin_url( 'admin-ajax.php' ),
-            'useChosen' => isset( $this->options['useChosen'] ) && $this->options['useChosen'] == 'true',
-			'position' => esc_js($this->options['position']),
-			'reloadText' => __('Refresh Jump Menu'),
-			'currentPageID' => $post_id
-		));
+			'baseUrl'       => admin_url( 'admin-ajax.php' ),
+			'useChosen'     => isset( $this->options['useChosen'] ) && $this->options['useChosen'] == 'true',
+			'position'      => esc_js( $this->options['position'] ),
+			'reloadText'    => __( 'Refresh Jump Menu' ),
+			'currentPageID' => $post_id,
+      'useShortcut'   => isset( $this->options['useShortcut'] ) && $this->options['useShortcut'] == 'true',
+		) );
 
 
 		// register styles
 		$styles = array(
 			'wpjm-colorpicker-css' => $this->dir . '/assets/js/colorpicker/css/colorpicker.css',
-			'chosencss' => $this->dir . '/assets/js/chosen/chosen.css',
+			'chosencss'            => $this->dir . '/assets/js/chosen/chosen.css',
 			'chosencss-wpadminbar' => $this->dir . '/assets/js/chosen/chosen-wpadmin.css',
-			'wpjm-settings-css' => $this->dir . '/assets/css/wpjm-settings.css'
+			'wpjm-settings-css'    => $this->dir . '/assets/css/wpjm-settings.css'
 		);
 
-		foreach( $styles as $k => $v )
-		{
+		foreach ( $styles as $k => $v ) {
 			wp_register_style( $k, $v, false, $this->version );
 		}
 
 
 		// Upgrade
-		$current_version = get_option('wpjm_version');
-		if (empty($current_version) || $current_version < $this->version) {
+		$current_version = get_option( 'wpjm_version' );
+		if ( empty( $current_version ) || $current_version < $this->version ) {
 
 			// initiate install/update
 			$this->wpjm_install();
@@ -183,20 +180,20 @@ class WpJumpMenu
 	 * @since 3.5
 	 * @created: 03/20/2016
 	 */
-	function clear_local_storage( $post_id, $post, $update )
-	{
+	function clear_local_storage( $post_id, $post, $update ) {
 
 //		error_log('WPJM: post id: '.$post_id);
 //		error_log('WPJM: post: '.json_encode($post));
 //		error_log('WPJM: update: '.json_encode($update));
 
 		// Do nothing if this is a auto-draft, revision, etc.
-		if (!$update) {
+		if ( ! $update ) {
 			return;
 		}
 
 //		error_log('WPJM: clear local storage');
-		update_option($this->menu_refresh_cache_label, 1);
+//		update_option( $this->menu_refresh_cache_label, 1 );
+		set_transient( $this->menu_refresh_cache_label, 1);
 
 	}
 
@@ -209,9 +206,11 @@ class WpJumpMenu
 	*  @created: 12/12/12
 	*/
 
-	function admin_menu()
-	{
-		$this->options_page = add_options_page('Jump Menu Options','Jump Menu Options', 'edit_posts', 'wpjm-options', array( $this, 'wpjm_options_page'));
+	function admin_menu() {
+		$this->options_page = add_options_page( 'Jump Menu Options', 'Jump Menu Options', 'edit_posts', 'wpjm-options', array(
+			$this,
+			'wpjm_options_page'
+		) );
 		// error_log(print_r($this->options_page,true));
 	}
 
@@ -224,8 +223,7 @@ class WpJumpMenu
 	*  @created: 12/12/12
 	*/
 
-	function admin_head()
-	{
+	function admin_head() {
 		// jquery ui - sortable
 		wp_enqueue_script( 'jquery-ui-sortable' );
 		wp_enqueue_script( 'jquery-ui-core' );
@@ -234,8 +232,7 @@ class WpJumpMenu
 
 	}
 
-	function wpjm_settings_scripts()
-	{
+	function wpjm_settings_scripts() {
 		// Colorpicker
 		wp_enqueue_script( 'wpjm-jquery-colorpicker' );
 		wp_enqueue_style( 'wpjm-colorpicker-css' );
@@ -253,8 +250,7 @@ class WpJumpMenu
 	*  @created: 12/12/12
 	*/
 
-	function wpjm_options_page()
-	{
+	function wpjm_options_page() {
 
 		// Update success message
 		if ( isset( $_POST['save_post_page_values'] ) ) {
@@ -264,33 +260,38 @@ class WpJumpMenu
 		?>
 
 
-		<?php if (!empty($message)) : ?>
+		<?php if ( ! empty( $message ) ) :
+//			error_log('Logging cache label: '.$this->menu_refresh_cache_label);
+//			update_option( $this->menu_refresh_cache_label, 1 );
+			?>
 			<div id="message" class="updated"><p><?php echo $message; ?></p></div>
 		<?php endif; ?>
 
-			<div class="wrap">
-				<div id="icon-options-general" class="icon32">
-					<br/>
-				</div>
-				<h2>WP Jump Menu <?php echo $this->version; ?></h2>
+		<div class="wrap">
+			<div id="icon-options-general" class="icon32">
+				<br/>
+			</div>
+			<h2>WP Jump Menu <?php echo $this->version; ?></h2>
 
-				<form action="options.php" method="post" id="wpjm-options-form">
-				<?php settings_fields('wpjm_options'); ?>
+			<form action="options.php" method="post" id="wpjm-options-form">
+				<?php settings_fields( 'wpjm_options' ); ?>
 				<div class="wpjm-post-types-wrapper">
-					<?php do_settings_sections('wpjm'); ?>
+					<?php do_settings_sections( 'wpjm' ); ?>
 				</div>
 				<p class="submit">
-					<input type="Submit" type="submit" value="<?php esc_attr_e('Save Changes'); ?>" class="button button-primary" />
+					<input type="Submit" type="submit" value="<?php esc_attr_e( 'Save Changes' ); ?>"
+					       class="button button-primary"/>
 				</p>
 				<div class="wpjm-additional-settings-wrapper">
-					<?php do_settings_sections('wpjm-2'); ?>
+					<?php do_settings_sections( 'wpjm-2' ); ?>
 				</div>
 
 				<p class="submit">
-					<input type="Submit" type="submit" value="<?php esc_attr_e('Save Changes'); ?>" class="button button-primary" />
+					<input type="Submit" type="submit" value="<?php esc_attr_e( 'Save Changes' ); ?>"
+					       class="button button-primary"/>
 				</p>
-				</form>
-			</div>
+			</form>
+		</div>
 
 		<?php
 	}
@@ -304,15 +305,17 @@ class WpJumpMenu
 	* @created: 12/12/12
 	*/
 
-	function plugin_action_links( $links, $file )
-	{
+	function plugin_action_links( $links, $file ) {
 		static $this_plugin;
-		if ( ! $this_plugin ) $this_plugin = plugin_basename(__FILE__);
+		if ( ! $this_plugin ) {
+			$this_plugin = plugin_basename( __FILE__ );
+		}
 
 		if ( $file == $this_plugin ) {
-			$settings_link = '<a href="options-general.php?page=wpjm-options">'.__("Settings").'</a>';
+			$settings_link = '<a href="options-general.php?page=wpjm-options">' . __( "Settings" ) . '</a>';
 			array_unshift( $links, $settings_link );
 		}
+
 		return $links;
 	}
 
@@ -325,66 +328,66 @@ class WpJumpMenu
 	*  @created: 12/12/12
 	*/
 
-	function wpjm_css()
-	{
+	function wpjm_css() {
 
 		echo "<style type='text/css'>";
 
-		if ($this->options['position'] == 'wpAdminBar')
-		{
-			echo "
-			#wp-admin-bar-wp-jump-menu { height: 28px !important; }
-			#wp-admin-bar-wp-jump-menu div.ab-item { float: left; }
-			#wpadminbar #wp-pdd, #wpadminbar #wp-pdd * { color: #333 !important; text-shadow: none;}
-			#wpadminbar span.wpjm-logo-title { padding-right: 10px; }
-			@media only screen and (max-width: 1000px) {
-				#wpadminbar #wp-admin-bar-wp-jump-menu div.ab-item { display: none; }
-
+		if ( $this->options['position'] == 'wpAdminBar' ) {
+			if ( is_admin_bar_showing() ) {
+				echo "
+				#wp-admin-bar-wp-jump-menu { height: 28px !important; }
+				#wp-admin-bar-wp-jump-menu div.ab-item { float: left; }
+				#wpadminbar #wp-pdd, #wpadminbar #wp-pdd * { color: #333 !important; text-shadow: none;}
+				#wpadminbar span.wpjm-logo-title { padding-right: 10px; }
+				@media only screen and (max-width: 1000px) {
+					#wpadminbar #wp-admin-bar-wp-jump-menu div.ab-item { display: none; }
+	
+				}
+				@media only screen and (max-width: 850px) {
+					/*#wpadminbar #wp-admin-bar-wp-jump-menu div.chosen-container { width: 100% !important; }*/
+				}
+				@media only screen and (max-width: 782px) {
+					#wpadminbar #wp-admin-bar-wp-jump-menu { display: block; line-height: 46px; }
+				}
+				@media only screen and (max-width: 640px) {
+					#wpadminbar #wp-admin-bar-wp-jump-menu .chosen-single { width: 16px; }
+					#wpadminbar #wp-admin-bar-wp-jump-menu .chosen-single span { display: none; }
+				}
+				@media only screen and (max-width: 320px) {
+					#wpadminbar #wp-admin-bar-wp-jump-menu { display: none; }
+				}
+				#wpadminbar #wp-jump-menu { padding: 0px 10px; }";
 			}
-			@media only screen and (max-width: 850px) {
-				/*#wpadminbar #wp-admin-bar-wp-jump-menu div.chosen-container { width: 100% !important; }*/
-			}
-			@media only screen and (max-width: 782px) {
-				#wpadminbar #wp-admin-bar-wp-jump-menu { display: block; line-height: 46px; }
-			}
-			@media only screen and (max-width: 640px) {
-				#wpadminbar #wp-admin-bar-wp-jump-menu .chosen-single { width: 16px; }
-				#wpadminbar #wp-admin-bar-wp-jump-menu .chosen-single span { display: none; }
-			}
-			@media only screen and (max-width: 320px) {
-				#wpadminbar #wp-admin-bar-wp-jump-menu { display: none; }
-			}
-			#wpadminbar #wp-jump-menu { padding: 0px 10px; }";
 		} else {
-			echo "#jump_menu { position: fixed; ".$this->options['position'].": ".($this->options['position']=='top'?(is_admin_bar_showing()?"28px":"0"):"0")."; right: 0; height: 40px; background: #".$this->options['backgroundColor']."; color: #".$this->options['fontColor']."; width: 100%; z-index: 1500; border-".($this->options['position']=='top'?'bottom':'top').": 2px solid #".$this->options['borderColor']."; }
-		#jump_menu p { padding: 5px 15px; font-size: 12px; margin: 0; }
-		#jump_menu p a:link, #jump_menu p a:visited, #jump_menu p a:hover { color: #".$this->options['linkColor']."; text-decoration: none; }
-		#jump_menu p.wpjm_need_help { float: right; }
-		#jump_menu p.wpjm_need_help span.wpjm-logo-title { font-family: Georgia; font-style: italic; padding-right: 10px; }
-		#jump_menu p.jm_credits { font-style: italic; padding-top: 10px; line-height: 13px; }
-		#jump_menu p.jm_credits img.wpjm_logo { ".(isset($this->options['logoWidth'])?'width: '.$this->options['logoWidth'].'px;':'width: auto;')." height: auto; max-height: 25px; vertical-align: middle; margin-right: 10px; }
-		#jump_menu_clear { height: 30px; }
-		#jump_menu .chosen-container .post-id {
-			float: " . (isset($this->options['chosenTextAlign']) && $this->options['chosenTextAlign'] != "right" ? "right" : 'none') . " !important;
-		}
-		@media only screen and (max-width: 768px) {
-			#jump_menu .jm_credits { display: none; }
-		}
-		@media only screen and (max-width: 480px) {
-			#jump_menu span.wpjm-logo-title { display: none; }
-		}
-		body { ".($this->options['position']=='top'?'padding-top: 42px !important;':'padding-bottom: 42px !important;')." }
-		".($this->options['position']=='bottom'?'#footer { bottom: 42px !important; }':'');
+			echo "#jump_menu { position: fixed; " . $this->options['position'] . ": " . ( $this->options['position'] == 'top' ? ( is_admin_bar_showing() ? "28px" : "0" ) : "0" ) . "; right: 0; height: 40px; background: #" . $this->options['backgroundColor'] . "; color: #" . $this->options['fontColor'] . "; width: 100%; z-index: 1500; border-" . ( $this->options['position'] == 'top' ? 'bottom' : 'top' ) . ": 2px solid #" . $this->options['borderColor'] . "; }
+			#jump_menu p { padding: 5px 15px; font-size: 12px; margin: 0; }
+			#jump_menu p a:link, #jump_menu p a:visited, #jump_menu p a:hover { color: #" . $this->options['linkColor'] . "; text-decoration: none; }
+			#jump_menu p.wpjm_need_help { float: right; }
+			#jump_menu p.wpjm_need_help span.wpjm-logo-title { font-family: Georgia; font-style: italic; padding-right: 10px; }
+			#jump_menu p.jm_credits { font-style: italic; padding-top: 10px; line-height: 13px; }
+			#jump_menu p.jm_credits img.wpjm_logo { " . ( isset( $this->options['logoWidth'] ) ? 'width: ' . $this->options['logoWidth'] . 'px;' : 'width: auto;' ) . " height: auto; max-height: 25px; vertical-align: middle; margin-right: 10px; }
+			#jump_menu_clear { height: 30px; }
+			#jump_menu .chosen-container .post-id {
+				float: " . ( isset( $this->options['chosenTextAlign'] ) && $this->options['chosenTextAlign'] != "right" ? "right" : 'none' ) . " !important;
+			}
+			@media only screen and (max-width: 768px) {
+				#jump_menu .jm_credits { display: none; }
+			}
+			@media only screen and (max-width: 480px) {
+				#jump_menu span.wpjm-logo-title { display: none; }
+			}
+			body { " . ( $this->options['position'] == 'top' ? 'padding-top: 42px !important;' : 'padding-bottom: 42px !important;' ) . " }
+			" . ( $this->options['position'] == 'bottom' ? '#footer { bottom: 42px !important; }' : '' );
 		}
 
 		echo "
 		#wp-pdd { max-width: 400px;  }
 		#wpadminbar #wp-admin-bar-top-secondary #wp-admin-bar-wp-jump-menu .chosen-container * {
-			text-align: " . (isset($this->options['chosenTextAlign']) ? $this->options['chosenTextAlign'] : 'right') . " !important;
+			text-align: " . ( isset( $this->options['chosenTextAlign'] ) ? $this->options['chosenTextAlign'] : 'right' ) . " !important;
 		}
-		#wpadminbar #wp-admin-bar-top-secondary #wp-admin-bar-wp-jump-menu .chosen-container .post-id {
-			float: " . (isset($this->options['chosenTextAlign']) && $this->options['chosenTextAlign'] != "right" ? "right" : 'none') . " !important;
-		}
+		/*#wpadminbar #wp-admin-bar-top-secondary #wp-admin-bar-wp-jump-menu .chosen-container .post-id {
+			float: " . ( isset( $this->options['chosenTextAlign'] ) && $this->options['chosenTextAlign'] != "right" ? "right" : 'none' ) . " !important;
+		}*/
 		#wp-admin-bar-wp-jump-menu .chosen-container { vertical-align: middle; }
 		#wp-admin-bar-wp-jump-menu span.loader { display: inline-block; width: 32px; height: 32px; background: transparent url(" . $this->dir . "/assets/images/ajax-loader.gif) no-repeat center center; }
 		";
@@ -412,17 +415,40 @@ class WpJumpMenu
 
 	function wpjm_js() {
 
-		if (isset($this->options['useChosen']) && $this->options['useChosen'] == 'true') {
-			wp_enqueue_script( 'wpjm-chosenjs' );
-			if ($this->options['position'] == 'wpAdminBar') {
-				wp_enqueue_style( 'chosencss-wpadminbar' );
+		$loadScript = false;
+		if ( $this->options['position'] == 'wpAdminBar' ) {
+			if ( is_admin_bar_showing() ) {
+				$loadScript = true;
+			}
+		} else {
+			$loadScript = true;
+		}
+
+		if ( isset( $this->options['useChosen'] ) && $this->options['useChosen'] == 'true' ) {
+			if ($loadScript == true) {
+				wp_enqueue_script( 'wpjm-chosenjs' );
+			}
+
+			if ( $this->options['position'] == 'wpAdminBar' ) {
+				if ( is_admin_bar_showing() ) {
+					wp_enqueue_style( 'chosencss-wpadminbar' );
+				}
 			} else {
 				wp_enqueue_style( 'chosencss' );
 				wp_enqueue_style( 'chosencss-wpadminbar' );
 			}
 		}
 
-		wp_enqueue_script( 'wpjm-main-js' );
+		if ( isset($this->options['useShortcut']) && $this->options['useShortcut'] == 'true' ) {
+		  if ($loadScript == true) {
+		    wp_enqueue_script( 'wpjm-jquery-hotkeys' );
+      }
+    }
+
+
+		if ($loadScript == true) {
+			wp_enqueue_script( 'wpjm-main-js' );
+		}
 
 	}
 
@@ -435,50 +461,64 @@ class WpJumpMenu
 	*  @created: 12/12/12
 	*/
 
-	function admin_bar_menu()
-	{
+	function admin_bar_menu() {
 		global $wp_admin_bar;
 
-		if (is_admin_bar_showing())
-		{
+		if ( is_admin_bar_showing() ) {
 			$wp_admin_bar->add_menu( array(
-				'id' 		 	=> 'wp-jump-menu',
-				'parent' 	=> 'top-secondary',
-				'title' 	=> $this->options['title'],
-				'meta'		=> array(
+				'id'     => 'wp-jump-menu',
+				'parent' => 'top-secondary',
+				'title'  => $this->options['title'],
+				'meta'   => array(
 					'html' => '<span class="loader"></span>'
 				)
-			));
+			) );
 
-	  }
+		}
 	}
 
 	function wpjm_menu() {
 
-		$wpjm_menu = "";
-		$wpjm_refresh = isset($_GET['refresh'])?$_GET['refresh']:false;
+		global $post_id;
 
-		$needs_refresh = get_option($this->menu_refresh_cache_label);
-		$wpjm_menu = get_option($this->menu_cache_label);
-		if ($needs_refresh == 1 || !$wpjm_menu || $wpjm_refresh) {
-		    $wpjm_menu = $this->wpjm_page_dropdown();
-			update_option($this->menu_cache_label, $wpjm_menu);
-			delete_option($this->menu_refresh_cache_label);
+		$post_id = 0;
+		if (isset($_GET['post_id'])) {
+			$post_id = $_GET['post_id'];
+		}
+
+		$wpjm_menu    = "";
+		$wpjm_refresh = isset( $_GET['refresh'] ) ? $_GET['refresh'] : false;
+//		$needs_refresh = get_option( $this->menu_refresh_cache_label );
+		$needs_refresh = get_transient($this->menu_refresh_cache_label);
+
+//		$wpjm_menu     = get_option( $this->menu_cache_label );
+//		$wpjm_menu = get_transient($this->menu_cache_label);
+
+		if ( $needs_refresh == 1 || $wpjm_refresh == true ) {
+			$wpjm_menu = $this->wpjm_page_dropdown(false);
+
+			if ($needs_refresh == 1) {
+//				error_log('deleting needs refresh cache');
+				delete_transient($this->menu_refresh_cache_label);
+			}
+//			update_option( $this->menu_cache_label, $wpjm_menu );
+//			delete_option( $this->menu_refresh_cache_label );
 
 		} else {
 
 //			error_log('WPJM: Using cached menu');
+			$wpjm_menu = $this->wpjm_page_dropdown(true);
 
 		}
 
 		echo $wpjm_menu;
 
-		if ( defined( 'DOING_AJAX' ) && DOING_AJAX )
-		  wp_die();
-		else
-		  die;
+		if ( defined( 'DOING_AJAX' ) && DOING_AJAX ) {
+			wp_die();
+		} else {
+			die;
+		}
 	}
-
 
 
 	/*
@@ -489,59 +529,61 @@ class WpJumpMenu
 	*  @created: 12/12/12
 	*/
 
-	function wpjm_footer()
-	{
+	function wpjm_footer() {
 		echo '<div id="jump_menu">';
-			echo '<p class="wpjm_need_help">';
+		echo '<p class="wpjm_need_help">';
 
-				echo '<span class="wpjm-logo-title">'.$this->options['title'].'</span>';
-				// Jump to page edit
-				echo $this->wpjm_page_dropdown();
+		echo '<span class="wpjm-logo-title">' . $this->options['title'] . '</span>';
+		// Jump to page edit
+		echo $this->wpjm_page_dropdown();
 
-			echo '</p>';
-			echo '<p class="jm_credits">';
-				echo ( !empty($this->options['logoIcon']) ? '<a href="'.get_bloginfo( 'url' ).'"><img class="wpjm_logo" src="'.$this->options['logoIcon'].'" alt="" /></a>' : '');
-				echo $this->options['message'];
-				//echo ' Go to your <a href="'.get_bloginfo( 'url' ).'">site</a>.';
-			echo '</p>';
-			?>
-			<script>
-			jQuery(document).ready(function($){
+		echo '</p>';
+		echo '<p class="jm_credits">';
+		echo( ! empty( $this->options['logoIcon'] ) ? '<a href="' . get_bloginfo( 'url' ) . '"><img class="wpjm_logo" src="' . $this->options['logoIcon'] . '" alt="" /></a>' : '' );
+		echo $this->options['message'];
+		//echo ' Go to your <a href="'.get_bloginfo( 'url' ).'">site</a>.';
+		echo '</p>';
+		?>
+		<script>
+			jQuery(document).ready(function ($) {
 
 				<?php
-				if ( isset( $this->options['showID']) && $this->options['showID'] == "true" ) {
-					if ( isset( $this->options['useChosen'] ) && $this->options['useChosen'] == 'true') {
-						// $html .= "jQuery('#wp-pdd').on('chosen:showing_dropdown', function(){
-						// 	console.log('ready');
-						// 	console.log(jQuery('#wp_pdd_chosen'));
-						// 	jQuery('#wp_pdd_chosen').find('[data-post-id]').each(function(i){
-						// 		jQuery(this).append(' <span class=\"post-id\" style=\"float: right;\">' + this.dataset.postId + '</span>');
-						// 	});
-						// });";
-					} else { ?>
-						jQuery('#wp-pdd').find('option').each(function(i){
-							if (jQuery(this).attr('data-post-id')) {
-								jQuery(this).append(' (' + jQuery(this).attr('data-post-id') + ') ');
-							}
-						});
-						<?php
+				if ( isset( $this->options['showID'] ) && $this->options['showID'] == "true" ) {
+				if ( isset( $this->options['useChosen'] ) && $this->options['useChosen'] == 'true') {
+				// $html .= "jQuery('#wp-pdd').on('chosen:showing_dropdown', function(){
+				// 	console.log('ready');
+				// 	console.log(jQuery('#wp_pdd_chosen'));
+				// 	jQuery('#wp_pdd_chosen').find('[data-post-id]').each(function(i){
+				// 		jQuery(this).append(' <span class=\"post-id\" style=\"float: right;\">' + this.dataset.postId + '</span>');
+				// 	});
+				// });";
+			} else { ?>
+				jQuery('#wp-pdd').find('option').each(function (i) {
+					if (jQuery(this).attr('data-post-id')) {
+						jQuery(this).append(' (' + jQuery(this).attr('data-post-id') + ') ');
 					}
+				});
+				<?php
 				}
-                ?>
+				}
+				?>
 
-					<?php if ( isset($this->options['useChosen']) && $this->options['useChosen'] == 'true' ) { ?>
-					jQuery('#wp-pdd').bind('liszt:ready',function(){
-						jQuery('ul.chosen-results li').prepend('<span class="front-end"></span>');
-					});
+				<?php if ( isset( $this->options['useChosen'] ) && $this->options['useChosen'] == 'true' ) { ?>
+				jQuery('#wp-pdd').bind('liszt:ready', function () {
+					jQuery('ul.chosen-results li').prepend('<span class="front-end"></span>');
+				});
 
-					<?php } ?>
+				<?php } ?>
 
-					jQuery('#wp-pdd').on('change',function() {
-						window.location = this.value;
-					})<?php if ( isset($this->options['useChosen']) && $this->options['useChosen'] == 'true' ) { ?>.customChosen({position:"<?php echo esc_js($this->options['position']); ?>", search_contains: true})<?php } ?>;
+				jQuery('#wp-pdd').on('change', function () {
+					window.location = this.value;
+				})<?php if ( isset($this->options['useChosen']) && $this->options['useChosen'] == 'true' ) { ?>.customChosen({
+					position: "<?php echo esc_js( $this->options['position'] ); ?>",
+					search_contains: true
+				})<?php } ?>;
 			});
-			</script>
-			<?php
+		</script>
+		<?php
 		echo '</div>';
 	}
 
@@ -553,27 +595,28 @@ class WpJumpMenu
 	*	 @created: 12/12/12
 	*/
 
-	function wpjm_page_dropdown()
-	{
+	function wpjm_page_dropdown($cached=false) {
+
+		global $current_user, $post, $post_id, $options;
+
+		$options = $this->options;
 
 		// Is this needed?
 		require_once( 'assets/WpjmWalkerClass.php' );
-
-		global $current_user, $post;
 
 		// Get Custom Post Types settings (will iterate through later)
 		$custom_post_types = $this->options['postTypes'];
 
 		// Set post status colors
 		$status_color = array(
-			'publish' => (!empty($this->options['statusColors']['publish'])?'#'.$this->options['statusColors']['publish']:''),
-			'pending' => (!empty($this->options['statusColors']['pending'])?'#'.$this->options['statusColors']['pending']:''),
-			'draft' => (!empty($this->options['statusColors']['draft'])?'#'.$this->options['statusColors']['draft']:''),
-			'auto-draft' => (!empty($this->options['statusColors']['auto-draft'])?'#'.$this->options['statusColors']['auto-draft']:''),
-			'future' => (!empty($this->options['statusColors']['future'])?'#'.$this->options['statusColors']['future']:''),
-			'private' => (!empty($this->options['statusColors']['private'])?'#'.$this->options['statusColors']['private']:''),
-			'inherit' => (!empty($this->options['statusColors']['inherit'])?'#'.$this->options['statusColors']['inherit']:''),
-			'trash' => (!empty($this->options['statusColors']['trash'])?'#'.$this->options['statusColors']['trash']:'')
+			'publish'    => ( ! empty( $this->options['statusColors']['publish'] ) ? '#' . $this->options['statusColors']['publish'] : '' ),
+			'pending'    => ( ! empty( $this->options['statusColors']['pending'] ) ? '#' . $this->options['statusColors']['pending'] : '' ),
+			'draft'      => ( ! empty( $this->options['statusColors']['draft'] ) ? '#' . $this->options['statusColors']['draft'] : '' ),
+			'auto-draft' => ( ! empty( $this->options['statusColors']['auto-draft'] ) ? '#' . $this->options['statusColors']['auto-draft'] : '' ),
+			'future'     => ( ! empty( $this->options['statusColors']['future'] ) ? '#' . $this->options['statusColors']['future'] : '' ),
+			'private'    => ( ! empty( $this->options['statusColors']['private'] ) ? '#' . $this->options['statusColors']['private'] : '' ),
+			'inherit'    => ( ! empty( $this->options['statusColors']['inherit'] ) ? '#' . $this->options['statusColors']['inherit'] : '' ),
+			'trash'      => ( ! empty( $this->options['statusColors']['trash'] ) ? '#' . $this->options['statusColors']['trash'] : '' )
 		);
 
 		$wpjm_string = '';
@@ -591,10 +634,10 @@ class WpJumpMenu
 		$wpjm_string = apply_filters( 'wpjm-filter-beginning-of-list', $wpjm_string );
 
 		// Loop through custom posts types, and echo them out
-		if ($custom_post_types) {
+		if ( $custom_post_types ) {
 
 			$wpjm_cpts = $custom_post_types; // should be array
-			if ($wpjm_cpts) {
+			if ( $wpjm_cpts ) {
 
 				// Loop through each post type as $key, $value
 				// --------------------------------------------------------------------------------------
@@ -604,33 +647,33 @@ class WpJumpMenu
 				//		$value['sort']
 				//		$value['numberposts']
 				// --------------------------------------------------------------------------------------
-				foreach($wpjm_cpts as $key => $value ) {
+				foreach ( $wpjm_cpts as $key => $value ) {
 
 					// Set variables
-					$wpjm_cpt = $key;						// name of the post type
+					$wpjm_cpt         = $key;                        // name of the post type
 					$post_type_object = get_post_type_object( $wpjm_cpt );
-					$sortby = $value['sortby'];				// orderby value
-					$sort = $value['sort'];					// order value
-					$numberposts = $value['numberposts'];	// number of posts to display
-					$showdrafts = (isset($value['showdrafts'])?$value['showdrafts']:'');		// show drafts, true or false
-					$post_status = $value['poststatus'];
-					$postmimetype = array();
-					if (isset($value['postmimetypes']) && is_array($value['postmimetypes'])) {
-						foreach($value['postmimetypes'] as $mime) {
-							switch ($mime) {
+					$sortby           = $value['sortby'];                // orderby value
+					$sort             = $value['sort'];                    // order value
+					$numberposts      = $value['numberposts'];    // number of posts to display
+					$showdrafts       = ( isset( $value['showdrafts'] ) ? $value['showdrafts'] : '' );        // show drafts, true or false
+					$post_status      = $value['poststatus'];
+					$postmimetype     = array();
+					if ( isset( $value['postmimetypes'] ) && is_array( $value['postmimetypes'] ) ) {
+						foreach ( $value['postmimetypes'] as $mime ) {
+							switch ( $mime ) {
 								case 'images':
 									$postmimetype[] = 'image/jpeg';
 									$postmimetype[] = 'image/png';
 									$postmimetype[] = 'image/gif';
 									$postmimetype[] = 'image';
-								break;
+									break;
 
 								case 'videos':
 									$postmimetype[] = 'video/mpeg';
 									$postmimetype[] = 'video/mp4';
 									$postmimetype[] = 'video/quicktime';
 									$postmimetype[] = 'video';
-								break;
+									break;
 
 								case 'audio':
 									$postmimetype[] = 'audio/mpeg';
@@ -642,107 +685,141 @@ class WpJumpMenu
 									$postmimetype[] = 'text/plain';
 									$postmimetype[] = 'text/xml';
 									$postmimetype[] = 'text';
-								break;
+									break;
 
 								default:
 									$postmimetype = 'all';
-								break;
+									break;
 							}
 						}
 
-						if (!is_array($postmimetype)) {
+						if ( ! is_array( $postmimetype ) ) {
 							$postmimetype = '';
 						}
 					}
 
-					// Get Posts
-					$args = array(
-						'orderby' => $sortby,
-						'order' => $sort,
-						'posts_per_page' => $numberposts,
-						'post_type' => $wpjm_cpt,
-						'post_mime_type' => $postmimetype,
-						'post_status' => (is_array($post_status)?(in_array('any',$post_status)?'any':$post_status):$post_status)
-						);
-					$pd_posts = get_posts($args);
-
-					// Count the posts
-					$pd_total_posts = count($pd_posts);
-
 					// Get the labels for this post type
-					$cpt_obj = get_post_type_object($wpjm_cpt);
+					$cpt_obj    = get_post_type_object( $wpjm_cpt );
 					$cpt_labels = $cpt_obj->labels;
 
 					// Set the iterator to zero
 					$pd_i = 0;
 
+
 					// If this is not hierarchical, get list of posts and display the <option>s
-					if (!is_post_type_hierarchical($wpjm_cpt)) {
+					if ( ! is_post_type_hierarchical( $wpjm_cpt ) ) {
 
-						$wpjm_string .= '<optgroup label="'.$cpt_labels->name.'">';
+						// --------< this was outside the if statement above
+						// Get Posts
+						$args     = array(
+							'orderby'        => $sortby,
+							'order'          => $sort,
+							'posts_per_page' => $numberposts,
+							'post_type'      => $wpjm_cpt,
+							'post_mime_type' => $postmimetype,
+							'post_status'    => ( is_array( $post_status ) ? ( in_array( 'any', $post_status ) ? 'any' : $post_status ) : $post_status )
+						);
 
-						if ($cpt_labels->name != 'Media') {
+						if ($cached == false) {
+							// Manually cache results
+							$pd_posts = get_posts( $args );
+//							error_log('setting wpjm transient for '.$wpjm_cpt);
+							set_transient( 'wpjm_menu_' . $wpjm_cpt, $pd_posts );
+						} else {
+							// Manually get cache
+//							error_log('getting wpjm transient for '.$wpjm_cpt);
+							$pd_posts = get_transient('wpjm_menu_'.$wpjm_cpt);
+							// Unless it doesn't exist, then use get_posts
+							if (false == $pd_posts) {
+//								error_log('tried to get wpjm transient but failed');
+								$pd_posts = get_posts( $args );
+								set_transient( 'wpjm_menu_' . $wpjm_cpt, $pd_posts );
+							}
+						}
 
-							if (isset($this->options['showaddnew']) && $this->options['showaddnew'] && current_user_can($post_type_object->cap->edit_posts)) {
+						// Count the posts
+						$pd_total_posts = count( $pd_posts );
+
+
+						// --------<
+
+
+						$wpjm_string .= '<optgroup label="' . $cpt_labels->name . '">';
+
+						if ( $cpt_labels->name != 'Media' ) {
+
+							if ( isset( $this->options['showaddnew'] ) && $this->options['showaddnew'] && current_user_can( $post_type_object->cap->edit_posts ) ) {
 								$wpjm_string .= '<option value="post-new.php?post_type=';
 								$wpjm_string .= $cpt_obj->name;
-								$wpjm_string .= '">+ Add New '.$cpt_labels->singular_name.' +</option>';
+								$wpjm_string .= '">+ Add New ' . $cpt_labels->singular_name . ' +</option>';
 							}
 
 						}
 
 						// Order the posts by mime/type if this is attachments
-						if ( ($wpjm_cpt == 'attachment') && ($sortby == 'mime_type') ) {
-							function mime_sort($a, $b) {
-								return strcmp($a->post_mime_type, $b->post_mime_type);
+						if ( ( $wpjm_cpt == 'attachment' ) && ( $sortby == 'mime_type' ) ) {
+							function mime_sort( $a, $b ) {
+								return strcmp( $a->post_mime_type, $b->post_mime_type );
 							}
-							usort($pd_posts, "mime_sort");
+
+							usort( $pd_posts, "mime_sort" );
 						}
 
 						// Loop through posts
-						foreach ($pd_posts as $pd_post) {
+						foreach ( $pd_posts as $pd_post ) {
 
 							// Increase the interator by 1
-							$pd_i++;
+							$pd_i ++;
 
 							// Open the <option> tag
-							$wpjm_string .= '<option data-permalink="'.get_permalink($pd_post->ID).'" value="';
-								// echo the edit link based on post ID
-								$editLink = (is_admin() || (!isset($this->options['frontEndJump']) || !$this->options['frontEndJump']) ? get_edit_post_link($pd_post->ID) : get_permalink($pd_post->ID));
-								$wpjm_string .= $editLink;
+							$wpjm_string .= '<option data-permalink="' . get_permalink( $pd_post->ID ) . '" value="';
+							// echo the edit link based on post ID
+							$editLink = ( is_admin() || ( ! isset( $this->options['frontEndJump'] ) || ! $this->options['frontEndJump'] ) ? get_edit_post_link( $pd_post->ID ) : get_permalink( $pd_post->ID ) );
+							$wpjm_string .= $editLink;
 							$wpjm_string .= '"';
 
 							// Check to see if you are currently editing this post
 							// If so, make it the selected value
-							if ( (isset($_GET['post']) && ($pd_post->ID == $_GET['post'])) || (isset($post) && ($pd_post->ID == $post->ID)) )
+							if ( ( isset( $_GET['post'] ) && ( $pd_post->ID == $_GET['post'] ) ) || ( isset( $post_id ) && ( $pd_post->ID == $post_id ) ) ) {
 								$wpjm_string .= ' selected="selected"';
+							}
 
-							if (!current_user_can($post_type_object->cap->edit_post,$pd_post->ID))
+							if ( ! current_user_can( $post_type_object->cap->edit_post, $pd_post->ID ) ) {
 								$wpjm_string .= ' disabled="disabled"';
+							}
 
 							// Set the color
-							if (isset($status_color[$pd_post->post_status])) {
-								$wpjm_string .= ' style="color: '.$status_color[$pd_post->post_status].';"';
+							if ( isset( $status_color[ $pd_post->post_status ] ) ) {
+								$wpjm_string .= ' style="color: ' . $status_color[ $pd_post->post_status ] . ';"';
 							}
 
 							// If the setting to show ID's is true, show the ID in ()
-								if ( (isset($this->options['showID']) && $this->options['showID'] == true) ) {
-									$wpjm_string .= ' data-post-id="'.$pd_post->ID.'"';
-								}
+							if ( ( isset( $this->options['showID'] ) && $this->options['showID'] == true ) ) {
+								$wpjm_string .= ' data-post-id="' . $pd_post->ID . '"';
+							}
+
+							// If the setting to show the post type is true, show it
+							if ( (isset($this->options['showPostType']) && $this->options['showPostType'] == true ) ) {
+								$wpjm_string .= ' data-post-type="' . get_post_type($pd_post->ID) . '"';
+							}
+
 
 							$wpjm_string .= '>';
 
 							// Print the post title
-							$wpjm_string .= $this->wpjm_get_page_title($pd_post->post_title);
+							$wpjm_string .= $this->wpjm_get_page_title( $pd_post->post_title );
 
-							if ($pd_post->post_status != 'publish' && $pd_post->post_status != 'inherit')
-								$wpjm_string .= ' - '.$pd_post->post_status;
+							if ( $pd_post->post_status != 'publish' && $pd_post->post_status != 'inherit' ) {
+								$wpjm_string .= ' - ' . $pd_post->post_status;
+							}
 
-							if ($pd_post->post_type == 'attachment')
+							if ( $pd_post->post_type == 'attachment' ) {
 								$wpjm_string .= ' (' . $pd_post->post_mime_type . ')';
+							}
 
-							if ($pd_post->post_status == 'future')
-								$wpjm_string .= ' - '.$pd_post->post_date;
+							if ( $pd_post->post_status == 'future' ) {
+								$wpjm_string .= ' - ' . $pd_post->post_date;
+							}
 
 							// close the <option> tag
 							$wpjm_string .= '</option>';
@@ -755,64 +832,99 @@ class WpJumpMenu
 						// If this a hierarchical post type, use the custom Walker class to create the page tree
 						$orderedListWalker = new WPJM_Walker_PageDropDown();
 
-						$wpjm_string .= '<optgroup label="'.$cpt_labels->name.'">';
+						$wpjm_string .= '<optgroup label="' . $cpt_labels->name . '">';
 
-						if (isset($this->options['showaddnew']) && $this->options['showaddnew'] && ( current_user_can($post_type_object->cap->edit_posts) || current_user_can($post_type_object->cap->edit_pages) ) ) {
+						if ( isset( $this->options['showaddnew'] ) && $this->options['showaddnew'] && ( current_user_can( $post_type_object->cap->edit_posts ) || current_user_can( $post_type_object->cap->edit_pages ) ) ) {
 							$wpjm_string .= '<option value="post-new.php?post_type=';
 							$wpjm_string .= $cpt_obj->name;
-							$wpjm_string .= '">+ Add New '.$cpt_labels->singular_name.' +</option>';
+							$wpjm_string .= '">+ Add New ' . $cpt_labels->singular_name . ' +</option>';
 						}
 
 						// Go through the non-published pages
-						foreach ($post_status as $status) {
+						foreach ( $post_status as $status ) {
 
-							if ($status == 'publish')
+							if ( $status == 'publish' ) {
 								continue;
+							}
 
 							// Get pages
-							$pd_posts_drafts = get_posts('orderby='.$sortby.'&order='.$sort.'&posts_per_page='.$numberposts.'&post_type='.$wpjm_cpt.'&post_status='.$status);
+							$args = array(
+								'orderby' => $sortby,
+								'order' => $sort,
+								'posts_per_page' => $numberposts,
+								'post_type' => $wpjm_cpt,
+								'post_status' => $status
+							);
+//							$pd_posts_drafts = get_posts( 'orderby=' . $sortby . '&order=' . $sort . '&posts_per_page=' . $numberposts . '&post_type=' . $wpjm_cpt . '&post_status=' . $status );
+
+							if ($cached == false) {
+								// Manually cache results
+								$pd_posts_drafts = get_posts( $args );
+//								error_log('setting wpjm transient for '.$wpjm_cpt.' with status '.$status);
+								set_transient( 'wpjm_menu_' . $wpjm_cpt . '_' . $status, $pd_posts_drafts );
+							} else {
+								// Manually get cache
+//								error_log('getting wpjm transient for '.$wpjm_cpt . ' with status '.$status);
+								$pd_posts_drafts = get_transient('wpjm_menu_'.$wpjm_cpt.'_'.$status);
+								// Unless it doesn't exist, then use get_posts
+								if (false == $pd_posts_drafts) {
+//									error_log('tried to get wpjm transient but failed');
+									$pd_posts_drafts = get_posts( $args );
+									set_transient( 'wpjm_menu_' . $wpjm_cpt . '_' . $status, $pd_posts_drafts );
+								}
+							}
+
 
 							// Loop through posts
-							foreach ($pd_posts_drafts as $pd_post) {
+							foreach ( $pd_posts_drafts as $pd_post ) {
 
 								// Increase the interator by 1
-								$pd_i++;
+								$pd_i ++;
 
 								// Open the <option> tag
-								$wpjm_string .= '<option data-permalink="'.get_permalink($pd_post->ID).'" value="';
-									// echo the edit link based on post ID
-									$editLink = (is_admin() || (!isset($this->options['frontEndJump']) || !$this->options['frontEndJump']) ? get_edit_post_link($pd_post->ID) : get_permalink($pd_post->ID));
-									$wpjm_string .= $editLink;
+								$wpjm_string .= '<option data-permalink="' . get_permalink( $pd_post->ID ) . '" value="';
+								// echo the edit link based on post ID
+								$editLink = ( is_admin() || ( ! isset( $this->options['frontEndJump'] ) || ! $this->options['frontEndJump'] ) ? get_edit_post_link( $pd_post->ID ) : get_permalink( $pd_post->ID ) );
+								$wpjm_string .= $editLink;
 								$wpjm_string .= '"';
 
 								// Check to see if you are currently editing this post
 								// If so, make it the selected value
-								if ( (isset($_GET['post']) && ($pd_post->ID == $_GET['post'])) || (isset($post) && ($pd_post->ID == $post->ID)) )
+								if ( ( isset( $_GET['post'] ) && ( $pd_post->ID == $_GET['post'] ) ) || ( isset( $post_id ) && ( $pd_post->ID == $post_id ) ) ) {
 									$wpjm_string .= ' selected="selected"';
+								}
 
-								if (!current_user_can($post_type_object->cap->edit_post,$pd_post->ID))
+								if ( ! current_user_can( $post_type_object->cap->edit_post, $pd_post->ID ) ) {
 									$wpjm_string .= ' disabled="disabled"';
+								}
 
 								// Set the color
-								if (isset($status_color[$pd_post->post_status])) {
-									$wpjm_string .= ' style="color: '.$status_color[$pd_post->post_status].';"';
+								if ( isset( $status_color[ $pd_post->post_status ] ) ) {
+									$wpjm_string .= ' style="color: ' . $status_color[ $pd_post->post_status ] . ';"';
 								}
 
 								// If the setting to show ID's is true, show the ID in ()
-								if ( (isset($this->options['showID']) && $this->options['showID'] == true) ) {
-									$wpjm_string .= ' data-post-id="'.$pd_post->ID.'"';
+								if ( ( isset( $this->options['showID'] ) && $this->options['showID'] == true ) ) {
+									$wpjm_string .= ' data-post-id="' . $pd_post->ID . '"';
+								}
+
+								// If the setting to show the post type is true, show it
+								if ( (isset($this->options['showPostType']) && $this->options['showPostType'] == true ) ) {
+									$wpjm_string .= ' data-post-type="' . get_post_type($pd_post->ID) . '"';
 								}
 
 								$wpjm_string .= '>';
 
 								// Print the post title
-								$wpjm_string .= $this->wpjm_get_page_title($pd_post->post_title);
+								$wpjm_string .= $this->wpjm_get_page_title( $pd_post->post_title );
 
-								if ($pd_post->post_status != 'publish')
-									$wpjm_string .= ' - '.$status;
+								if ( $pd_post->post_status != 'publish' ) {
+									$wpjm_string .= ' - ' . $status;
+								}
 
-								if ($pd_post->post_status == 'future')
-									$wpjm_string .= ' - '.$pd_post->post_date;
+								if ( $pd_post->post_status == 'future' ) {
+									$wpjm_string .= ' - ' . $pd_post->post_date;
+								}
 
 								// close the <option> tag
 								$wpjm_string .= '</option>';
@@ -821,16 +933,92 @@ class WpJumpMenu
 
 						}
 						// Done with non-published pages
-						if (is_array($post_status)) {
+						if ( is_array( $post_status ) ) {
 
-							if (in_array('publish',$post_status)) {
+							if ( in_array( 'publish', $post_status ) ) {
 
-								$wpjm_string .= wp_list_pages(array('walker' => $orderedListWalker, 'post_type' => $wpjm_cpt, 'echo' => 0, 'depth' => $numberposts, 'sort_column' => $sortby, 'sort_order' => $sort));
+								$args = array(
+									'walker'      => $orderedListWalker,
+									'post_type'   => $wpjm_cpt,
+									'echo'        => 0,
+									'depth'       => $numberposts,
+									'sort_column' => $sortby,
+									'sort_order'  => $sort,
+									'title_li'    => ''
+								);
+
+								/*$wpjm_string .= wp_list_pages( array(
+									'walker'      => $orderedListWalker,
+									'post_type'   => $wpjm_cpt,
+									'echo'        => 0,
+									'depth'       => $numberposts,
+									'sort_column' => $sortby,
+									'sort_order'  => $sort
+								) );*/
+
+								if ($cached == false) {
+									// Manually cache results
+									$pd_pages = wp_list_pages( $args );
+//									error_log('setting wpjm transient for published pages');
+									$pd_pages = str_replace(' selected="selected"', '', $pd_pages);
+									set_transient( 'wpjm_menu_' . $wpjm_cpt, $pd_pages );
+								} else {
+									// Manually get cache
+//									error_log('getting wpjm transient for '.$wpjm_cpt);
+									$pd_pages = get_transient('wpjm_menu_'.$wpjm_cpt);
+									// Unless it doesn't exist, then use get_posts
+									if (false == $pd_pages || empty($pd_pages)) {
+//										error_log('tried to get wpjm transient but failed');
+										$pd_pages = wp_list_pages( $args );
+										$pd_pages = str_replace(' selected="selected"', '', $pd_pages);
+										set_transient( 'wpjm_menu_' . $wpjm_cpt, $pd_pages );
+									}
+								}
+
+								$wpjm_string .= $pd_pages;
 
 							}
 
-						} else if ($post_status == 'publish') {
-							$wpjm_string .= wp_list_pages(array('walker' => $orderedListWalker, 'post_type' => $wpjm_cpt, 'echo' => 0, 'depth' => $numberposts, 'sort_column' => $sortby, 'sort_order' => $sort));
+						} else if ( $post_status == 'publish' ) {
+							/*$wpjm_string .= wp_list_pages( array(
+								'walker'      => $orderedListWalker,
+								'post_type'   => $wpjm_cpt,
+								'echo'        => 0,
+								'depth'       => $numberposts,
+								'sort_column' => $sortby,
+								'sort_order'  => $sort
+							) );*/
+
+							$args = array(
+								'walker'      => $orderedListWalker,
+								'post_type'   => $wpjm_cpt,
+								'echo'        => 0,
+								'depth'       => $numberposts,
+								'sort_column' => $sortby,
+								'sort_order'  => $sort,
+								'title_li'    => ''
+							);
+
+							if ($cached == false) {
+								// Manually cache results
+								$pd_pages = wp_list_pages( $args );
+//								error_log('setting wpjm transient for published pages');
+								$pd_pages = str_replace(' selected="selected"', '', $pd_pages);
+								set_transient( 'wpjm_menu_' . $wpjm_cpt, $pd_pages );
+							} else {
+								// Manually get cache
+//								error_log('getting wpjm transient for '.$wpjm_cpt);
+								$pd_pages = get_transient('wpjm_menu_'.$wpjm_cpt);
+								// Unless it doesn't exist, then use get_posts
+								if (false == $pd_pages || empty($pd_pages)) {
+//									error_log('tried to get wpjm transient but failed');
+									$pd_pages = wp_list_pages( $args );
+									$pd_pages = str_replace(' selected="selected"', '', $pd_pages);
+									set_transient( 'wpjm_menu_' . $wpjm_cpt, $pd_pages );
+								}
+							}
+
+							$wpjm_string .= $pd_pages;
 						}
 
 						$wpjm_string .= '</optgroup>';
@@ -854,7 +1042,6 @@ class WpJumpMenu
 		}
 
 
-
 		// Close the select drop down
 		$wpjm_string .= '</select>';
 
@@ -863,14 +1050,10 @@ class WpJumpMenu
 	} // end wpjm_page_dropdown()
 
 
-	function wpjm_get_page_title( $pd_title )
-	{
-		if ( strlen($pd_title) > 50 )
-		{
-			return substr( $pd_title, 0, 50)."...";
-		}
-		else
-		{
+	function wpjm_get_page_title( $pd_title ) {
+		if ( strlen( $pd_title ) > 50 ) {
+			return substr( $pd_title, 0, 50 ) . "...";
+		} else {
 			return $pd_title;
 		}
 	}
@@ -884,184 +1067,186 @@ class WpJumpMenu
 	*  @created: 12/12/12
 	*/
 
-	function wpjm_install()
-	{
+	function wpjm_install() {
 
 		// Populate with default values
-		if (get_option('wpjm_position'))
-		{
+		if ( get_option( 'wpjm_position' ) ) {
 
 			$newPostTypes = array(
-					'page' => array(
-						'show' => '1',
-						'sortby' => 'menu_order',
-						'sort' => 'ASC',
-						'poststatus' => array('publish','draft')
-					),
-					'post' => array(
-						'show' => '1',
-						'sortby' => 'date',
-						'sort' => 'DESC',
-						'poststatus' => array('publish','draft')
-					)
-				);
+				'page' => array(
+					'show'       => '1',
+					'sortby'     => 'menu_order',
+					'sort'       => 'ASC',
+					'poststatus' => array( 'publish', 'draft' )
+				),
+				'post' => array(
+					'show'       => '1',
+					'sortby'     => 'date',
+					'sort'       => 'DESC',
+					'poststatus' => array( 'publish', 'draft' )
+				)
+			);
 
 			// Get old custom post types option, append to new variable
-			$customPostTypes = get_option('wpjm_customPostTypes');
-			$cpt_arr = explode(',',$customPostTypes);
-			if (!empty($cpt_arr)) {
-				if (is_array($cpt_arr)) {
-					foreach($cpt_arr as $cpt) {
-						$newPostTypes[$cpt] = array(
-							'show' => '1',
-							'sortby' => 'menu_order',
-							'sort' => 'ASC',
+			$customPostTypes = get_option( 'wpjm_customPostTypes' );
+			$cpt_arr         = explode( ',', $customPostTypes );
+			if ( ! empty( $cpt_arr ) ) {
+				if ( is_array( $cpt_arr ) ) {
+					foreach ( $cpt_arr as $cpt ) {
+						$newPostTypes[ $cpt ] = array(
+							'show'        => '1',
+							'sortby'      => 'menu_order',
+							'sort'        => 'ASC',
 							'numberposts' => '-1',
-							'poststatus' => array('publish','draft')
-							);
+							'poststatus'  => array( 'publish', 'draft' )
+						);
 					}
 				} else {
-					$newPostTypes[$cpt_arr] = array(
-						'show' => '1',
-						'sortby' => 'menu_order',
-						'sort' => 'ASC',
+					$newPostTypes[ $cpt_arr ] = array(
+						'show'        => '1',
+						'sortby'      => 'menu_order',
+						'sort'        => 'ASC',
 						'numberposts' => '-1',
-						'poststatus' => array('publish','draft')
+						'poststatus'  => array( 'publish', 'draft' )
 					);
 				}
 			}
 
 			$arr = array(
-				'position' => get_option('wpjm_position'),
-				'useChosen' => 'true',
+				'position'        => get_option( 'wpjm_position' ),
+				'useChosen'       => 'true',
+        'useShortcut'     => 'false',
 				'chosenTextAlign' => 'left',
-				'showID' => 'false',
-				'showaddnew' => 'true',
-				'frontend' => 'true',
-				'frontEndJump' => 'true',
-				'backgroundColor' => get_option('wpjm_backgroundColor'),
-				'fontColor' => get_option('wpjm_fontColor'),
-				'borderColor' => get_option('wpjm_borderColor'),
-				'postTypes' => $newPostTypes,
-				'logoIcon' => get_option('wpjm_logoIcon'),
-				'linkColor' => get_option('wpjm_linkColor'),
-				'message' => get_option('wpjm_message'),
-				'title' => "WP Jump Menu &raquo;",
-				'statusColors' => array(
-					'publish' => '',
-					'pending' => '',
-					'draft' => '',
+				'showID'          => 'false',
+				'showPostType'    => 'false',
+				'showaddnew'      => 'true',
+				'frontend'        => 'true',
+				'frontEndJump'    => 'true',
+				'backgroundColor' => get_option( 'wpjm_backgroundColor' ),
+				'fontColor'       => get_option( 'wpjm_fontColor' ),
+				'borderColor'     => get_option( 'wpjm_borderColor' ),
+				'postTypes'       => $newPostTypes,
+				'logoIcon'        => get_option( 'wpjm_logoIcon' ),
+				'linkColor'       => get_option( 'wpjm_linkColor' ),
+				'message'         => get_option( 'wpjm_message' ),
+				'title'           => "WP Jump Menu &raquo;",
+				'statusColors'    => array(
+					'publish'    => '',
+					'pending'    => '',
+					'draft'      => '',
 					'auto-draft' => '',
-					'future' => '',
-					'private' => '',
-					'inherit' => '',
-					'trash' => ''
+					'future'     => '',
+					'private'    => '',
+					'inherit'    => '',
+					'trash'      => ''
 				)
 			);
 
-			update_option('wpjm_options',$arr);
+			update_option( 'wpjm_options', $arr );
 
-			delete_option('wpjm_position');
-			delete_option('wpjm_sortpagesby');
-			delete_option('wpjm_sortpages');
-			delete_option('wpjm_sortpostsby');
-			delete_option('wpjm_sortposts');
-			delete_option('wpjm_numberposts');
-			delete_option('wpjm_backgroundColor');
-			delete_option('wpjm_fontColor');
-			delete_option('wpjm_borderColor');
-			delete_option('wpjm_customPostTypes');
-			delete_option('wpjm_logoIcon');
-			delete_option('wpjm_logoWidth');
-			delete_option('wpjm_linkColor');
-			delete_option('wpjm_message');
+			delete_option( 'wpjm_position' );
+			delete_option( 'wpjm_sortpagesby' );
+			delete_option( 'wpjm_sortpages' );
+			delete_option( 'wpjm_sortpostsby' );
+			delete_option( 'wpjm_sortposts' );
+			delete_option( 'wpjm_numberposts' );
+			delete_option( 'wpjm_backgroundColor' );
+			delete_option( 'wpjm_fontColor' );
+			delete_option( 'wpjm_borderColor' );
+			delete_option( 'wpjm_customPostTypes' );
+			delete_option( 'wpjm_logoIcon' );
+			delete_option( 'wpjm_logoWidth' );
+			delete_option( 'wpjm_linkColor' );
+			delete_option( 'wpjm_message' );
 
 		} else {
 
 			// If this is a new install, set the default options
-			if (empty($this->options)) {
+			if ( empty( $this->options ) ) {
 				$arr = array(
-					'position' => 'wpAdminBar',
-					'useChosen' => 'true',
+					'position'        => 'wpAdminBar',
+					'useChosen'       => 'true',
+          'useShortcut'     => 'false',
 					'chosenTextAlign' => 'left',
-					'showID' => 'false',
-					'showaddnew' => 'true',
-					'frontend' => 'true',
-					'frontEndJump' => 'true',
+					'showID'          => 'false',
+					'showPostType'    => 'false',
+					'showaddnew'      => 'true',
+					'frontend'        => 'true',
+					'frontEndJump'    => 'true',
 					'backgroundColor' => 'e0e0e0',
-					'fontColor' => '787878',
-					'borderColor' => '666666',
-					'postTypes' => array(
+					'fontColor'       => '787878',
+					'borderColor'     => '666666',
+					'postTypes'       => array(
 						'page' => array(
-							'show' => '1',
-							'sortby' => 'menu_order',
-							'sort' => 'ASC',
+							'show'        => '1',
+							'sortby'      => 'menu_order',
+							'sort'        => 'ASC',
 							'numberposts' => '0',
-							'poststatus' => array('publish','draft')
+							'poststatus'  => array( 'publish', 'draft' )
 						),
 						'post' => array(
-							'show' => '1',
-							'sortby' => 'date',
-							'sort' => 'DESC',
+							'show'        => '1',
+							'sortby'      => 'date',
+							'sort'        => 'DESC',
 							'numberposts' => '-1',
-							'poststatus' => array('publish','draft')
+							'poststatus'  => array( 'publish', 'draft' )
 						)
 					),
-					'logoIcon' => 'http://www.krillwebdesign.com/img/jk-og.png',
-					'linkColor' => '1cd0d6',
-					'message' => "Brought to you by <a href='http://www.krillwebdesign.com/' target='_blank'>Krill Web Design</a>.",
-					'title' => "WP Jump Menu &raquo;",
-					'statusColors' => array(
-						'publish' => '',
-						'pending' => '',
-						'draft' => '',
+					'logoIcon'        => 'http://www.krillwebdesign.com/img/jk-og.png',
+					'linkColor'       => '1cd0d6',
+					'message'         => "Brought to you by <a href='http://www.krillwebdesign.com/' target='_blank'>Krill Web Design</a>.",
+					'title'           => "WP Jump Menu &raquo;",
+					'statusColors'    => array(
+						'publish'    => '',
+						'pending'    => '',
+						'draft'      => '',
 						'auto-draft' => '',
-						'future' => '',
-						'private' => '',
-						'inherit' => '',
-						'trash' => ''
+						'future'     => '',
+						'private'    => '',
+						'inherit'    => '',
+						'trash'      => ''
 					)
 				);
-				update_option('wpjm_options',$arr);
+				update_option( 'wpjm_options', $arr );
 			} else {
 
 				// Not a new install, but not an upgrade from old version, update post type status'
-				if (!isset($this->options['postTypes']['post']['poststatus'])) {
-					foreach($this->options['postTypes'] as $key => $value) {
-						$this->options['postTypes'][$key]['poststatus'] = array('publish','draft');
+				if ( ! isset( $this->options['postTypes']['post']['poststatus'] ) ) {
+					foreach ( $this->options['postTypes'] as $key => $value ) {
+						$this->options['postTypes'][ $key ]['poststatus'] = array( 'publish', 'draft' );
 					}
-					update_option('wpjm_options',$this->options);
+					update_option( 'wpjm_options', $this->options );
 				}
 
 				// Remove logo width if it is set
-				if (isset($this->options['logoWidth'])) {
-					unset($this->options['logoWidth']);
-					update_option('wpjm_options',$this->options);
+				if ( isset( $this->options['logoWidth'] ) ) {
+					unset( $this->options['logoWidth'] );
+					update_option( 'wpjm_options', $this->options );
 				}
 
 				// Add title if it is not set
-				if (!isset($this->options['title'])) {
+				if ( ! isset( $this->options['title'] ) ) {
 					$this->options['title'] = "WP Jump Menu &raquo;";
-					update_option('wpjm_options',$this->options);
+					update_option( 'wpjm_options', $this->options );
 				}
 
 			}
 
 		}
 
-		update_option('wpjm_version',$this->version);
+		update_option( 'wpjm_version', $this->version );
+
 		return true;
 
 	}
-
 
 
 }
 
 
 // Only run this code if we are NOT within the Network pages on multisite.
-if (!is_network_admin()) {
-	if (function_exists('current_user_can')) {
+if ( ! is_network_admin() ) {
+	if ( function_exists( 'current_user_can' ) ) {
 
 		require_once( 'settings.php' );
 		$wpjm = new WpJumpMenu();

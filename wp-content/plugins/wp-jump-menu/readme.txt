@@ -5,8 +5,8 @@ Plugin URI: http://wpjumpmenu.com
 Author URI: http://krillwebdesign.com
 Tags: posts, pages, admin, jump, menu, quick, links, custom post types
 Requires at least: 3.7
-Tested up to: 4.4.2
-Stable tag: 3.5.3
+Tested up to: 4.7
+Stable tag: 3.6
 
 Creates a drop-down menu in the admin area which makes it easy to jump to a page, post, custom post type or media file for editing.
 
@@ -109,6 +109,23 @@ The branding options are only accessible when the position of the jump menu is s
 3. The Jump Menu - Just a drop down, but one POWERFUL drop down!
 
 == Changelog ==
+= 3.6 =
+* Added option for hotkey (keyboard shortcut): CTRL + J to open and focus jump menu quickly. Turn this feature on by going to the WP Jump Menu settings page and checking the box next to Use Shortcut Key.
+
+= 3.5.7 =
+* Bug Fix - additional parameter was needed on wp_list_pages() so that <ul>'s were not showing in select menus
+
+= 3.5.6 =
+* Bug Fix
+
+= 3.5.5 =
+* Improved styling of dropdown menu when using chosen. Switched to flex layout.
+* Added option to show post type next to post title in menu. With long lists of pages, posts, etc. it can become difficult to know which post type you are currently looking at.
+* Fixed bug where a current page could get cached and always show as the selected page, and/or you could not select it from the list.
+
+= 3.5.4 =
+* Bug fixes, specifically around caching, transients, and loading.  If you experienced bugs where the menu was not loading, try this update.
+
 = 3.5.3 =
 * Bug fixes. I appologize for all of the quick updates - hopefully this will be the last. Trying to fix an issue where the menu
 was breaking Jetpack site stats. This fix loads the jump menu's Javascript in the footer - which should fix it. Please add
