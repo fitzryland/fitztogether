@@ -48,3 +48,7 @@ var scr = d.getElementsByTagName(t)[0], par = scr.parentNode; par.insertBefore(s
 		</li>
 	</ul>
 </form>
+
+<?php
+wp_enqueue_script('wufoo',get_bloginfo('template_directory').'/js/lib/wufoo.js',array(), false, true);
+?>

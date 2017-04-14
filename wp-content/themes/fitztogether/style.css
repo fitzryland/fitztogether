@@ -772,20 +772,27 @@ input[type=reset] {
   padding: 1em; }
 
 blockquote {
+  border-left: 0.3em solid #A29EB8;
   clear: both;
+  display: inline-block;
   font-size: 1.2em;
-  padding-right: 1em;
-  padding-left: 1em;
   margin-right: 0;
-  margin-left: 0;
+  margin-bottom: 1.5em;
+  margin-left: 0.5em;
+  padding-right: 1em;
+  padding-left: 0.5em;
   width: 100%; }
   @media (min-width: 37.5em) {
     blockquote {
+      margin-left: 1em;
       padding-right: 2em;
-      padding-left: 2em; } }
+      padding-left: 1em; } }
   .mz-no-mediaqueries blockquote {
+    margin-left: 1em;
     padding-right: 2em;
-    padding-left: 2em; }
+    padding-left: 1em; }
+  blockquote p:last-child {
+    margin-bottom: 0; }
 
 .post_body_wrap {
   margin: 0 auto;
@@ -883,6 +890,9 @@ blockquote {
 
 .single_post_content--header {
   display: block; }
+
+.single_post_content p {
+  text-indent: 1em; }
 
 .post_image_wrap {
   clear: both; }
@@ -1006,15 +1016,11 @@ blockquote {
       width: 2em; }
     .site_header--toggle:hover {
       box-shadow: none; }
-      .site_header--toggle:hover:before {
-        height: 2em; }
     .site_header--toggle:focus {
       box-shadow: none;
       outline: none; }
     .site_header--toggle.open:before {
       height: 2em; }
-    .site_header--toggle.open:hover:before {
-      height: 1em; }
     .single .site_header--toggle,
     .page .site_header--toggle {
       display: block; }

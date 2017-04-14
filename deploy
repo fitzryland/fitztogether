@@ -1,3 +1,3 @@
 #!/bin/bash
-rm -rf ../gether/author ../gether/post-20 ../gether/wp-admin
+rm -rf ../gether/author ../gether/post-20 ../gether/wp-admin ../gether/img_* ../gether/wp-json ../gether/wp-content/fitztogether/bower_components ../gether/wp-content/fitztogether/node_modules
 rsync -a --delete --update -P ../gether fitzhug1@fitzhughryland.com:public_html/fitzto

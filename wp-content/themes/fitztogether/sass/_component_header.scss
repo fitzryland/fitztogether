@@ -43,7 +43,7 @@
 		&:hover {
 			box-shadow: none;
 			&:before {
-				height: $s-vertical*2;
+				// height: $s-vertical*2;
 			}
 		}
 		&:focus {
@@ -56,7 +56,7 @@
 			}
 			&:hover {
 				&:before {
-					height: $s-vertical;
+					// height: $s-vertical;
 				}
 			}
 		}
